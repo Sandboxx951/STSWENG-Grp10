@@ -1,0 +1,42 @@
+body {
+    background-color: white;
+    font-family: "Comic Sans MS", cursive;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.box {
+    background-color: white;
+    border: 2px solid purple;
+    border-radius: 20px;
+    padding: 20px;
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.box h1 {
+    color: black;
+    margin: 0;
+}
+
+.menu-box {
+    background-color: purple;
+    border-radius: 20px;
+    padding: 20px;
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+a.home{
+    color: black;
+}
