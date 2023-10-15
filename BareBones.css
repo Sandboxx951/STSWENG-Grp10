@@ -1,42 +1,29 @@
-body {
-    background-color: white;
-    font-family: "Comic Sans MS", cursive;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+ul.navbar {
+    list-style-type: none;
     margin: 0;
+    padding: 20px 0;
+    overflow: hidden;
+    background-color: #0c0c0c;
 }
 
-.box {
-    background-color: white;
-    border: 2px solid purple;
-    border-radius: 20px;
-    padding: 20px;
-    width: 200px;
-    cursor: pointer;
-    text-align: center;
+/* Style for individual navigation items */
+ul.navbar li {
+    float: right;
+    margin-right: 20px; /* Increase the spacing between items */
 }
 
-.box h1 {
-    color: black;
-    margin: 0;
-}
-
-.menu-box {
-    background-color: purple;
-    border-radius: 20px;
-    padding: 20px;
-    width: 200px;
-    cursor: pointer;
-    text-align: center;
-}
-
-a {
-    text-decoration: none;
+/* Style for navigation item links */
+ul.navbar li a {
+    display: block;
     color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif; /* Set the font-family to Montserrat */
+    font-size: 18px;
 }
-a.home{
-    color: black;
+
+/* Style for the links on hover */
+ul.navbar li a:hover {
+    background-color: #555;
 }
