@@ -1,29 +1,58 @@
-ul.navbar {
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    z-index: 2;
+}
+
+.navbar ul {
     list-style-type: none;
     margin: 0;
-    padding: 20px 0;
-    overflow: hidden;
-    background-color: #0c0c0c;
-}
-
-/* Style for individual navigation items */
-ul.navbar li {
-    float: right;
-    margin-right: 20px; /* Increase the spacing between items */
-}
-
-/* Style for navigation item links */
-ul.navbar li a {
-    display: block;
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
     color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-family: "Montserrat", sans-serif; /* Set the font-family to Montserrat */
+    font-family: "Montserrat", sans-serif;
     font-size: 18px;
 }
 
-/* Style for the links on hover */
-ul.navbar li a:hover {
-    background-color: #555;
+.Logo img {
+    margin-left: 20px;
+    margin-right: 200px;
+}
+
+.nav-item {
+    margin-right: 20px;
+}
+
+
+
+.image-background {
+    position: absolute;
+    z-index: 1;
+    max-height: 1%;
+    max-width: 1%;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    z-index: 0;
+}
+
+.overlay p {
+    font-size: 24px;
+    text-align: center;
 }
