@@ -1,3 +1,6 @@
+body {
+    overflow: hidden; /* Make the page non-scrollable */
+}
 
 .navbar {
     position: fixed;
@@ -6,51 +9,64 @@
     width: 100%;
     background-color: black;
     z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.navbar .logo img {
+    margin-right: 10px;
 }
 
 .navbar ul {
     list-style-type: none;
     margin: 0;
-    padding: 30px 0;
+    padding: 0;
     display: flex;
-    align-items: center;
+}
+
+.navbar li {
+    margin-right: 50px;
+}
+
+.navbar a {
+    text-decoration: none;
     color: white;
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
 }
 
-.Logo img {
-    margin-left: 20px;
-    margin-right: 200px;
-}
-
-.nav-item {
-    margin-right: 20px;
-}
-
-
-
 .image-background {
     position: absolute;
-    z-index: 1;
-    max-height: 1%;
-    max-width: 1%;
+    margin-top: 100px;
+    margin-left:250px;
+    z-index: 0;
+    width:90%;
+    height: 90%;
+    overflow: hidden;
 }
 
+.image-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .overlay {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0; 
     width: 45%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
-    z-index: 0;
+    color: white;
+    z-index: 1;
 }
+
 
 .overlay p {
     font-size: 24px;
