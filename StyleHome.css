@@ -1,5 +1,7 @@
 body {
-    overflow: hidden; /* Make the page non-scrollable */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    height: 10000px;
+    margin: 0;  
 }
 
 .navbar {
@@ -40,10 +42,10 @@ body {
 .image-background {
     position: absolute;
     margin-top: 100px;
-    margin-left:250px;
+    margin-left: 250px;
     z-index: 0;
-    width:90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -56,19 +58,49 @@ body {
 .overlay {
     position: absolute;
     top: 0;
-    left: 0; 
+    left: 0;
     width: 45%;
-    height: 100%;
+    height: 98%;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     color: white;
     z-index: 1;
 }
 
-
 .overlay p {
     font-size: 24px;
     text-align: center;
+}
+
+.button-container {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: rgb(0, 255, 47);
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 50px;
+    margin-bottom: 70px;
+    font-size: 18px;
+}
+
+.Details {
+    margin-bottom: -674px;
+    background-color: black; 
+    text-align: center;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 700px;
+}
+
+.Details p {
+    font-size: 18px;
+    color: white;
 }
