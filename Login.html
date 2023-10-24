@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="BareBones.css">
-    <title>About Me</title>
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="StyleLogin.css">
 </head>
 <body>
-    <div class="menu-box">
-        <a href="BareBones.html">Click here to return to the main page</a>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form action="login.php" method="post">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Login">
+      </div>
+    </form>
+    <div class="signup-link">
+      <p>Don't have an account yet? <a href="signup.html">Sign up</a></p>
     </div>
-    <div class="content-box">
-        <h2>About Me</h2>
-        <p>This is the About Me page content. You can add information about yourself here.</p>
-    </div>
+  </div>
 </body>
 </html>
