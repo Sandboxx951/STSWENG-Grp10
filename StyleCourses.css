@@ -1,0 +1,79 @@
+
+body {
+    background-color: black;
+    margin: 0;
+    height: 1000px;
+}
+
+.bar {
+  background-color: var(--black, #0e0e0e);
+  position: sticky;
+  top: 0px;
+  display: flex;
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+  padding-left: 32px;
+  padding-right: 48px;
+}
+.img {
+  object-fit: cover;
+  width: 256px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+a {
+  color: white;
+  font: 18px Montserrat, sans-serif;
+  text-decoration: none;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+}
+
+.level {
+  color: white;
+  letter-spacing: -5px;
+  text-align: center;
+  font: 700 96px Montserrat, sans-serif;
+}
+
+.unlock {
+  color: #fff;
+  max-width: 70%;
+  text-align: center;
+  font: 500 24px Montserrat, sans-serif;
+}
+.what {
+  color: #fff;
+  text-align: center;
+  font: 500 24px Montserrat, sans-serif;
+}
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 48px;
+    width: 60%;
+}
+button {
+  justify-content: center;
+  color: #000;
+  text-align: center;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  border-radius: 32px;
+  background-color: var(--Lime-Green, #c5ff4a);
+  padding: 24px;
+  width: 40%;
+  font: 600 16px Inter, sans-serif;
+}
