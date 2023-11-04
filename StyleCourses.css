@@ -5,29 +5,42 @@ body {
     height: 1000px;
 }
 
-.bar {
-  background-color: var(--black, #0e0e0e);
-  position: sticky;
-  top: 0px;
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  z-index: 2;
   display: flex;
-  padding: 8px;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 48px;
-  padding-left: 32px;
-  padding-right: 48px;
+  padding: 10px 30px;
 }
-.img {
-  object-fit: cover;
-  width: 256px;
-  overflow: hidden;
-  max-width: 100%;
+
+.navbar .logo img {
+  margin-right: 10px;
 }
-.nav {
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  justify-content: space-between;
-  gap: 48px;
 }
+
+.navbar li {
+  margin-right: 50px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+}
+
+
 
 a {
   color: white;
