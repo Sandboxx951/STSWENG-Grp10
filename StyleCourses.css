@@ -1,129 +1,209 @@
-
 body {
-    background-color: black;
-    margin: 0;
-    height: 1000px;
+  background-color: black;
+  margin: 0;
+  height: 1000px;
 }
 
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #0e0e0e;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 30px;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+background-color: #0e0e0e;
+z-index: 2;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 30px;
 }
 
 .navbar .logo img {
-  margin-right: 10px;
+margin-right: 10px;
 }
 
 .navbar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: flex;
 }
 
 .navbar li {
-  margin-right: 50px;
+margin-right: 50px;
 }
 
 .navbar a {
-  text-decoration: none;
-  color: white;
-  font-family: "Montserrat", sans-serif;
-  font-size: 18px;
+text-decoration: none;
+color: white;
+font-family: "Montserrat", sans-serif;
+font-size: 18px;
 }
-
-
 
 a {
-  color: white;
-  font: 18px Montserrat, sans-serif;
-  text-decoration: none;
+color: white;
+font: 18px Montserrat, sans-serif;
+text-decoration: none;
 }
+
 .container {
-  margin-top: 140px;
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-    align-items: center;
+margin-top: 140px;
+display: flex;
+flex-direction: column;
+gap: 48px;
+align-items: center;
 }
 
 .level {
-  color: white;
-  letter-spacing: -5px;
-  text-align: center;
-  font: 700 96px Montserrat, sans-serif;
-  margin-bottom: -25px;
+color: white;
+letter-spacing: -5px;
+text-align: center;
+font: 700 96px Montserrat, sans-serif;
+margin-bottom: -25px;
 }
 
 .unlock {
-  color: #fff;
-  max-width: 70%;
-  text-align: center;
-  font: 500 24px Montserrat, sans-serif;
-  margin-bottom: -30px;
+color: #fff;
+max-width: 70%;
+text-align: center;
+font: 500 24px Montserrat, sans-serif;
+margin-bottom: -30px;
 }
+
 .what {
-  color: #fff;
-  text-align: center;
-  font: 500 24px Montserrat, sans-serif;
-  font-weight: 400;
+color: #fff;
+text-align: center;
+font: 500 24px Montserrat, sans-serif;
+font-weight: 400;
 }
+
 .button-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 48px;
-    width: 60%;
+display: flex;
+justify-content: space-around;
+gap: 48px;
+width: 60%;
 }
+
 button {
-  justify-content: center;
-  color: #000;
-  text-align: center;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  border-radius: 32px;
-  background-color: var(--Lime-Green, #c5ff4a);
-  padding: 24px;
-  width: 40%;
-  font: 600 16px Inter, sans-serif;
+justify-content: center;
+color: #000;
+text-align: center;
+letter-spacing: 5px;
+text-transform: uppercase;
+border-radius: 32px;
+background-color: var(--Lime-Green, #c5ff4a);
+padding: 24px;
+width: 40%;
+font: 600 16px Inter, sans-serif;
 }
 
-  .picture-container {
-    max-width: 100%;
-    overflow: hidden;
-  }
 
-  .carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s;
-    overflow: hidden;
-    cursor: grab;
-  }
+.slider{width: 100%}
+.slider input{display: none;}
+.testimonials{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	min-height: 350px;
+	perspective: 1000px;
+	overflow: hidden;
+}
+.testimonials .item{
+	width: 500px;
+	padding: 30px;
+	border-radius: 5px;
+	background-color: #21262d;
+	position: absolute;
+	border:3px solid white;
+	top: 0;
+	box-sizing: border-box;
+	text-align: center;
+	transition: transform 0.4s;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	user-select: none;
+	cursor: pointer;
+}
+.testimonials .item h1{font-size: 114px; color: white;}
+.dots{display: flex; justify-content: center;align-items: center;}
+.dots label{
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: #413B52;
+	margin: 7px;
+	transition-duration: 0.2s;
+}
+#t-1:checked ~ .dots label[for="t-1"],
+#t-2:checked ~ .dots label[for="t-2"],
+#t-3:checked ~ .dots label[for="t-3"],
+#t-4:checked ~ .dots label[for="t-4"],
+#t-5:checked ~ .dots label[for="t-5"]{
+	transform: scale(2);
+	background-color: #fff;
+	box-shadow: 0px 0px 0px 3px #dddddd24;
+}
 
-  .picture {
-    margin: 0 10px;
-    flex: 0 0 20%; /* Set width to display 3 pictures at a time */
-  }
+#t-1:checked ~ .dots label[for="t-2"],
+#t-2:checked ~ .dots label[for="t-1"],
+#t-2:checked ~ .dots label[for="t-3"],
+#t-3:checked ~ .dots label[for="t-2"],
+#t-3:checked ~ .dots label[for="t-4"],
+#t-4:checked ~ .dots label[for="t-3"],
+#t-4:checked ~ .dots label[for="t-5"],
+#t-5:checked ~ .dots label[for="t-4"]{
+	transform: scale(1.5);
+}
 
-  .picture img {
-    max-width: 100%;
-    height: auto;
-  }
+#t-1:checked ~ .testimonials label[for="t-3"],
+#t-2:checked ~ .testimonials label[for="t-4"],
+#t-3:checked ~ .testimonials label[for="t-5"],
+#t-4:checked ~ .testimonials label[for="t-1"],
+#t-5:checked ~ .testimonials label[for="t-2"]{
+	transform: translate3d(600px, 0, -180px) rotateY(-25deg);
+	z-index: 2;
+}
 
-  .current {
-    transform: scale(1.2); /* Adjust the scale for the center picture */
-  }
+#t-1:checked ~ .testimonials label[for="t-2"],
+#t-2:checked ~ .testimonials label[for="t-3"],
+#t-3:checked ~ .testimonials label[for="t-4"],
+#t-4:checked ~ .testimonials label[for="t-5"],
+#t-5:checked ~ .testimonials label[for="t-1"]{
+	transform: translate3d(300px, 0, -90px) rotateY(-15deg);
+	z-index: 3;
+}
 
-  .picture:not(.current) {
-    transform: scale(0.8); /* Adjust the scale for non-current pictures */
-    transition: transform 0.3s;
-  }
+#t-2:checked ~ .testimonials label[for="t-1"],
+#t-3:checked ~ .testimonials label[for="t-2"],
+#t-4:checked ~ .testimonials label[for="t-3"],
+#t-5:checked ~ .testimonials label[for="t-4"],
+#t-1:checked ~ .testimonials label[for="t-5"]{
+	transform: translate3d(-300px, 0, -90px) rotateY(15deg);
+	z-index: 3;
+}
+
+#t-3:checked ~ .testimonials label[for="t-1"],
+#t-4:checked ~ .testimonials label[for="t-2"],
+#t-5:checked ~ .testimonials label[for="t-3"],
+#t-2:checked ~ .testimonials label[for="t-5"],
+#t-1:checked ~ .testimonials label[for="t-4"]{
+	transform: translate3d(-600px, 0, -180px) rotateY(25deg);
+	
+}
+
+#t-1:checked ~ .testimonials label[for="t-1"],
+#t-2:checked ~ .testimonials label[for="t-2"],
+#t-3:checked ~ .testimonials label[for="t-3"],
+#t-4:checked ~ .testimonials label[for="t-4"],
+#t-5:checked ~ .testimonials label[for="t-4"],
+#t-5:checked ~ .testimonials label[for="t-5"]{
+	
+	z-index: 4;
+}
+
+.testimonials .item img {
+  max-width: 100%; 
+  max-height: 100%;
+  display: block; 
+  margin: 0 auto; 
+}

@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Courses</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="StyleCourses.css">
 </head>
-
 <body>
   <div class="navbar">
     <div class="logo">
@@ -19,137 +17,53 @@
         <li><a href="Courses.html">Courses</a></li>
         <li><a href="Login.html">Login</a></li>
     </ul>
-</div>
-
+  </div>
   <div class="container">
     <div class="level">Level Up your Skills</div>
     <div class="unlock">
       Unlock Your Potential with Gwendolyn Parker: Whether you're aiming for Real<br>
       Estate Success or Financial Fluency, we've got your back.
     </div>
-    
-    
+
     <div class="what">What are you looking for?</div>
 
-    <div class="picture-container">
-      <h2>Featured Pictures</h2>
-      <div class="carousel" id="carousel">
-        <div class="picture">
-          <img src="test picture.png" alt="Image 7">
-        </div>
-        <div class="picture">
-          <img src="test picture 2.png" alt="Image 6">
-        </div>
-        <div class="picture current">
-          <img src="test picture 3.png" alt="Image 1">
-        </div>
-        <div class="picture">
-          <img src="test picture 4.png" alt="Image 2">
-        </div>
-        <div class="picture">
-          <img src="test picture 5.png" alt="Image 3">
-        </div>
-        <div class="picture">
-          <img src="test picture.png" alt="Image 4">
-        </div>
-        <div class="picture">
-          <img src="test picture 4.png" alt="Image 5">
-        </div>
-        <div class="picture">
-          <img src="test picture 3.png" alt="Image 8">
-        </div>
+    <div class="slider">
+      <input type="radio" name="testimonial" id="t-1">
+      <input type="radio" name="testimonial" id="t-2">
+      <input type="radio" name="testimonial" id="t-3" checked>
+      <input type="radio" name="testimonial" id="t-4">
+      <input type="radio" name="testimonial" id="t-5">
+      <div class="testimonials">
+        <label class="item" for="t-1">
+          <img src="test picture 2.png" alt="Image 1">
+        </label>
+        <label class="item" for="t-2">
+          <img src="test picture 2.png" alt="Image 2">
+        </label>
+        <label class="item" for="t-3">
+          <img src="test picture 2.png" alt="Image 3">
+        </label>
+        <label class="item" for="t-4">
+          <img src="test picture 2.png" alt="Image 4">
+        </label>
+        <label class="item" for="t-5">
+          <img src="test picture 2.png" alt="Image 5">
+        </label>
+      </div>
+      <br/>
+      <div class="dots">
+        <label for="t-1"></label>
+        <label for="t-2"></label>
+        <label for="t-3"></label>
+        <label for="t-4"></label>
+        <label for="t-5"></label>
       </div>
     </div>
     
     
-    
-  
-
     <div class="button-container">
       <button>PROCEED</button>
     </div>
   </div>
 </body>
-<script>
-  const carousel = document.getElementById('carousel');
-  const pictures = carousel.querySelectorAll('.picture');
-  let isDragging = false;
-  let initialX = 0;
-  let currentIndex = 2; // Start with the center picture
-  let currentTranslate = -currentIndex * pictures[0].offsetWidth;
-  
-  pictures.forEach((picture, index) => {
-    picture.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      initialX = e.clientX;
-      picture.style.cursor = 'grabbing';
-    });
-
-    picture.addEventListener('mouseup', () => {
-      isDragging = false;
-      picture.style.cursor = 'grab';
-      const offset = initialX - e.clientX;
-      if (offset > 50) {
-        nextPicture();
-      } else if (offset < -50) {
-        prevPicture();
-      }
-    });
-
-    picture.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const xOffset = e.clientX - initialX;
-      currentTranslate += xOffset;
-      updateCarousel();
-      initialX = e.clientX;
-    });
-
-    picture.addEventListener('mouseleave', () => {
-      if (isDragging) {
-        isDragging = false;
-        picture.style.cursor = 'grab';
-        updateCarousel();
-      }
-    });
-  });
-
-  function updateCarousel() {
-    pictures.forEach((picture, index) => {
-      const distance = Math.abs(currentTranslate + (index - 2) * picture.offsetWidth);
-      const opacity = getOpacity(distance);
-      picture.style.transform = `translateX(${currentTranslate}px) scale(${opacity + 0.8})`;
-      picture.style.opacity = opacity;
-    });
-  }
-
-  function getOpacity(distance) {
-    if (distance < pictures[0].offsetWidth) {
-      return 1 - (distance / (pictures[0].offsetWidth * 3)); // Fades from 100% to 30%
-    } else if (distance < pictures[0].offsetWidth * 2) {
-      return 0.3; // Middle picture stays at 30%
-    } else {
-      return 1 - ((distance - pictures[0].offsetWidth * 2) / (pictures[0].offsetWidth * 3)); // Fades from 30% to 0%
-    }
-  }
-
-  function nextPicture() {
-    if (currentIndex < pictures.length - 1) {
-      currentIndex++;
-      currentTranslate -= pictures[0].offsetWidth;
-      updateCarousel();
-    }
-  }
-
-  function prevPicture() {
-    if (currentIndex > 0) {
-      currentIndex--;
-      currentTranslate += pictures[0].offsetWidth;
-      updateCarousel();
-    }
-  }
-
-  updateCarousel();
-</script>
-
-
 </html>
