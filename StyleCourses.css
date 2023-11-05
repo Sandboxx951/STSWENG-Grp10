@@ -10,7 +10,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: black;
+  background-color: #0e0e0e;
   z-index: 2;
   display: flex;
   justify-content: space-between;
@@ -48,6 +48,7 @@ a {
   text-decoration: none;
 }
 .container {
+  margin-top: 140px;
     display: flex;
     flex-direction: column;
     gap: 48px;
@@ -59,6 +60,7 @@ a {
   letter-spacing: -5px;
   text-align: center;
   font: 700 96px Montserrat, sans-serif;
+  margin-bottom: -25px;
 }
 
 .unlock {
@@ -66,11 +68,13 @@ a {
   max-width: 70%;
   text-align: center;
   font: 500 24px Montserrat, sans-serif;
+  margin-bottom: -30px;
 }
 .what {
   color: #fff;
   text-align: center;
   font: 500 24px Montserrat, sans-serif;
+  font-weight: 400;
 }
 .button-container {
     display: flex;
@@ -90,3 +94,36 @@ button {
   width: 40%;
   font: 600 16px Inter, sans-serif;
 }
+
+  .picture-container {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s;
+    overflow: hidden;
+    cursor: grab;
+  }
+
+  .picture {
+    margin: 0 10px;
+    flex: 0 0 20%; /* Set width to display 3 pictures at a time */
+  }
+
+  .picture img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .current {
+    transform: scale(1.2); /* Adjust the scale for the center picture */
+  }
+
+  .picture:not(.current) {
+    transform: scale(0.8); /* Adjust the scale for non-current pictures */
+    transition: transform 0.3s;
+  }

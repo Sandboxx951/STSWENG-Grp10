@@ -9,7 +9,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: black;
+    background-color: #0e0e0e;
     z-index: 2;
     display: flex;
     justify-content: space-between;
