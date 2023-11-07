@@ -69,19 +69,31 @@ body {
     color: white;
     z-index: 1;
 }
-
-.overlay p {
-    margin-top: 300px;
-    font-size: 24px;
-    text-align: center;
+.overlay h1 {
+    margin-top: 500px;
+    font-size: 90px;
+    margin-left: 750px;
+    text-align: right;
+    font-family: 'Montserrat', sans-serif;
+  font-weight: 700px;
+  line-height: 90px;
+  transform: translate(-50%, -50%);
+    
 }
 
+.overlay p {
+    font-size: 20px;
+    text-align: right;
+    font-family: 'Montserrat', sans-serif;
+
+  transform: translate(-50%, -50%);
+    
+}
 
 .button-container {
     margin-right: 20px;
     margin-bottom: 20px;
 }
-
 .button {
     padding: 10px 20px;
     background-color: #C5FF4A; 
@@ -90,6 +102,7 @@ body {
     border-radius: 50px;
     margin-bottom: 70px;
     font-size: 18px;
+
 }
 
 .Details {
