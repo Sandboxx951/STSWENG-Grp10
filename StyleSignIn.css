@@ -1,0 +1,229 @@
+/* Sign in form */
+
+.form-signin {
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-signin h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .form-group.remember-me {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: -10px; /* Position the remember me element on top of the forgot password link */
+  }
+  
+  .form-group.remember-me input {
+    order: -1; /* Move the checkbox to the left of the label */
+    margin-right: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .form-group.remember-me label {
+    margin-left: 20px; /* Move the label to the right of the checkbox */
+  }
+  
+  .form-group.forgot-password {
+    margin-left: 0;
+  }
+  
+  .form-signin a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .form-signin a:hover {
+    color: #333;
+  }
+  
+  .form-group input[type="submit"] {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  .form-group.remember-me {
+    position: relative;
+    top: 5px; /* Move the remember me element slightly down */
+    left: 5px; /* Move the remember me element to the left margin of the forgot password link */
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-group.remember-me input {
+    order: -1; /* Move the checkbox to the left of the label */
+    margin-right: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .form-group.remember-me label {
+    margin-left: 20px; /* Move the label to the right of the checkbox */
+  }
+  
+  .form-group.forgot-password {
+    margin-left: 0;
+  }
+  
+  .form-signin a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .form-signin a:hover {
+    color: #333;
+  }
+  
+  .form-group input[type="submit"] {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+  }
+.form-group.remember-me {
+  position: relative;
+  top: 5px; /* Move the remember me element slightly down */
+  left: -10px; /* Move the remember me element 10 pixels to the left */
+  display: flex;
+  align-items: center;
+}
+
+.form-group.remember-me input {
+  order: -1; /* Move the checkbox to the left of the label */
+  margin-right: 5px;
+  position: absolute;
+  top: 0;
+  left: -5px; /* Move the checkbox 5 pixels to the left */
+}
+
+.form-group.remember-me label {
+  margin-left: 20px; /* Move the label to the right of the checkbox */
+}
+.form-group.remember-me {
+    position: relative;
+    top: 5px; /* Move the remember me element slightly down */
+    left: -10px; /* Move the remember me element 10 pixels to the left */
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-group.remember-me input {
+    order: -1; /* Move the checkbox to the left of the label */
+    margin-right: 5px;
+    position: absolute;
+    top: 0;
+    left: -5px; /* Move the checkbox 5 pixels to the left */
+  }
+  
+  .form-group.remember-me label {
+    margin-left: 20px; /* Move the label to the right of the checkbox */
+  }
+  .form-group.remember-me {
+    position: relative;
+    top: 5px; /* Move the remember me element slightly down */
+    left: -20px; /* Move the remember me element 20 pixels to the left */
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-group.remember-me input {
+    order: -1; /* Move the checkbox to the left of the label */
+    margin-right: 5px;
+    position: absolute;
+    top: 0;
+    left: -10px; /* Move the checkbox 10 pixels to the left */
+  }
+  
+  .form-group.remember-me label {
+    margin-left: 20px; /* Move the label to the right of the checkbox */
+  }
+  .form-group.remember-me input {
+    margin-left: -40px; /* Move the checkbox 10 pixels to the left */
+  }
+  .form-signin {
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-signin h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .form-group.remember-me {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 5px;
+    left: -20px;
+  }
+  
+  .form-group.remember-me input {
+    order: -1;
+    margin-right: 5px;
+    position: absolute;
+    top: 0;
+    left: -10px;
+  }
+  .form-group.forgot-password a {
+    color: blue;
+  }
+  
+  .form-group.sign-up a {
+    color: blue;
+  }  
