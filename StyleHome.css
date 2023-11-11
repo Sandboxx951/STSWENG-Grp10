@@ -1,5 +1,5 @@
 body {
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-x: hidden; 
     height:4000px;
     margin: 0;  
 }
@@ -83,11 +83,10 @@ body {
 
 .overlay p {
     font-size: 20px;
+    margin-top: -300px;
     text-align: right;
     font-family: 'Montserrat', sans-serif;
-
-  transform: translate(-50%, -50%);
-    
+    margin-left: 380px; 
 }
 
 .button-container {
