@@ -1,14 +1,21 @@
-
-        let users = []; // Simulating user data storage in memory
-
-        function signup(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            // Simulating user storage in an array (in memory)
-            users.push({ name, email, password });
-            alert('Signed up successfully!');
-            console.log(users); // For demonstration, logs the user array
-        }
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector('.form-signup form');
+  
+    form.addEventListener('submit', function(event) {
+      const emailInput = document.getElementById('email');
+      const email = emailInput.value.trim();
+  
+      if (!isValidEmail(email)) {
+        event.preventDefault(); // Prevent form submission if email is invalid
+        // You can add an error message display or style here
+        alert('Please enter a valid email address');
+      }
+    });
+  
+    function isValidEmail(email) {
+      // Basic email validation with a regular expression
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+  });
+  

@@ -1,21 +1,29 @@
-let users = [
-      { email: "test@example.com", password: "test123" },
-      { email: "user@example.com", password: "user456" }
-      // Add more test user data here
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.querySelector('.login-container form');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    // Simulated registered user data (replace this with your actual user data)
+    const registeredUsers = [
+      { email: 'test@example.com', password: 'password123' },
+      // Add more users if needed
     ];
 
-    function login(event) {
-      event.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+    // Check if the entered email and password match any registered user
+    const foundUser = registeredUsers.find(user => user.email === email && user.password === password);
 
-      // Check if the entered credentials match any user's credentials
-      const user = users.find(user => user.email === email && user.password === password);
-
-      if (user) {
-        alert('Login successful!');
-        // Redirect or perform other actions after successful login
-      } else {
-        alert('Login failed. Invalid credentials.');
-      }
+    if (foundUser) {
+      window.location.href = 'Home.html'; // Redirect to Home.html upon successful login
+    } else {
+      // You can add an error message display or style here
+      alert('Invalid email or password. Please try again.');
     }
+  });
+});
