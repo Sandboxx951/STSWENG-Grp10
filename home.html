@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="StyleHome.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 </head>
+
 <body>
     <div class="navbar">
         <div class="logo">
@@ -35,7 +36,6 @@
 
     <div class="Details">
         <div class="Details">
-
             <a href="RE_Courses.html" class="button">Real Estate Courses</a>
             <a href="GF_Courses.html" class="button">General Finance Courses</a>
         </div>
@@ -45,5 +45,19 @@
     <div class="Testimonals">
         <p>Content in the layer below.</p>
     </div>
+
+    <script>
+        // Check if the user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('loggedIn');
+
+            if (isLoggedIn) {
+                document.getElementById('loginLink').innerHTML = '<a href="#">You</a>';
+                // You can set the 'href' attribute for the "You" link to a user-specific page or a dashboard.
+                // Example:
+                // document.getElementById('loginLink').innerHTML = '<a href="userProfile.html">You</a>';
+            }
+        });
+    </script>
 </body>
 </html>
