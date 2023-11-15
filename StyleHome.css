@@ -4,6 +4,17 @@ body {
     margin: 0;  
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+.navbar a {
+    transition: color 0.3s ease-in-out;
+}
+.navbar a:hover {
+    color: #C5FF4A; 
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -45,7 +56,7 @@ body {
     margin-left: 250px;
     z-index: 0;
     width: 100%;
-    height: 100%;
+    height: 130%;
     overflow: hidden;
 }
 
@@ -60,7 +71,7 @@ body {
     top: 0;
     left: 0;
     width: 45%;
-    height: 98%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
@@ -104,19 +115,46 @@ body {
 
 }
 
-.Details {
-    margin-bottom: -1474px;
+.Courses {
+    margin-bottom: -1500px;
     background-color: black; 
     text-align: center;
     bottom: 0;
     position: absolute;
     width: 100%;
     height: 1500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.Details p {
+.Courses p {
     font-size: 18px;
     color: white;
+}
+
+.Courses h1 {
+    margin-top: 120px;
+    font-size: 80px;
+    color: white;
+}
+
+
+.Courses a.button {
+    margin-top: 50px;
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #67a5ce;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    z-index: 1;
+
+}
+
+.Courses a.button:hover {
+    background-color: #2980b9;
 }
 
 .Testimonals {
@@ -134,25 +172,3 @@ body {
     color: rgb(0, 0, 0);
 }
 
-.Details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.Details a.button {
-    margin-top: -650px;
-    display: inline-block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #3498db;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    z-index: 1;
-
-}
-
-.Details a.button:hover {
-    background-color: #2980b9;
-}

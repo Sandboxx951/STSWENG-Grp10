@@ -43,7 +43,6 @@
   <script>
     document.getElementById('signupForm').addEventListener('submit', function(event) {
       event.preventDefault();
-      // Get form values
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
@@ -54,7 +53,6 @@
         return;
       }
 
-      // Store data in local storage
       const user = {
         name,
         email,

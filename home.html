@@ -13,9 +13,9 @@
             <img src="logo.png" alt="Logo">
         </div>
         <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="Courses.html">Courses</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#courses">Courses</a></li>
             <li><a href="Login.html">Login</a></li>
         </ul>
     </div>
@@ -34,28 +34,25 @@
         <a href="SignUp.html" class="button">Get Started</a>
     </div>
 
-    <div class="Details">
-        <div class="Details">
-            <a href="RE_Courses.html" class="button">Real Estate Courses</a>
-            <a href="GF_Courses.html" class="button">General Finance Courses</a>
-        </div>
-        
+    <div id="courses" class="Courses">
+        <h1>REAL ESTATE COURSES</h1>
+            <a href="RE_Courses.html" class="button">Proceed</a>
+
+        <h1>GENERAL FINANCE COURSES</h1>
+            <a href="GF_Courses.html" class="button">Proceed</a>
     </div>
 
-    <div class="Testimonals">
+    <div id="about" class="Testimonals">
         <p>Content in the layer below.</p>
     </div>
 
     <script>
-        // Check if the user is logged in
         document.addEventListener('DOMContentLoaded', function() {
             const isLoggedIn = localStorage.getItem('loggedIn');
 
             if (isLoggedIn) {
-                document.getElementById('loginLink').innerHTML = '<a href="#">You</a>';
-                // You can set the 'href' attribute for the "You" link to a user-specific page or a dashboard.
-                // Example:
-                // document.getElementById('loginLink').innerHTML = '<a href="userProfile.html">You</a>';
+                document.getElementById('loginLink').innerHTML = '<a href="Profile.html">You</a>';
+            
             }
         });
     </script>

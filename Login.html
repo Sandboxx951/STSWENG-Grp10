@@ -35,6 +35,7 @@
 
       if (user && user.password === password) {
         alert('Login successful');
+        localStorage.setItem('loggedIn', 'true'); 
         window.location.href = 'Home.html';
       } else {
         alert('Invalid email or password');
