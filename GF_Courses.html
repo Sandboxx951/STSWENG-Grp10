@@ -1,69 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Courses</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="StyleCourses.css">
-</head>
-<body>
-  <div class="navbar">
-    <div class="logo">
-        <img src="logo.png" alt="Logo">
-    </div>
-    <ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="Courses.html">Courses</a></li>
-        <li><a href="Login.html">Login</a></li>
-    </ul>
-  </div>
-  <div class="container">
-    <div class="level">General Finance Courses</div>
-    <div class="unlock">
-      Unlock Your Potential with Gwendolyn Parker: Whether you're aiming for Real<br>
-      Estate Success or Financial Fluency, we've got your back.
-    </div>
-
-    <div class="what">What are you looking for?</div>
-
-    <div class="slider">
-      <input type="radio" name="testimonial" id="t-1">
-      <input type="radio" name="testimonial" id="t-2">
-      <input type="radio" name="testimonial" id="t-3" checked>
-      <input type="radio" name="testimonial" id="t-4">
-      <input type="radio" name="testimonial" id="t-5">
-      <div class="testimonials">
-        <label class="item" for="t-1">
-          <img src="test picture 2.png" alt="Image 1">
-        </label>
-        <label class="item" for="t-2">
-          <img src="test picture 2.png" alt="Image 2">
-        </label>
-        <label class="item" for="t-3">
-          <img src="test picture 2.png" alt="Image 3">
-        </label>
-        <label class="item" for="t-4">
-          <img src="test picture 2.png" alt="Image 4">
-        </label>
-        <label class="item" for="t-5">
-          <img src="test picture 2.png" alt="Image 5">
-        </label>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="StyleCourses.css">
+    <script src="StyleCourses.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">
+          <img src="logo.png" alt="Logo">
       </div>
-      <br/>
-      <div class="dots">
-        <label for="t-1"></label>
-        <label for="t-2"></label>
-        <label for="t-3"></label>
-        <label for="t-4"></label>
-        <label for="t-5"></label>
+      <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Courses.html">Courses</a></li>
+          <li><a href="Login.html">Login</a></li>
+      </ul>
+    </div>
+    <div class="container">
+      <div class="level">General Finance Courses</div>
+      <div class="unlock">
+        Unlock Your Potential with Gwendolyn Parker: Whether you're aiming for Real<br>
+        Estate Success or Financial Fluency, we've got your back.
       </div>
+
+      <div class="what">What are you looking for?</div>
+
+      <div class="slider">
+        <input type="radio" name="testimonial" id="t-1">
+        <input type="radio" name="testimonial" id="t-2">
+        <input type="radio" name="testimonial" id="t-3" checked>
+        <input type="radio" name="testimonial" id="t-4">
+        <input type="radio" name="testimonial" id="t-5">
+        <div class="testimonials">
+          <label class="item" for="t-1">
+            <img src="test picture 2.png" alt="Image 1">
+          </label>
+          <label class="item" for="t-2">
+            <img src="test picture 2.png" alt="Image 2">
+          </label>
+          <label class="item" for="t-3">
+            <img src="test picture 2.png" alt="Image 3">
+          </label>
+          <label class="item" for="t-4">
+            <img src="test picture 2.png" alt="Image 4">
+          </label>
+          <label class="item" for="t-5">
+            <img src="test picture 2.png" alt="Image 5">
+          </label>
+        </div>
+        <br/>
+        <div class="dots">
+          <label for="t-1"></label>
+          <label for="t-2"></label>
+          <label for="t-3"></label>
+          <label for="t-4"></label>
+          <label for="t-5"></label>
+        </div>
+      </div>
+      
+      
+  
+      
+      <div class="dropdown" id="dropdown1">
+        <div class="dropdown-btn-container">
+          <button class="dropdown-btn" onclick="toggleDropdown(this)"> &#9660 Welcome: Begin Here! </button>
+          <div class="buy-now">
+            <button class="buy-now-btn">Buy now <i class="fas fa-cart-shopping"></i></button>
+          </div>
+        </div>
+        <div class="dropdown-content" id="dropdownContent1">
+          
+          <a href="#">Course Overview / Syllabus</a>
+          <a href="#">Course Q&A</a>
+          <a href="#">Class Policies</a>
+          <a href="#">About Your Instructor</a>
+          <a href="#">Netiquette Rules for Online Discussion Board</a>
+        </div>
+      </div>
+      
+      <div class="dropdown" id="dropdown2">
+        <div class="dropdown-btn-container">
+          <button class="dropdown-btn" onclick="toggleDropdown(this)"> &#9660 Welcome: Begin Here! </button>
+          <div class="buy-now">
+            <button class="buy-now-btn">Buy now <i class="fas fa-cart-shopping"></i></button>
+          </div>
+        </div>
+        <div class="dropdown-content" id="dropdownContent2">
+          
+          <a href="#">Course Overview / Syllabus</a>
+          <a href="#">Course Q&A</a>
+          <a href="#">Class Policies</a>
+          <a href="#">About Your Instructor</a>
+          <a href="#">Netiquette Rules for Online Discussion Board</a>
+        </div>
+      </div>
+      
+      
+
     </div>
-    
-    
-    <div class="button-container">
-      <button>PROCEED</button>
-    </div>
-  </div>
-</body>
-</html>
+  </body>
+  </html>
