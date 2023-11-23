@@ -355,4 +355,42 @@ body {
     
 
 
+.lock-logo-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.lock-logo-container img {
+    width: 50px; 
+    height: 50px;
+}
+
+.dropdown-content .lock-logo-container {
+    display: none;
+}
+
+.dropdown.active .dropdown-content .lock-logo-container {
+    display: block;
+}
+.lock-icon.hidden {
+    display: none;
+}
+.fa-lock, .fa-unlock {
+    font-size: 1.5rem;
+    margin-left: 5px;
+    color: #555;
+}
+.price-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #3498db; 
+    color: #fff;
+    border-radius: 3px;
+    width: 67px;
+    font-size: 1.5em; 
+    margin-left: 5px; 
+
+}
+
+
   
