@@ -47,14 +47,15 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const isLoggedIn = localStorage.getItem('loggedIn');
-
-            if (isLoggedIn) {
-                document.getElementById('loginLink').innerHTML = '<a href="Profile.html">You</a>';
-            
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+          const isLoggedIn = localStorage.getItem('loggedIn');
+          const loginLink = document.getElementById('loginLink');
+      
+          if (isLoggedIn && loginLink) {
+            // Update the login link when the user is logged in
+            loginLink.innerHTML = '<a href="Profile.html">You</a>';
+          }
         });
-    </script>
+      </script>
 </body>
 </html>

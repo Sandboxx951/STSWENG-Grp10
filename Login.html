@@ -23,6 +23,11 @@
     <div class="signup-link">
       <p>Don't have an account yet? <a href="signup.html">Sign up</a></p>
     </div>
+
+    <!-- Add the button for admin login -->
+    <div class="admin-login-button">
+      <button onclick="redirectToAdminLogin()">Admin Login</button>
+    </div>
   </div>
 
   <script>
@@ -42,6 +47,11 @@
       }
       this.reset();
     });
+
+    // Function to redirect to Admin Login page
+    function redirectToAdminLogin() {
+      window.location.href = 'AdminLogin.html'; // Replace with the actual URL of your Admin Login page
+    }
   </script>
 </body>
 </html>
