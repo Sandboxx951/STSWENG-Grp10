@@ -36,10 +36,10 @@ function addNewCourse(dropdownNumber) {
         // Get the dropdown content element
         var dropdownContent = document.getElementById('dropdownContent' + dropdownNumber);
 
-        // Create a new <a> element for the new course
-        var newCourseLink = document.createElement('a');
-        newCourseLink.href = '#'; // You can set the appropriate href if needed
-        newCourseLink.textContent = newCourseInput;
+    var newCourseLink = document.createElement('a');
+    newCourseLink.href = '#'; // You can set the appropriate href if needed
+    newCourseLink.textContent = newCourseInput;
+    newCourseLink.setAttribute('data-course-id', dropdownNumber); // Set the course ID
 
         // Append the new course link to the dropdown content
         dropdownContent.appendChild(newCourseLink);
@@ -55,10 +55,23 @@ function editCourse() {
     alert('Edit Course functionality - Replace this with your actual code');
 }
 
-// Delete course functionality (replace with actual code)
-function deleteCourse() {
-    alert('Delete Course functionality - Replace this with your actual code');
+function deleteCourse(dropdownNumber) {
+    // Get the dropdown content element
+    var dropdownContent = document.getElementById('dropdownContent' + dropdownNumber);
+
+    // Find the last child (last added course) and remove it
+    var lastCourse = dropdownContent.lastChild;
+
+    if (lastCourse) {
+        // Remove the last course element
+        dropdownContent.removeChild(lastCourse);
+    } else {
+        // No courses to delete
+        alert('No courses to delete.');
+    }
 }
+
+
 
 
 
