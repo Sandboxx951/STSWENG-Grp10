@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="StyleLogin.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Login">
+      </div>
+    </form>
+    <div class="signup-link">
+      <p>Don't have an account yet? <a href="signup.html">Sign up</a></p>
+    </div>
+    
+    <div class="admin-login-button">
+      <button onclick="redirectToAdminLogin()">User Login</button>
+    </div>
+  </div>
+
+  <script>
+    const adminCredentials = {
+      email: 'admin@email.com',
+      password: 'admin12345'
+    };
+
+    localStorage.setItem(adminCredentials.email, JSON.stringify(adminCredentials));
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const user = JSON.parse(localStorage.getItem(email));
+
+      if (user && user.password === password) {
+        alert('Login successful');
+        localStorage.setItem('loggedIn', 'true'); 
+        window.location.href = 'Home.html';
+      } else {
+        alert('Invalid email or password');
+      }
+      this.reset();
+    });
+
+    function redirectToAdminLogin() {
+      window.location.href = 'Login.html'; 
+    }
+  </script>
+</body>
+</html>
