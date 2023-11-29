@@ -1,77 +1,178 @@
 body {
-    font-family: 'Georgia', 'serif';
-    background: #f2f2f2;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  .login-container {
-    background-color: #fff;
-    max-width: 360px;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px #888888;
-    text-align: center;
-  }
-  
-  .login-container h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    display: block;
-    font-weight: bold;
-    color: #333;
-    text-align: left;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: #f5f5f5;
-    color: #333;
-    font-size: 16px;
-  }
-  
-  .form-group input[type="submit"] {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  .form-group input[type="submit"]:hover {
-    background: #0056b3;
-  }
-  
-  .signup-link {
-    text-align: center;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .signup-link a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .signup-link a:hover {
-    text-decoration: underline;
-  }
-  
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #000 50%, #2be231 50%);
+}
+
+.login-container {
+  text-align: center;
+}
+
+.login-text {
+  color: #fff;
+  font-size: 75px;
+  position: absolute;
+  top: 200px; 
+  left: 400px; 
+}
+
+.form-group {
+  margin-top: 40px; 
+  text-align: left; 
+}
+
+.form-group label {
+  color: #fff;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0; 
+}
+
+.form-group input {
+  width: 550px; 
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  margin-left: 220px; 
+}
+.form-group input:focus {
+  border-bottom: 3px solid #fff;
+}
+.remember-me-group {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 220px; 
+}
+
+.remember-me-group input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-right: 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.remember-me-group input:checked {
+  background-color: #4caf50;
+}
+
+.remember-me-label {
+  color: #fff;
+  color: #fff;
+  margin-left: 5px; 
+  font-size: 15px; 
+}
+.forgot-password {
+  margin-top: -24px;
+  margin-left: 660px;
+}
+
+.forgot-password-link {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+.circle-button {
+  width: 40px;
+  height: 40px;
+  background-color: limegreen;
+  border-radius: 50%;
+  margin-top: 20px; 
+  margin-right: 270px; 
+  position: relative;
+  cursor: pointer;
+  float: right; 
+}
+
+.arrow-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px; 
+  color: black; 
+  transition: transform 0.3s;
+}
+
+.circle-button:hover .arrow-right {
+  transform: translate(-50%, -50%) rotate(360deg);
+}
+.signup-text {
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 212px;
+  color: #fff; 
+}
+
+.signup-link {
+  color: limegreen;
+  text-decoration: none;
+  margin-left: 5px; 
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+.admin-login-button {
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 210px;
+}
+
+.admin-login-button button {
+  background-color: #000; 
+  color: limegreen;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.admin-login-button button:hover {
+  background-color: #333; 
+}
+
+.NEW-container {
+  position: absolute;
+  top: 350px; 
+  right: 150px; 
+  padding: 10px;
+}
+
+.NEW-text {
+  color: #fff; 
+  margin: 0; 
+  font-size: 100px; 
+}
+.BROKERED-container {
+  position: absolute;
+  top: 490px; 
+  right: 300px; 
+  padding: 10px;
+}
+
+.BROKERED-text {
+  color: #fff; 
+  margin: 0; 
+  font-size: 18px; 
+}
+
