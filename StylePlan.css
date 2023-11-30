@@ -5,29 +5,58 @@ body, h1, h2, h3, p, ul, li {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: limegreen; 
+    background-color: #C5FF4A; 
 }
+body {
+    overflow-x: hidden; 
+    height:4000px;
+    margin: 0;  
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.navbar a {
+    transition: color 0.3s ease-in-out;
+}
+.navbar a:hover {
+    color: #C5FF4A; 
+}
+
 .navbar {
-    background-color: black;
-    padding: 50px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0e0e0e;
+    z-index: 2;
     display: flex;
-    justify-content: flex-end; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.navbar .logo img {
+    margin-right: 10px;
 }
 
 .navbar ul {
-    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
 .navbar li {
-    display: inline;
-    margin-right: 65px; 
+    margin-right: 50px;
 }
 
 .navbar a {
     text-decoration: none;
     color: white;
-    font-weight: bold;
-    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
 }
 
 .main-content {
