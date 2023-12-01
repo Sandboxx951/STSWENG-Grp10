@@ -39,6 +39,8 @@ html {
 
 .navbar .logo img {
     margin-right: 10px;
+    width:200px; 
+    height: auto; 
 }
 
 .navbar ul {
