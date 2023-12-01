@@ -37,13 +37,8 @@
     </div>
     <div class="NEW-container">
       <p class="NEW-text">
-        <img src="logo.png">
+        <a href="Home.html"><img src="logo.png"></a>
     </p>
-  </div>
-  <div class="BROKERED-container">
-    <p class="BROKERED-text">BROKERED BY KELLY WILLIAMS REALTY, LR</p>
-</div>
-
   <script>
     const adminCredentials = {
       email: 'admin@email.com',
@@ -62,14 +57,14 @@
       if (user && user.password === password) {
         alert('Login successful');
         localStorage.setItem('loggedIn', 'true'); 
-        window.location.href = 'Home.html';
+        window.location.href = 'AdminHome.html';
       } else {
         alert('Invalid email or password');
       }
       this.reset();
     });
 
-    function redirectToAdminLogin() {
+    function redirectToUserLogin() {
       window.location.href = 'Login.html'; 
     }
   </script>
