@@ -17,7 +17,7 @@ body {
   font-size: 75px;
   position: absolute;
   top: 200px; 
-  left: 290px; 
+  left: 400px; 
 }
 
 .form-group {
@@ -132,7 +132,7 @@ body {
 }
 .admin-login-button {
   text-align: center;
-  margin-top: 90px;
+  margin-top: 20px;
   margin-left: 210px;
 }
 
