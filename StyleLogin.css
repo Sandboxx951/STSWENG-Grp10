@@ -5,7 +5,7 @@ body {
   justify-content: flex-start; 
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to right, #000 50%, #2be231 50%);
+  background: linear-gradient(to right, #000 50%, #C5FF4A 50%);
 }
 
 .login-container {
@@ -17,7 +17,7 @@ body {
   font-size: 75px;
   position: absolute;
   top: 200px; 
-  left: 400px; 
+  left: 290px; 
 }
 
 .form-group {
@@ -132,7 +132,7 @@ body {
 }
 .admin-login-button {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 90px;
   margin-left: 210px;
 }
 
@@ -153,8 +153,8 @@ body {
 
 .NEW-container {
   position: absolute;
-  top: 350px; 
-  right: 150px; 
+  top: 250px; 
+  right: 230px; 
   padding: 10px;
 }
 
