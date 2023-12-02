@@ -40,33 +40,33 @@
         <a href="Home.html"><img src="logo.png"></a>
     </p>
   <script>
-    const adminCredentials = {
-      email: 'admin@email.com',
-      password: 'admin12345'
-    };
+   const adminCredentials = {
+            email: 'admin@email.com',
+            password: 'admin12345'
+        };
 
-    localStorage.setItem(adminCredentials.email, JSON.stringify(adminCredentials));
+        localStorage.setItem(adminCredentials.email, JSON.stringify(adminCredentials));
 
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-      const user = JSON.parse(localStorage.getItem(email));
+            const adminUser = JSON.parse(localStorage.getItem('admin@email.com'));
 
-      if (user && user.password === password) {
-        alert('Login successful');
-        localStorage.setItem('loggedIn', 'true'); 
-        window.location.href = 'AdminHome.html';
-      } else {
-        alert('Invalid email or password');
-      }
-      this.reset();
-    });
+            if (adminUser && adminUser.password === password) {
+                alert('Login successful');
+                localStorage.setItem('loggedIn', 'true'); 
+                window.location.href = 'AdminHome.html';
+            } else {
+                alert('Invalid email or password');
+                this.reset(); 
+            }
+        });
 
-    function redirectToUserLogin() {
-      window.location.href = 'Login.html'; 
-    }
+        function redirectToUserLogin() {
+            window.location.href = 'Login.html'; 
+        }
   </script>
 </body>
 </html>
