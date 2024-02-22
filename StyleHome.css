@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
     overflow-x: hidden; 
     height:4000px;
@@ -49,7 +51,7 @@ html {
 .navbar a {
     text-decoration: none;
     color: white;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat";
     font-size: 18px;
 }
 
@@ -84,23 +86,39 @@ html {
     z-index: 1;
 }
 .overlay h1 {
-    margin-top: 500px;
+    font-family: 'Montserrat';
+    font-size: 50px;
+    max-width: 100%;
+    margin-bottom: -300px;
+    margin-top: 400px;
+    font-weight: 700px;
+    text-align: right;
+    line-height: 50px;
+    margin-left: 300px;
+    /*margin-top: 500px;
     font-size: 90px;
     margin-left: 750px;
     text-align: right;
     font-family: 'Montserrat', sans-serif;
   font-weight: 700px;
   line-height: 90px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
     
 }
 
+
+
 .overlay p {
+    margin-top: 220px;
+    font-family: 'Montserrat';
+    text-align: right;
+    margin-left: 300px;
+    /*
     font-size: 20px;
     margin-top: -300px;
     text-align: right;
     font-family: 'Montserrat', sans-serif;
-    margin-left: 380px; 
+    margin-left: 380px; */
 }
 
 .button-container {
@@ -109,12 +127,16 @@ html {
 }
 .button {
     padding: 10px 20px;
+    font-family: 'Inter';
+    font-weight: 600;
+    margin-left: 410px;
+    letter-spacing: 18%;
     background-color: #C5FF4A; 
     color: rgb(0, 0, 0);
     text-decoration: none;
     border-radius: 50px;
     margin-bottom: 70px;
-    font-size: 18px;
+    font-size: 16px;
 
 }
 
@@ -163,15 +185,83 @@ html {
 .Testimonals {
     margin-bottom: -3004px;
     background-color: #C5FF4A; 
-    text-align: center;
+    align-content: center;
     bottom: 0;
     position: absolute;
     width: 100%;
     height: 1622px;
 }
 
-.Testimonals p {
+.top-Testimonials {
+    margin: auto;
+    display: flex;
+    width: 75%;
+    margin-top: 10%;
+}
+
+.title-Testimonials {
+    float: left;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 70px;
+    text-decoration-line: underline;
+    text-decoration-thickness: 4px;
+
+}
+
+.rightside-Testimonials {
+    float: right;
+    margin-left: 20%;
+    margin-top: 10px;
+    font-family: 'Montserrat';
     font-size: 18px;
-    color: rgb(0, 0, 0);
+    text-align: justify;
+}
+
+.header-description-Testimonials {
+    font-weight: 700;
+}
+
+.text-description-Testimonials {
+    font-weight: 500;
+}
+
+.header-description {
+    margin-top: 20%;
+    margin-left: 35%;
+}
+
+.mid-Testimonials {
+    margin: auto;
+    display: flex;
+    width: 75%;
+    margin-top: 10%;
+
+}
+
+
+.name {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 60px;
+    margin-left: 22%;
+}
+
+.name-description {
+    font-weight: 500;
+    font-size: 28px;
+    margin-left: 45%;
+}
+
+
+.mid-text-testimonial {
+    font-weight: 500;
+    font-size: 28px;
+    margin-top: 25%;
+    float: left;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    text-align: justify;
+    margin-right: 20%;
 }
 
