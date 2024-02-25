@@ -31,7 +31,7 @@
             Executive Broker And Team Leader <br>
             License #:EB00058129-AR
         </p>
-        <a href="SignUp.html" class="button">Get Started</a>
+        <a href="SignUp.html" class="button">Let's Get Started</a>
     </div>
 
     <div id="courses" class="Courses">
@@ -43,7 +43,47 @@
     </div>
 
     <div id="about" class="Testimonals">
-        <p>Content in the layer below.</p>
+        <div class="top-Testimonials">
+            <div class="title-Testimonials">Testimonials</div>
+            <div class="description-Testimonials">
+                <span class="rightside-Testimonials">
+                    <span class="header-description-Testimonials">
+                        What Our Clients Say
+                    </span>
+                    <span class="text-description-Testimonials">
+                        <p>
+                            Discover what satisfied clients have to say about their coaching experience with Gwendolyn. 
+                            Their stories and testimonials speak to the transformative power of her  coaching services. 
+                            We take pride in guiding individuals towards achieving their personal and professional goals. 
+                            Don't just take our word for it; hear from those who have experienced the positive impact of her coaching firsthand.
+                        </p>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="mid-Testimonials">
+            <div class = "header">
+                <div class = "name">
+                    Carter Doe
+                </div>
+                <div class = name-description>
+                    Real Estate Agent
+                </div>
+               <div class = mid-text-testimonial>
+                <p>
+                    "Thanks to Gwendolyn Parker, I've turned property 
+                    aspirations into thriving deals! The personalized 
+                    guidance and strategic insights propelled my success.
+                    Highly recommend for anyone serious about 
+                    dominating the real estate game!" 
+                </p>
+               </div>
+            </div>
+            <div class = "video" id="video">
+                <img class="imgvideo" id="imgvideo" src="test pic1.png">
+               </div> 
+            </div>
+        </div>
     </div>
 
     <script>
@@ -55,7 +95,14 @@
             // Update the login link when the user is logged in
             loginLink.innerHTML = '<a href="Profile.html">You</a>';
           }
+          document.getElementById("imgvideo").addEventListener("click", function () {
+            const videoDiv = document.getElementById("video");
+            videoDiv.innerHTML = '<iframe width="810" height="455" src="https://www.youtube.com/embed/-9w7A39Ggz0?si=EHxwM_LsA0CywheR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+          });
         });
       </script>
 </body>
 </html>
+
+<!--<iframe width="810" height="455" src="https://www.youtube.com/embed/-9w7A39Ggz0?si=EHxwM_LsA0CywheR" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
