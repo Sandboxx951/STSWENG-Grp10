@@ -1,0 +1,32 @@
+name: Test Server and App Startup
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Choose the version you want to use
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start Server
+      run: node server.js & # Start your server in the background
+
+    - name: Wait for Server to Start
+      run: sleep 10 # Adjust the sleep time based on how long it takes for your server to start
+
+    - name: Test Server and App Startup
+      run: npm test # Run your tests that check if the server and app started successfully
