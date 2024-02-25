@@ -37,3 +37,23 @@
     function isOwned(clickedElement) {
         return clickedElement.closest('.dropdown').classList.contains('owned');
     }
+
+    function displayPhrase()
+    {
+        document.getElementById("old").innerHTML = 'Module #1 - Principles of Finance'
+    }
+
+    function displayPhrase2()
+    {
+        document.getElementById("old2").innerHTML = 'Module #2 - Corporate Finance'
+    }
+
+    function REdisplayPhrase()
+    {
+        document.getElementById("REold").innerHTML = 'Module #1 - Principles and Practice'
+    }
+
+    function REdisplayPhrase2()
+    {
+        document.getElementById("REold2").innerHTML = 'Module #2 - Marketing Sales and Techniques'
+    }

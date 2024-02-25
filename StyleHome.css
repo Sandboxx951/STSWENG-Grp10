@@ -95,6 +95,7 @@ html {
     text-align: right;
     line-height: 50px;
     margin-left: 300px;
+    
     /*margin-top: 500px;
     font-size: 90px;
     margin-left: 750px;
@@ -234,9 +235,14 @@ html {
 .mid-Testimonials {
     margin: auto;
     display: flex;
-    width: 75%;
     margin-top: 10%;
+    font-family: 'Montserrat';
+    text-align: justify;
+}
 
+.header {
+    float: left;
+    padding-right: 9%;
 }
 
 
@@ -244,24 +250,31 @@ html {
     font-family: 'Montserrat';
     font-weight: 700;
     font-size: 60px;
-    margin-left: 22%;
+    margin-left: 50%;
 }
 
 .name-description {
+    font-family: 'Montserrat';
     font-weight: 500;
     font-size: 28px;
-    margin-left: 45%;
+    margin-left: 50%;
 }
 
 
 .mid-text-testimonial {
-    font-weight: 500;
-    font-size: 28px;
-    margin-top: 25%;
-    float: left;
-    font-family: 'Montserrat';
+    margin-left: 20%;
     font-size: 18px;
     text-align: justify;
-    margin-right: 20%;
+    font-weight: 500;
 }
 
+.video {
+    float: right;
+    margin-right: 10%;
+}
+
+.imgvideo {
+    width: 810px;
+    height: 455px;
+}
+ 
