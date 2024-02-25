@@ -1,0 +1,118 @@
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+      <title>Courses</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="StyleCourses.css">
+      <script src="StyleCourses.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+
+  <body>
+      <div class="navbar">
+          <div class="logo">
+              <img src="logo.png" alt="Logo">
+          </div>
+          <ul>
+              <li><a href="home.html">Home</a></li>
+              <li><a href="Login.html">Login</a></li>
+          </ul>
+      </div>
+      <div class="container">
+          <div class="level">General Finance Courses</div>
+          <div class="unlock">
+              Unlock Your Potential with Gwendolyn Parker: Whether you're aiming for Real<br>
+              Estate Success or Financial Fluency, we've got your back.
+          </div>
+
+          <div class="what">What are you looking for?</div>
+
+          <div class="slider">
+            <input type="radio" name="testimonial" id="t-1">
+            <input type="radio" name="testimonial" id="t-2">
+            <input type="radio" name="testimonial" id="t-3" checked>
+            <input type="radio" name="testimonial" id="t-4">
+            <input type="radio" name="testimonial" id="t-5">
+            
+            <div class="testimonials">
+                <label class="item" for="t-1">
+                    <a href="">
+                        <img src="test picture 2.png" alt="Image 1">
+                    </a>
+                </label>
+                <label class="item" for="t-2">
+                    <a href="https://www.youtube.com/watch?v=WEDIj9JBTC8">
+                        <img src="test picture 2.png" alt="Image 2">
+                    </a>
+                </label>
+                <label class="item" for="t-3">
+                    <a href="https://www.youtube.com/watch?v=WEDIj9JBTC8">
+                        <img src="test picture 2.png" alt="Image 3">
+                    </a>
+                </label>
+                <label class="item" for="t-4">
+                    <a href="https://www.youtube.com/watch?v=WEDIj9JBTC8">
+                        <img src="test picture 2.png" alt="Image 4">
+                    </a>
+                </label>
+                <label class="item" for="t-5">
+                    <a href="https://www.youtube.com/watch?v=WEDIj9JBTC8">
+                        <img src="test picture 2.png" alt="Image 5">
+                    </a>
+                </label>
+            </div>
+        
+            <br />
+        
+            <div class="dots">
+                <label for="t-1"></label>
+                <label for="t-2"></label>
+                <label for="t-3"></label>
+                <label for="t-4"></label>
+                <label for="t-5"></label>
+            </div>
+        </div>
+
+
+<div class="dropdown" id="dropdown1">
+  <div class="dropdown-btn-container">
+      <button class="dropdown-btn" onclick="toggleDropdown(this)">
+          &#9660 Welcome: Begin Here!
+          <i class="fa-solid fa-lock" id="lockIcon1"></i>
+      </button>
+      <div class="buy-now">
+        <button id="buyNowBtn1" class="buy-now-btn" onclick="buyNow(this)">Buy now <i class="fas fa-cart-shopping"></i></button>
+        <span class="price-tag">$19.99</span>
+    </div>
+  </div>
+  <div class="dropdown-content" id="dropdownContent1">
+      <a href="https://drive.google.com/file/d/1WkbMn1rQo1WZ0Q4zpm9HR-hTgT2_SoYI/view?usp=sharing">SAMPLE FILE</a>
+        <a href="https://www.youtube.com/watch?v=xJ5_TlgibrU">SAMPLE VIDEO</a>
+  </div>
+</div>
+
+<div class="dropdown" id="dropdown2">
+  <div class="dropdown-btn-container">
+      <button class="dropdown-btn" onclick="toggleDropdown(this)">
+          &#9660 Welcome: Begin Here!
+          <i class="fa-solid fa-lock" id="lockIcon2"></i>
+      </button>
+      <div class="buy-now">
+        <button id="buyNowBtn1" class="buy-now-btn" onclick="buyNow(this)">Buy now <i class="fas fa-cart-shopping"></i></button>
+        <span class="price-tag">$19.99</span>
+    </div>
+  </div>
+  <div class="dropdown-content" id="dropdownContent2">
+      <a href="https://drive.google.com/file/d/1WkbMn1rQo1WZ0Q4zpm9HR-hTgT2_SoYI/view?usp=sharing">SAMPLE FILE</a>
+        <a href="https://www.youtube.com/watch?v=xJ5_TlgibrU">SAMPLE VIDEO</a>
+  </div>
+</div>
+
+
+      </div>
+  </body>
+  </html>
