@@ -15,6 +15,14 @@ Start of STSWENG Group 10 Edit
 What is this?
 - Real Estate Coaching Website, Module based System where people are able to sign up and purchase content. (Hopefully)
 
+Prereq before running the code
+- Create a .env file for the database connection details
+- It should look like this: (Dont add quotation marks in the file) 
+DB_HOST="localhost"
+DB_USER="root"
+DB_PASSWORD="password"
+DB_NAME="database name"
+
 How do I run the code
 - Ensure you have nodejs and a mysql server running
 - Open project in terminal and do 'npm install' to make sure everything is installed correctly
