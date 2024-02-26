@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../app'); // assuming your Express app is defined in app.js
+const app = require('../app');
 
 
 describe('Landing page based on HTML title', () => {
@@ -12,5 +12,4 @@ describe('Landing page based on HTML title', () => {
         expect(res.text).to.include('<title>Home</title>'); // Check if the HTML title is "Home"
     });
 
-    // Add more tests for other landing page titles as needed
 });
