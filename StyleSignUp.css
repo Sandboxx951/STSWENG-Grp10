@@ -5,18 +5,19 @@ body {
     justify-content: flex-start; 
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to right, #000 50%, #C5FF4A 50%);
+    min-width: 100vw;
+    background: linear-gradient(to right, #000 55%, #C5FF4A 45%);
   }
   
   .login-container {
     text-align: center;
     position: relative;
-    bottom:200px;
+    bottom:30vh;
   }
   
   .login-text {
     color: #fff;
-    font-size: 75px;
+    font-size: 50rem;
     position: absolute;
     top: 200px; 
     left: 400px; 
@@ -24,6 +25,7 @@ body {
   
   .form-group {
     margin-top: 40px; 
+    max-width: 45wh;
     text-align: left; 
   }
   
