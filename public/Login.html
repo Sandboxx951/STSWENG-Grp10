@@ -43,26 +43,38 @@
         <a href="Home.html"><img src="logo.png"></a>
     </p>
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      document.getElementById('signupForm').addEventListener('submit', async function(event) {
       event.preventDefault();
+      const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm_password').value;
 
-      const user = JSON.parse(localStorage.getItem(email));
-
-      if (user && user.password === password) {
-        alert('Login successful');
-        localStorage.setItem('loggedIn', 'true'); 
-        window.location.href = 'UserHome.html';
-      } else {
-        alert('Invalid email or password');
+      if (password !== confirmPassword) {
+        alert("Passwords don't match");
+        return;
       }
-      this.reset();
-    });
 
-    function redirectToAdminLogin() {
-      window.location.href = 'AdminLogin.html'; 
-    }
+      try {
+        const response = await fetch('http://localhost:3000/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, password }),
+        });
+
+        const data = await response.json();
+        alert(data.message);
+
+        if (response.ok) {
+          this.reset();
+          window.location.href = 'Login.html';
+        }
+      } catch (error) {
+        console.error('Error during signup:', error);
+      }
+    });
   </script>
 </body>
 </html>
