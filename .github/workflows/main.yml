@@ -1,0 +1,32 @@
+name: Test Server and App Startup
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' 
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start Server
+      run: node server.js & 
+
+    - name: Wait for Server to Start
+      run: sleep 10 
+
+    - name: Test Server and App Startup
+      run: npm test 
