@@ -8,24 +8,21 @@ body {
   background: linear-gradient(to right, #000 50%, #C5FF4A 50%);
 }
 
-.full-page-container{
-  display:flex;
-  width: 100;
-}
 .login-container {
-  text-align: left;
-  width:50%;
+  text-align: center;
+  left: 150px;
 }
-
 .login-text {
   color: #fff;
-  font-size: 75px;
+  font-size: 50px;
   position: absolute;
-  top: 200px; 
-  left: 400px; 
-  bottom:200px;
+  top: 90px; 
+  left: 395px; 
 }
 
+#loginForm{
+  left:-100px;
+}
 .form-group {
   margin-top: 40px; 
   text-align: left; 
@@ -158,9 +155,9 @@ body {
 }
 
 .NEW-container {
-  width: 50%;
+  position: absolute;
   top: 250px; 
-  right: 230px; 
+  right: 100px; 
   padding: 10px;
 }
 
@@ -169,12 +166,8 @@ body {
   margin: 0; 
   font-size: 100px; 
 }
-
-.img{
-  size: 25vw;
-}
 .BROKERED-container {
-  position:relative;
+  position: absolute;
   top: 490px; 
   right: 300px; 
   padding: 10px;

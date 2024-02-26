@@ -6,38 +6,48 @@ body {
     align-items: center;
     min-height: 100vh;
     min-width: 100vw;
-    background: linear-gradient(to right, #000 55%, #C5FF4A 45%);
+    background: linear-gradient(to right, #000 50%, #C5FF4A 50%);
   }
   
   .login-container {
     text-align: center;
     position: relative;
-    bottom:30vh;
+    left: -150px;
+    
   }
   
-  .login-text {
+  .signup-text {
     color: #fff;
-    font-size: 50rem;
+    font-size: 25px;
     position: absolute;
-    top: 200px; 
-    left: 400px; 
+    top: 50px; 
+    left: 175px; 
+  }
+
+  .signup-text-account{
+    color: #fff;
+    font-size: 15px;
+    position: absolute;
+    top: 725px; 
+    left: 225px; 
+    margin-bottom:20px;
+    padding-bottom: 30px;
   }
   
   .form-group {
-    margin-top: 40px; 
-    max-width: 45wh;
+    margin-top: 25px; 
     text-align: left; 
   }
   
   .form-group label {
     color: #fff;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-size: 0; 
   }
   
   .form-group input {
-    width: 550px; 
+    width: 525px; 
     padding: 10px;
     border: none;
     border-bottom: 2px solid #fff;
@@ -177,8 +187,8 @@ body {
   
   .BROKERED-container {
     position: absolute;
-    top: 690px; 
-    right: -935px; 
+    top: 500px; 
+    right: -650px; 
     padding: 10px;
   }
   
@@ -210,6 +220,6 @@ body {
   }
   img[src="logo.png"] {
     position: relative;
-    left:1130px;
-    top:460px;
+    left:850px;
+    top:260px;
   }
