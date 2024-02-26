@@ -48,7 +48,7 @@
   </div>
 
   <script>
-    document.getElementById('signupForm').addEventListener('submit', async function(event) {
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
       event.preventDefault();
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
@@ -60,25 +60,15 @@
         return;
       }
 
-      try {
-        const response = await fetch('http://localhost:3000/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, email, password }),
-        });
-
-        const data = await response.json();
-        alert(data.message);
-
-        if (response.ok) {
-          this.reset();
-          window.location.href = 'Login.html';
-        }
-      } catch (error) {
-        console.error('Error during signup:', error);
-      }
+      const user = {
+        name,
+        email,
+        password
+      };
+      localStorage.setItem(email, JSON.stringify(user));
+      alert('Account created successfully');
+      this.reset();
+      window.location.href = 'Login.html';
     });
   </script>
 </body>
