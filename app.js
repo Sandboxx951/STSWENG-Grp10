@@ -10,12 +10,12 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const sequelize = new Sequelize({
-  dialect: 'mysql',
-  host: 'localhost',
-  username: 'root',
-  password: '12345',
-  database: 'stsweng',
-});
+    dialect: 'mysql',
+    host: process.env.DB_HOST,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  });
 
 const User = sequelize.define('User', {
   name: {
