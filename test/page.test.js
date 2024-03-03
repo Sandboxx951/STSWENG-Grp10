@@ -1,9 +1,9 @@
 const request = require('supertest');
-const app = require('../app');
+const { app, User } = require('../app');
 const expect = require('chai').expect;
 
 describe('Landing page based on HTML title', () => {
-    it('should render the home page when the title is "Home"', async () => {
+    it('should render the home page when GET /', async () => {
       
 
         const res = await request(app).get('/');    
