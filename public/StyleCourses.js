@@ -50,10 +50,10 @@
 
     function REdisplayPhrase()
     {
-        document.getElementById("REold").innerHTML = 'Module #1 - Principles and Practice'
+        document.getElementById("REold").innerHTML = '&#9660 Module #1 - Principles and Practice'
     }
 
     function REdisplayPhrase2()
     {
-        document.getElementById("REold2").innerHTML = 'Module #2 - Marketing Sales and Techniques'
+        document.getElementById("REold2").innerHTML = '&#9660 Module #2 - Marketing Sales and Techniques'
     }
