@@ -142,13 +142,13 @@ html {
 }
 
 .About {
-    margin-bottom: -1000px;
+    margin-bottom: -870px;
     background-color: black; 
     text-align: center;
     bottom: 0;
     position: absolute;
     width: 100%;
-    height: 1000px;
+    height: 870px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -192,13 +192,13 @@ html {
 
 
 .Courses {
-    margin-bottom: -3300px;
+    margin-bottom: -2230px;
     background-color: black; 
     text-align: center;
     bottom: 0;
     position: absolute;
     width: 100%;
-    height: 1000px;
+    height: 1370px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -214,6 +214,7 @@ html {
 
 .Courses a {
     color:white;
+    font-family: 'Montserrat';
     text-decoration: none;
     margin-top: 50px;
     display: inline-block;
@@ -225,26 +226,59 @@ html {
     z-index: 1;
 }
 
-
-.Courses a.button {
-    margin-top: 50px;
-    display: inline-block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #67a5ce;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    z-index: 1;
-
-}
-
-.Courses a.button:hover {
+.Courses a:hover {
     background-color: #2980b9;
 }
 
+
+.title-Courses {
+    float: left;
+    font-family: 'Montserrat';
+    color: white;
+    font-weight: 700;
+    font-size: 90px;
+    text-decoration-line: underline;
+    text-decoration-thickness: 4px;
+    display: flex;
+    width: 75%;
+    margin-top: 6%;
+    margin-left: 13%;
+}
+
+.content-Courses {
+    margin: auto;
+    display: flex;
+    width: 75%;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.img-Courses {
+    height: 310px;
+    width: auto;
+}
+
+.description-Courses {
+    margin-left: 5%;
+    font-family: 'Montserrat';
+    color: white;
+    text-align: justify;
+    float: right;
+}
+
+.title-description-Courses {
+    font-size: 64px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.text-description-Courses {
+    font-size: 24px;
+    margin-top: 3%;
+}
+
 .Testimonals {
-    margin-bottom: -2504px;
+    margin-bottom: -3850px;
     background-color: #C5FF4A; 
     align-content: center;
     bottom: 0;
