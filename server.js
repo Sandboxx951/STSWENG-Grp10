@@ -1,3 +1,5 @@
+
+
 const { app, sequelize, User, Course, Modules } = require('./app');
 const PORT = process.env.PORT || 3000;
 
@@ -8,32 +10,60 @@ Course.belongsTo(User);
 Course.hasMany(Modules);
 Modules.belongsTo(Course);
 
+
+
 app.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    const user = await User.create({ name, email, password });
+    // Check if the user already exists
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: 'User already exists' });
+    }
+
+    // Create a new user with userType set to 'user'
+    const user = await User.create({ name, email, password, userType: 'user' });
     res.json({ message: 'Account created successfully' });
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } });
 
-    if (user && user.password === password) {
-      res.json({ message: 'Login successful' });
-    } else {
-      res.status(401).json({ error: 'Invalid email or password' });
-    }
+      if (user && user.password === password) {
+          // Store user information in session
+          req.session.user = user;
+          res.json({ message: 'Login successful' });
+      } else {
+          res.status(401).json({ error: 'Invalid email or password' });
+      }
   } catch (error) {
-    console.error('Error finding user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+      console.error('Error finding user:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Route for admin login
+app.post('/admin-login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+      const admin = await User.findOne({ where: { email, password, userType: 'admin' } });
+
+      if (admin) {
+          res.json({ message: 'Admin login successful', redirectTo: '/AdminHome.html' });
+      } else {
+          res.status(401).json({ error: 'Invalid email or password' });
+      }
+  } catch (error) {
+      console.error('Error finding admin:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -83,6 +113,29 @@ app.get('/user-courses/:userId', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
+app.get('/profile', (req, res) => {
+  if (req.session.user) {
+      // User is logged in, render profile page
+      res.render('profile', { user: req.session.user });
+  } else {
+      // User is not logged in, redirect to login page
+      res.redirect('/login');
+  }
+});
+
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json({ message: 'Logout successful' });
+    }
+  });
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

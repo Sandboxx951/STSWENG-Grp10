@@ -2,12 +2,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { Sequelize, DataTypes } = require('sequelize');
+const session = require('express-session'); 
 require('dotenv').config();
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Configure session middleware
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true
+}));
 
 const sequelize = new Sequelize({
     dialect: 'mysql',
@@ -30,6 +38,11 @@ const User = sequelize.define('User', {
     password: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    userType: {
+        type: DataTypes.ENUM('admin', 'user'),
+        allowNull: false,
+        defaultValue: 'user'
     },
 });
 
@@ -73,18 +86,22 @@ Course.belongsTo(User);
 Course.hasMany(Modules);
 Modules.belongsTo(Course);
 
-sequelize.authenticate()
-    .then(() => {
-        console.log('Database connection has been established successfully.');
-        return sequelize.sync();
-    })
-    .then(() => {
-        console.log('Database synchronized');
-    })
-    .catch((err) => {
-        console.error('Unable to connect to the database:', err);
-    });
-
+sequelize.sync().then(async () => {
+    console.log('Database synchronized');
+    const adminUser = await User.findOne({ where: { id: 1 } });
+    if (!adminUser) {
+        await User.create({
+            id: 1,
+            name: 'Admin',
+            email: 'admin@admin.com',
+            password: '12345',
+            userType: 'admin'
+        });
+        console.log('Admin user created');
+    }
+}).catch((err) => {
+    console.error('Unable to sync the database:', err);
+});
 // Your existing route for home page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
