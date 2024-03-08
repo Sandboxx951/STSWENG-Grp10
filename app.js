@@ -144,13 +144,13 @@ app.post('/create-course', upload.single('image'), async (req, res) => {
     }
 });
 
-// Route to get all courses with type "Finance"
-app.get('/courses/finance', async (req, res) => {
+// Route to get all courses 
+app.get('/courses', async (req, res) => {
     try {
-        const financeCourses = await Course.findAll({ where: { courseType: 'Finance' } });
-        res.json(financeCourses);
+        const Courses = await Course.findAll();
+        res.json(Courses);
     } catch (error) {
-        console.error('Error fetching finance courses:', error);
+        console.error('Error fetching courses:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
@@ -171,7 +171,7 @@ app.delete('/courses/:courseId', async (req, res) => {
         console.error('Error deleting course:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-    
+
 });
 // Route to update course information
 app.put('/courses/:courseId', async (req, res) => {

@@ -23,7 +23,7 @@
         </ul>
     </div>
     <div class="container">
-        <div class="level">General Finance Courses</div>
+        <div class="level">ALL Courses</div>
         <div class="unlock">
             Unlock Your Potential with Gwendolyn Parker: Whether you're aiming for Real<br>
             Estate Success or Financial Fluency, we've got your back.
@@ -33,7 +33,12 @@
 
         <div class="slider">
         </div>
+
+        <div class="what">List of courses in the system:</div>
         <div id="courseList"></div>
+
+<!-- Dev note: Im commenting this out since its not really used as of now
+
         <div class="dropdown" id="dropdown1">
             <div class="dropdown-btn-container">
                 <button class="dropdown-btn" onclick="toggleAdminDropdown(this)">
@@ -57,11 +62,14 @@
                 </div>
             </div>
         </div>
-    
+    -->
+
 
         <!-- Inside the second dropdown -->
+<!-- Dev note: Same here aswell
         <div class="dropdown" id="dropdown2">
             <div class="dropdown-btn-container">
+                
                 <button class="dropdown-btn" onclick="toggleAdminDropdown(this)">
                     &#9660 Courses
                 </button>
@@ -93,7 +101,7 @@
             <button onclick="addNewCourse(1)">OK</button>
         </div>
     </div>
-
+-->
     <!-- Add a button to display the form -->
     <button onclick="toggleAddCourseForm()">Add Course</button>
 
@@ -104,7 +112,12 @@
             <label for="courseName">Course Name:</label><br>
             <input type="text" id="courseName" name="courseName" required><br><br>
 
-            <input type="hidden" id="courseType" name="courseType" value="Finance"> <!-- Hidden input for course type -->
+            <label for="courseType">Course Type:</label><br>
+            <select id="courseType" name="courseType" required>
+                <option value="General Finance">General Finance</option>
+                <option value="Real Estate">Real Estate</option>
+            </select><br><br>
+
 
             <label for="price">Price:</label><br>
             <input type="number" id="price" name="price" required><br><br>

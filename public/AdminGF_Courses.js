@@ -130,7 +130,7 @@ function toggleAddCourseForm() {
 async function fetchAndDisplayCourses() {
     try {
         console.log('fetchAndDisplayCourses function called');
-        const response = await fetch('/courses/finance');
+        const response = await fetch('/courses');
         if (response.ok) {
             const courses = await response.json();
             console.log('Courses:', courses);
@@ -141,7 +141,7 @@ async function fetchAndDisplayCourses() {
                 courseElement.className = 'course-row'; // Add class for styling
                 courseElement.innerHTML = `
                     <div class="course-info" style="color: white;"> <!-- Added inline style for text color -->
-                        <span>${course.courseName} - $${course.price}</span>
+                        <span>${course.courseName} - ${course.courseType} - $${course.price}</span>
                     </div>
                     <div class="course-actions">
                         <button onclick="editCourse(${course.id})">Edit</button>
