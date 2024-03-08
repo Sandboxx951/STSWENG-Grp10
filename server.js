@@ -66,9 +66,17 @@ app.post('/admin-login', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
+const isAuthenticated = (req, res, next) => {
+  if (req.session.user) {
+    // User is authenticated, allow access
+    next();
+  } else {
+    // User is not authenticated, redirect to login page
+    res.redirect('/login');
+  }
+};
 // Route to get a list of courses
-app.get('/courses', async (req, res) => {
+app.get('/courses', isAuthenticated, async (req, res) => {
     try {
         const courses = await Course.findAll();
         res.json(courses);
