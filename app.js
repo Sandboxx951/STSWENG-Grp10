@@ -155,6 +155,28 @@ app.get('/courses', async (req, res) => {
     }
 });
 
+// Route to get all courses with type "General Finance"
+app.get('/courses/general-finance', async (req, res) => {
+    try {
+        const generalFinanceCourses = await Course.findAll({ where: { courseType: 'General Finance' } });
+        res.json(generalFinanceCourses);
+    } catch (error) {
+        console.error('Error fetching general finance courses:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Route to get all courses with type "Real Estate"
+app.get('/courses/real-estate', async (req, res) => {
+    try {
+        const realEstateCourses = await Course.findAll({ where: { courseType: 'Real Estate' } });
+        res.json(realEstateCourses);
+    } catch (error) {
+        console.error('Error fetching real estate courses:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 // Route to delete a course by ID
 app.delete('/courses/:courseId', async (req, res) => {
     const courseId = req.params.courseId;
