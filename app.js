@@ -2,9 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { Sequelize, DataTypes } = require('sequelize');
-const session = require('express-session'); 
+const session = require('express-session');
 require('dotenv').config();
-
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' }); // Destination folder for uploaded files
 const app = express();
 
 app.use(bodyParser.json());
@@ -47,41 +48,41 @@ const User = sequelize.define('User', {
 });
 
 const Course = sequelize.define('Course', {
-    Course_Name: {
+    courseName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    Course_Type: {
+    courseType: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    Price: {
+    price: {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
-    Image_Path: {
+    imagePath: {
         type: DataTypes.STRING,
         allowNull: true,
     },
 });
 
 const Modules = sequelize.define('Modules', {
-    Sub_Module_Name: {
+    subModuleName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    File_Path: {
+    filePath: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    FileType: {
+    fileType: {
         type: DataTypes.STRING,
         allowNull: false,
     },
 });
 
 const UserCourse = sequelize.define('UserCourse', {
-    User_ID: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -89,7 +90,7 @@ const UserCourse = sequelize.define('UserCourse', {
         key: 'id',
       },
     },
-    Course_ID: {
+    courseId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -99,15 +100,15 @@ const UserCourse = sequelize.define('UserCourse', {
     },
   });
 
-  User.hasMany(Course);
-  Course.belongsTo(User);
-  
-  Course.hasMany(Modules);
-  Modules.belongsTo(Course);
-  
-  User.belongsToMany(Course, { through: UserCourse, foreignKey: 'User_ID' });
-  Course.belongsToMany(User, { through: UserCourse, foreignKey: 'Course_ID' });
-  
+User.hasMany(Course);
+Course.belongsTo(User);
+
+Course.hasMany(Modules);
+Modules.belongsTo(Course);
+
+User.belongsToMany(Course, { through: UserCourse, foreignKey: 'userId' });
+Course.belongsToMany(User, { through: UserCourse, foreignKey: 'courseId' });
+
 sequelize.sync().then(async () => {
     console.log('Database synchronized');
     const adminUser = await User.findOne({ where: { id: 1 } });
@@ -124,17 +125,18 @@ sequelize.sync().then(async () => {
 }).catch((err) => {
     console.error('Unable to sync the database:', err);
 });
+
 // Your existing route for home page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
-// Route to add a new course
-app.post('/create-course', async (req, res) => {
-    const { Course_Name, Course_Type, Price, Image_Path } = req.body;
+app.post('/create-course', upload.single('image'), async (req, res) => {
+    const { courseName, courseType, price } = req.body;
+    const imagePath = req.file ? req.file.path : null;
 
     try {
-        const course = await Course.create({ Course_Name, Course_Type, Price, Image_Path });
+        const course = await Course.create({ courseName, courseType, price, imagePath });
         res.json({ message: 'Course created successfully', course });
     } catch (error) {
         console.error('Error creating course:', error);
@@ -142,13 +144,69 @@ app.post('/create-course', async (req, res) => {
     }
 });
 
+// Route to get all courses with type "Finance"
+app.get('/courses/finance', async (req, res) => {
+    try {
+        const financeCourses = await Course.findAll({ where: { courseType: 'Finance' } });
+        res.json(financeCourses);
+    } catch (error) {
+        console.error('Error fetching finance courses:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Route to delete a course by ID
+app.delete('/courses/:courseId', async (req, res) => {
+    const courseId = req.params.courseId;
+
+    try {
+        const course = await Course.findByPk(courseId);
+        if (!course) {
+            return res.status(404).json({ error: 'Course not found' });
+        }
+
+        await course.destroy();
+        res.json({ message: 'Course deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting course:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+    
+});
+// Route to update course information
+app.put('/courses/:courseId', async (req, res) => {
+    const courseId = req.params.courseId;
+    const { courseName, price } = req.body;
+
+    try {
+        // Find the course by ID
+        const course = await Course.findByPk(courseId);
+        if (!course) {
+            return res.status(404).json({ error: 'Course not found' });
+        }
+
+        // Update course information
+        course.courseName = courseName;
+        course.price = price;
+
+        // Save changes to the database
+        await course.save();
+
+        res.json({ message: 'Course updated successfully', course });
+    } catch (error) {
+        console.error('Error updating course:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 // Route to add a new module to a course
 app.post('/add-module/:courseId', async (req, res) => {
     const courseId = req.params.courseId;
-    const { Sub_Module_Name, File_Path, FileType } = req.body;
+    const { subModuleName, filePath, fileType } = req.body;
 
     try {
-        const module = await Modules.create({ Sub_Module_Name, File_Path, FileType, CourseId: courseId });
+        const module = await Modules.create({ subModuleName, filePath, fileType, courseId });
         res.json({ message: 'Module added successfully', module });
     } catch (error) {
         console.error('Error adding module:', error);
