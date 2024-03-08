@@ -1,6 +1,6 @@
 
 
-const { app, sequelize, User, Course, Modules } = require('./app');
+const { app, sequelize, User, Course, Modules,  UserCourse } = require('./app');
 const PORT = process.env.PORT || 3000;
 
 // Define associations between models
@@ -10,6 +10,8 @@ Course.belongsTo(User);
 Course.hasMany(Modules);
 Modules.belongsTo(Course);
 
+User.belongsToMany(Course, { through: UserCourse, foreignKey: 'User_ID' });
+Course.belongsToMany(User, { through: UserCourse, foreignKey: 'Course_ID' });
 
 
 app.post('/signup', async (req, res) => {

@@ -80,12 +80,34 @@ const Modules = sequelize.define('Modules', {
     },
 });
 
-User.hasMany(Course);
-Course.belongsTo(User);
+const UserCourse = sequelize.define('UserCourse', {
+    User_ID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Users',
+        key: 'id',
+      },
+    },
+    Course_ID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Courses',
+        key: 'id',
+      },
+    },
+  });
 
-Course.hasMany(Modules);
-Modules.belongsTo(Course);
-
+  User.hasMany(Course);
+  Course.belongsTo(User);
+  
+  Course.hasMany(Modules);
+  Modules.belongsTo(Course);
+  
+  User.belongsToMany(Course, { through: UserCourse, foreignKey: 'User_ID' });
+  Course.belongsToMany(User, { through: UserCourse, foreignKey: 'Course_ID' });
+  
 sequelize.sync().then(async () => {
     console.log('Database synchronized');
     const adminUser = await User.findOne({ where: { id: 1 } });
@@ -147,4 +169,4 @@ app.delete('/delete-module/:moduleId', async (req, res) => {
     }
 });
 
-module.exports = { app, sequelize, User, Course, Modules };
+module.exports = { app, sequelize, User, Course, Modules, UserCourse };
