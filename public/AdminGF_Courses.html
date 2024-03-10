@@ -65,13 +65,48 @@
             <input type="submit" value="Add Course">
         </form>
     </div>
+      <!-- Add a button to display the form -->
+<button onclick="toggleAddModuleForm()">Add Module</button>
+
+<!-- Add Module Form -->
+<div id="addModuleFormContainer" style="display: none; color: white;">
+    <h2>Add Module</h2>
+    <form id="addModuleForm">
+        <!-- Input fields for module details -->
+        <label for="subModuleName">Module Name:</label><br>
+        <input type="text" id="subModuleName" name="subModuleName" required><br><br>
+
+        <label for="fileType">File Type:</label><br>
+        <select id="fileType" name="fileType" required>
+            <option value="Video">Video</option>
+            <option value="Document">Document</option>
+        </select><br><br>
+
+        <!-- File Input for uploading content -->
+        <label for="moduleFile">Module File:</label><br>
+        <input type="file" id="moduleFile" name="moduleFile" accept=".pdf, .doc, .docx, .txt, .jpg, .png" required><br><br>
+
+        <!-- Dropdown to dynamically populate courses -->
+        <label for="courseDropdown">Select Course:</label><br>
+        <select id="courseDropdown" name="courseId" required></select>
+        <button type="button" onclick="refreshCourseDropdown()">Refresh Courses</button><br><br>
+
+       
+
+        <input type="submit" value="Add Module">
+    </form>
+</div>
+
+<!-- Display the list of modules for a specific course -->
+<div id="moduleList"></div>
 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', async function () {
-            await fetchAndDisplayCourses();
-        });
-    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', async function () {
+        await fetchAndDisplayCourses();
+        await fetchAndPopulateCourseDropdown();
+    });
+</script>
 
 
 </body>

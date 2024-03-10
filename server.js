@@ -2,7 +2,21 @@
 
 const { app, sequelize, User, Course, Modules,  UserCourse } = require('./app');
 const PORT = process.env.PORT || 3000;
+const multer = require('multer'); 
 
+
+// Multer setup for handling file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'uploads/modules'); // Save uploaded modules to the 'uploads/modules' directory
+  },
+  filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.').pop());
+  }
+});
+
+const upload = multer({ storage: storage });
 // Define associations between models
 User.hasMany(Course);
 Course.belongsTo(User);
@@ -10,8 +24,8 @@ Course.belongsTo(User);
 Course.hasMany(Modules);
 Modules.belongsTo(Course);
 
-User.belongsToMany(Course, { through: UserCourse, foreignKey: 'User_ID' });
-Course.belongsToMany(User, { through: UserCourse, foreignKey: 'Course_ID' });
+User.belongsToMany(Course, { through: UserCourse, foreignKey: 'userId' });
+Course.belongsToMany(User, { through: UserCourse, foreignKey: 'courseId' });
 
 
 app.post('/signup', async (req, res) => {
@@ -167,4 +181,48 @@ process.on('SIGINT', async () => {
 
 process.on('unhandledRejection', (err) => {
   console.error('Unhandled Promise Rejection:', err);
+});
+
+
+
+
+
+// // Route to handle module creation
+// app.post('/create-module', upload.single('moduleFile'), async (req, res) => {
+//   const { subModuleName, fileType, courseId } = req.body;
+
+//   try {
+//       // Create a new module with the provided data
+//       const module = await Modules.create({
+//           subModuleName,
+//           fileType,
+//           CourseId: courseId,
+//           filePath: req.file.path // Save the file path in the database
+//       });
+
+//       res.json({ message: 'Module added successfully' });
+//   } catch (error) {
+//       console.error('Error creating module:', error);
+//       res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+
+app.post('/add-module/:courseId', upload.single('moduleFile'), async (req, res) => {
+  const { subModuleName, fileType, courseId } = req.body;
+
+  try {
+    // Create a new module with the provided data
+    const module = await Modules.create({
+      subModuleName,
+      fileType,
+      CourseId: courseId,
+      filePath: req.file.path // Save the file path in the database
+    });
+
+    res.json({ message: 'Module added successfully' });
+  } catch (error) {
+    console.error('Error creating module:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });

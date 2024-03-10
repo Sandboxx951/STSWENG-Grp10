@@ -190,3 +190,96 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Toggle the module form visibility
+function toggleAddModuleForm() {
+    var addModuleFormContainer = document.getElementById('addModuleFormContainer');
+    addModuleFormContainer.style.display = addModuleFormContainer.style.display === 'none' ? 'block' : 'none';
+}
+
+
+// Function to add a new module
+async function addModule() {
+    const subModuleName = document.getElementById('subModuleName').value;
+    const fileType = document.getElementById('fileType').value;
+    const courseId = document.getElementById('courseDropdown').value; // Add this line if you have a course dropdown
+
+    try {
+        const formData = new FormData();
+        formData.append('subModuleName', subModuleName);
+        formData.append('fileType', fileType);
+        formData.append('courseId', courseId);
+        formData.append('moduleFile', document.getElementById('moduleFile').files[0]);
+
+        const response = await fetch('/add-module', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            alert('Module added successfully');
+            // Refresh the module list or take appropriate action
+        } else {
+            console.error('Error adding module:', response.statusText);
+            alert('Error adding module');
+        }
+    } catch (error) {
+        console.error('Error adding module:', error.message);
+        alert('Error adding module');
+    }
+}
+
+async function fetchAndPopulateCourseDropdown() {
+    try {
+        const response = await fetch('/courses');
+        if (response.ok) {
+            const courses = await response.json();
+            const courseDropdown = document.getElementById('courseDropdown');
+
+            // Clear existing options
+            courseDropdown.innerHTML = '';
+
+            // Populate the dropdown with courses
+            courses.forEach(course => {
+                const option = document.createElement('option');
+                option.value = course.id;
+                option.textContent = course.courseName;
+                courseDropdown.appendChild(option);
+            });
+        } else {
+            console.error('Failed to fetch courses for dropdown:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching courses for dropdown:', error);
+    }
+}
+
+
+// Function to handle module form submission
+document.getElementById('addModuleForm').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    // Get form data
+    const formData = new FormData(this);
+
+    try {
+        // Send form data to server
+        const response = await fetch('/add-module', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            // Clear form fields on successful submission
+            this.reset();
+            alert('Module added successfully');
+            // Optionally, you can fetch and display modules after adding
+            // await fetchAndDisplayModules();
+        } else {
+            console.error('Error adding module:', response.statusText);
+            alert('Error adding module');
+        }
+    } catch (error) {
+        console.error('Error adding module:', error.message);
+        alert('Error adding module');
+    }
+});

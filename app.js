@@ -223,18 +223,18 @@ app.put('/courses/:courseId', async (req, res) => {
 
 
 // Route to add a new module to a course
-app.post('/add-module/:courseId', async (req, res) => {
-    const courseId = req.params.courseId;
-    const { subModuleName, filePath, fileType } = req.body;
+// app.post('/add-module/:courseId', async (req, res) => {
+//     const courseId = req.params.courseId;
+//     const { subModuleName, filePath, fileType } = req.body;
 
-    try {
-        const module = await Modules.create({ subModuleName, filePath, fileType, courseId });
-        res.json({ message: 'Module added successfully', module });
-    } catch (error) {
-        console.error('Error adding module:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
+//     try {
+//         const module = await Modules.create({ subModuleName, filePath, fileType, courseId });
+//         res.json({ message: 'Module added successfully', module });
+//     } catch (error) {
+//         console.error('Error adding module:', error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// });
 
 // Route to delete a module
 app.delete('/delete-module/:moduleId', async (req, res) => {
