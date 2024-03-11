@@ -343,6 +343,8 @@ async function fetchAndDisplayModules(courseId) {
                     <div>${module.subModuleName}</div>
                     <div class="module-content"></div> <!-- Container for module content -->
                     <button onclick="displayModuleContents('${module.filePath}', this.parentElement)">View Module</button>
+                    <button onclick="updateModule(${module.id})">Update Module</button>
+                    <button onclick="deleteModule(${module.id})">Delete Module</button>
                 `;
                 modulesList.appendChild(moduleElement);
             });
@@ -402,6 +404,16 @@ async function displayModuleContents(filePath, moduleContainer) {
     }
 }
 
+
+async function updateModule(moduleId) {
+    // Implement update module logic here
+    console.log(`Update module with ID ${moduleId}`);
+}
+
+async function deleteModule(moduleId) {
+    // Implement delete module logic here
+    console.log(`Delete module with ID ${moduleId}`);
+}
 
 // Call this function to fetch and display courses with their modules when the page loads
 document.addEventListener('DOMContentLoaded', async function() {
