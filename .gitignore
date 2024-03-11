@@ -4,5 +4,4 @@ node_modules/
 # Ignore .env files
 *.env
 
-# Ignore uploads files inside the folder
-uploads/*
+
