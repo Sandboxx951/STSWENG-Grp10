@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+    .dropdown-content a.selected {
+    background-color: #4CAF50; /* Add your desired background color */
+}
+
+</style>
+
 <head>
     <meta charset="UTF-8">
     <title>Courses</title>
@@ -33,66 +40,111 @@
 
         <div class="slider">
         </div>
-        
-<div class="dropdown" id="dropdown1">
-    <div class="dropdown-btn-container">
-        <button class="dropdown-btn" onclick="toggleAdminDropdown(this)">
-            &#9660 Courses
-        </button>
-        <div class="admin-buttons">
-            <button class="admin-action-btn" onclick="addCourse(1)">Add</button>
-            <button class="admin-action-btn" onclick="editCourse()">Edit</button>
-            <button class="admin-action-btn" onclick="deleteCourse(1)">Delete</button>
-        </div>
-    </div>
-    <div class="dropdown-content" id="dropdownContent1">
-        <a href="#">Course Overview / Syllabus</a>
-        <a href="#">Course Q&A</a>
-        <a href="#">Class Policies</a>
-        <a href="#">About Your Instructor</a>
-        <a href="#">Netiquette Rules for Online Discussion Board</a>
-        <div class="admin-actions" style="display: none;">
-            <input type="text" id="newCourseInput1" placeholder="Type the new course name">
-            <button onclick="addNewCourse(1)">OK</button>
-        </div>
-    </div>
-</div>
-    
 
-        <!-- Inside the second dropdown -->
-        <div class="dropdown" id="dropdown2">
+        <div class="dropdown" id="dropdown1">
+            <div class="dropdown-btn-container">
+                <button class="dropdown-btn" onclick="toggleAdminDropdown(this)">
+                    &#9660 Courses
+                </button>
+                <div class="admin-buttons">
+                    <button class="admin-action-btn" onclick="addCourse(1)">Add</button>
+                    <button class="admin-action-btn" onclick="editCourse(1)">Edit</button>
+                    <button class="admin-action-btn" onclick="deleteCourse(1)">Delete</button>
+                </div>
+            </div>
+            <div class="dropdown-content" id="dropdownContent1" onclick="selectCourse(event, 1)">
+                <!-- Courses will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Dropdown 2 -->
+        <!-- <div class="dropdown" id="dropdown2">
             <div class="dropdown-btn-container">
                 <button class="dropdown-btn" onclick="toggleAdminDropdown(this)">
                     &#9660 Courses
                 </button>
                 <div class="admin-buttons">
                     <button class="admin-action-btn" onclick="addCourse(2)">Add</button>
-                    <button class="admin-action-btn" onclick="editCourse()">Edit</button>
-                    <button class="admin-action-btn" onclick="deleteCourse(1)">Delete</button>
+                    <button class="admin-action-btn" onclick="editCourse(2)">Edit</button>
+                    <button class="admin-action-btn" onclick="deleteCourse(2)">Delete</button>
                 </div>
             </div>
-            <div class="dropdown-content" id="dropdownContent2">
-                <a href="#">Course Overview / Syllabus</a>
-                <a href="#">Course Q&A</a>
-                <a href="#">Class Policies</a>
-                <a href="#">About Your Instructor</a>
-                <a href="#">Netiquette Rules for Online Discussion Board</a>
-                <div class="admin-actions" style="display: none;">
-                    <input type="text" id="newCourseInput2" placeholder="Type the new course name">
-                    <button onclick="addNewCourse(2)">OK</button>
-                </div>
+            <div class="dropdown-content" id="dropdownContent2" onclick="selectCourse(event, 2)">
+                
             </div>
-        </div>
+        </div> -->
 
     </div>
+
+    <!-- Add Course Modal -->
     <div id="addCourseModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeAddCourseModal(1)">&times;</span>
-            <label for="newCourseInput">Enter Course Name:</label>
-            <input type="text" id="newCourseInput" placeholder="Type the new course name">
-            <button onclick="addNewCourse(1)">OK</button>
+            <div class="modal-header">
+                <span class="close" onclick="closeAddCourseModal(1)">&times;</span>
+            </div>
+            <div style="margin-bottom: 5px;">
+                <label for="newCourseInput">Enter Course Name:</label>
+                <input type="text" id="newCourseInput">
+            </div>
+            <div>
+                <label for="newCourseTypeInput">Enter Course Type:</label>
+                <input type="text" id="newCourseTypeInput">
+            </div>
+            <div>
+                <label for="newPriceInput">Enter Course Price:</label>
+                <input type="number" id="newPriceInput">
+            </div>
+            <div>
+                <label for="newImagePathInput">Enter Course Image Path:</label>
+                <input type="link" id="newImagePathInput">
+            </div>
+            <div>
+                <button onclick="addNewCourse(1)">OK</button>
+            </div>
         </div>
     </div>
+
+    <!-- Course Deletion Confirmation Modal -->
+    <div id="deleteCourseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeDeleteCourseModal()">&times;</span>
+            </div>
+            <div class="delete-course-message">
+                Are you sure you want to delete this course?
+            </div>
+            <div class="delete-course-buttons">
+                <button onclick="confirmDeleteCourse()">Yes, Delete</button>
+                <button onclick="closeDeleteCourseModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Course Modal -->
+<div id="editCourseModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close" onclick="closeAddCourseModal(1)">&times;</span>
+        </div>
+        <div style="margin-bottom: 5px;">
+            <label for="editCourseNameInput">Course Name:</label>
+            <input type="text" id="editCourseNameInput">
+        </div>
+        <div>
+            <label for="editCourseTypeInput">Course Type:</label>
+            <input type="text" id="editCourseTypeInput">
+        </div>
+        <div>
+            <label for="editPriceInput">Enter Course Price:</label>
+            <input type="number" id="editCoursePriceInput">
+        </div>
+        <div>
+            <button id="editCourseSubmitBtn">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+
 </body>
 
 </html>
