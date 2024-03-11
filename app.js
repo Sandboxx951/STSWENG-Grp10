@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const fs = require('fs').promises; // Import fs module with promises
 const { Sequelize, DataTypes } = require('sequelize');
 const session = require('express-session');
 require('dotenv').config();
@@ -131,6 +132,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
+
+// Route to create a course 
 app.post('/create-course', upload.single('image'), async (req, res) => {
     const { courseName, courseType, price } = req.body;
     const imagePath = req.file ? req.file.path : null;
@@ -222,19 +225,92 @@ app.put('/courses/:courseId', async (req, res) => {
 });
 
 
-// Route to add a new module to a course
-// app.post('/add-module/:courseId', async (req, res) => {
-//     const courseId = req.params.courseId;
-//     const { subModuleName, filePath, fileType } = req.body;
+// Route to handle module creation (Create)
+app.post('/create-module', upload.single('moduleFile'), async (req, res) => {
+    const { subModuleName, fileType, courseId } = req.body;
 
-//     try {
-//         const module = await Modules.create({ subModuleName, filePath, fileType, courseId });
-//         res.json({ message: 'Module added successfully', module });
-//     } catch (error) {
-//         console.error('Error adding module:', error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// });
+    try {
+        // Get the original file name and extension
+        const originalFileName = req.file.originalname;
+        const fileExtension = path.extname(originalFileName);
+
+        // Create a new file name with the appropriate extension based on fileType
+        let newFileName;
+        if (fileType === 'Video') {
+            newFileName = `${subModuleName}.mp4`;
+        } else if (fileType === 'Document') {
+            newFileName = `${subModuleName}.pdf`;
+        } else {
+            newFileName = originalFileName; // Use original file name if fileType is not specified or unknown
+        }
+
+        // Move the uploaded file to the desired path with the new file name
+        const newFilePath = path.join(__dirname, 'uploads', newFileName);
+        await fs.rename(req.file.path, newFilePath); // Use await to wait for the asynchronous operation
+
+        // Create a new module with the provided data
+        const module = await Modules.create({
+            subModuleName,
+            fileType,
+            CourseId: courseId,
+            filePath: `uploads/${newFileName}` // Save the file path relative to the 'uploads' directory
+        });
+
+        // Rename the file with the appropriate extension in the system
+        const newFullFilePath = path.join(__dirname, 'uploads', newFileName);
+        await fs.rename(newFilePath, newFullFilePath);
+
+        res.json({ message: 'Module added successfully' });
+    } catch (error) {
+        console.error('Error creating module:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Route to get modules for a specific course (Read)
+app.get('/courses/:courseId/modules', async (req, res) => {
+    const courseId = req.params.courseId;
+
+    try {
+        // Find the course by ID
+        const course = await Course.findByPk(courseId, {
+            include: Modules // Include the Modules associated with the course
+        });
+
+        if (!course) {
+            return res.status(404).json({ error: 'Course not found' });
+        }
+
+        const modules = course.Modules; // Access the modules associated with the course
+        res.json(modules);
+    } catch (error) {
+        console.error('Error fetching modules for course:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Route to serve module files (Read files)
+// Serve static files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Route to serve module files
+app.get('/modules/:filename', async (req, res) => {
+    const { filename } = req.params;
+    const filePath = path.join(__dirname, 'uploads', filename);
+
+    try {
+        // Check if the file exists
+        await fs.access(filePath);
+
+        // Stream the file to the client
+        const fileStream = fs.createReadStream(filePath);
+        fileStream.pipe(res);
+    } catch (error) {
+        console.error('Error serving module file:', error);
+        res.status(404).json({ error: 'Module file not found' });
+    }
+});
+
 
 // Route to delete a module
 app.delete('/delete-module/:moduleId', async (req, res) => {

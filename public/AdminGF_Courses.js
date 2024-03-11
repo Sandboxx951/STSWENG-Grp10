@@ -255,31 +255,155 @@ async function fetchAndPopulateCourseDropdown() {
 
 
 // Function to handle module form submission
-document.getElementById('addModuleForm').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+document.addEventListener('DOMContentLoaded', function () {
+    // Add event listener to the module form submission
+    const addModuleForm = document.getElementById('addModuleForm');
+    if (addModuleForm) {
+        addModuleForm.addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the default form submission behavior
 
-    // Get form data
-    const formData = new FormData(this);
+            // Get form data
+            const formData = new FormData(this);
 
-    try {
-        // Send form data to server
-        const response = await fetch('/add-module', {
-            method: 'POST',
-            body: formData,
+            try {
+                // Send form data to server
+                const response = await fetch('/create-module', { // Update the endpoint to match the server-side route
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    // Clear form fields on successful submission
+                    this.reset();
+                    alert('Module added successfully');
+                    fetchAndDisplayCoursesWithModules()
+                    // Optionally, you can fetch and display modules after adding
+                    // await fetchAndDisplayModules();
+                } else {
+                    console.error('Error adding module:', response.statusText);
+                    alert('Error adding module');
+                }
+            } catch (error) {
+                console.error('Error adding module:', error.message);
+                alert('Error adding module');
+            }
         });
+    } else {
+        console.error("Element with ID 'addModuleForm' not found.");
+    }
+});
 
+async function fetchAndDisplayCoursesWithModules() {
+    try {
+        console.log('fetchAndDisplayCoursesWithModules function called');
+        const response = await fetch('/courses');
         if (response.ok) {
-            // Clear form fields on successful submission
-            this.reset();
-            alert('Module added successfully');
-            // Optionally, you can fetch and display modules after adding
-            // await fetchAndDisplayModules();
+            const courses = await response.json();
+            console.log('Courses:', courses);
+            const courseList = document.getElementById('courseList');
+            courseList.innerHTML = ''; // Clear previous content
+            for (const course of courses) {
+                const courseElement = document.createElement('div');
+                courseElement.className = 'course-row'; // Add class for styling
+                courseElement.innerHTML = `
+                    <div class="course-info" style="color: white;"> <!-- Added inline style for text color -->
+                        <span>${course.courseName} - ${course.courseType} - $${course.price}</span>
+                        <div class="course-actions">
+                        <button onclick="editCourse(${course.id})">Edit</button>
+                        <button onclick="deleteCourse(${course.id})">Delete</button>
+                        </div>
+                        <div id="modules-${course.id}" class="modules-list"></div>
+                    </div>
+
+                `;
+                courseList.appendChild(courseElement);
+                await fetchAndDisplayModules(course.id); // Fetch and display modules for this course
+            }
         } else {
-            console.error('Error adding module:', response.statusText);
-            alert('Error adding module');
+            console.error('Failed to fetch courses:', response.statusText);
         }
     } catch (error) {
-        console.error('Error adding module:', error.message);
-        alert('Error adding module');
+        console.error('Error fetching courses:', error);
     }
+}
+
+async function fetchAndDisplayModules(courseId) {
+    try {
+        console.log(`fetchAndDisplayModules function called for course ${courseId}`);
+        const response = await fetch(`/courses/${courseId}/modules`);
+        if (response.ok) {
+            const modules = await response.json();
+            console.log('Modules:', modules);
+            const modulesList = document.getElementById(`modules-${courseId}`);
+            modulesList.innerHTML = ''; // Clear previous content
+            modules.forEach(module => {
+                const moduleElement = document.createElement('div');
+                moduleElement.className = 'module-row'; // Add class for styling
+                moduleElement.innerHTML = `
+                    <div>${module.subModuleName}</div>
+                    <div class="module-content"></div> <!-- Container for module content -->
+                    <button onclick="displayModuleContents('${module.filePath}', this.parentElement)">View Module</button>
+                `;
+                modulesList.appendChild(moduleElement);
+            });
+        } else {
+            console.error(`Failed to fetch modules for course ${courseId}:`, response.statusText);
+        }
+    } catch (error) {
+        console.error(`Error fetching modules for course ${courseId}:`, error);
+    }
+}
+
+async function displayModuleContents(filePath, moduleContainer) {
+    try {
+        const response = await fetch(filePath);
+        if (response.ok) {
+            const contentType = response.headers.get('content-type');
+            const moduleContent = moduleContainer.querySelector('.module-content');
+
+            if (contentType.includes('application/pdf')) {
+                // Handle displaying PDF content
+                if (moduleContent.querySelector('iframe')) {
+                    moduleContent.innerHTML = ''; // Clear previous content
+                } else {
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    const iframe = document.createElement('iframe');
+                    iframe.src = url;
+                    iframe.style.width = '100%';
+                    iframe.style.height = '500px'; // Adjust height as needed
+                    moduleContent.innerHTML = ''; // Clear previous content
+                    moduleContent.appendChild(iframe);
+                }
+            } else if (contentType.includes('video')) {
+                // Handle displaying video content
+                if (moduleContent.querySelector('video')) {
+                    moduleContent.innerHTML = ''; // Clear previous content
+                } else {
+                    const videoUrl = URL.createObjectURL(await response.blob());
+                    const videoElement = document.createElement('video');
+                    videoElement.src = videoUrl;
+                    videoElement.controls = true; // Show video controls
+                    videoElement.style.width = '100%';
+                    moduleContent.innerHTML = ''; // Clear previous content
+                    moduleContent.appendChild(videoElement);
+                }
+            } else {
+                console.error('Unsupported file type:', contentType);
+                alert('Unsupported file type.');
+            }
+        } else {
+            console.error('Failed to fetch module contents:', response.statusText);
+            alert('Failed to fetch module contents.');
+        }
+    } catch (error) {
+        console.error('Error displaying module contents:', error.message);
+        alert('Error displaying module contents.');
+    }
+}
+
+
+// Call this function to fetch and display courses with their modules when the page loads
+document.addEventListener('DOMContentLoaded', async function() {
+    await fetchAndDisplayCoursesWithModules();
 });

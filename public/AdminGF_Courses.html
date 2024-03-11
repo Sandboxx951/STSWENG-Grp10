@@ -77,9 +77,9 @@
         <input type="text" id="subModuleName" name="subModuleName" required><br><br>
 
         <label for="fileType">File Type:</label><br>
-        <select id="fileType" name="fileType" required>
-            <option value="Video">Video</option>
+        <select id="fileType" name="fileType" required onchange="updateAcceptedFileTypes()">
             <option value="Document">Document</option>
+            <option value="Video">Video</option>
         </select><br><br>
 
         <!-- File Input for uploading content -->
@@ -91,11 +91,31 @@
         <select id="courseDropdown" name="courseId" required></select>
         <button type="button" onclick="refreshCourseDropdown()">Refresh Courses</button><br><br>
 
-       
-
         <input type="submit" value="Add Module">
     </form>
 </div>
+
+<script>
+    function updateAcceptedFileTypes() {
+        const fileTypeSelect = document.getElementById('fileType');
+        const moduleFileInput = document.getElementById('moduleFile');
+
+        // Get the selected file type
+        const selectedFileType = fileTypeSelect.value;
+
+        // Define accepted file types based on the selected file type
+        let acceptedFileTypes = '';
+
+        if (selectedFileType === 'Video') {
+            acceptedFileTypes = '.mp4, .avi, .mov'; // Add supported video file types
+        } else if (selectedFileType === 'Document') {
+            acceptedFileTypes = '.pdf, .doc, .docx, .txt, .jpg, .png'; // Add supported document file types
+        }
+
+        // Update the accept attribute of the file input
+        moduleFileInput.setAttribute('accept', acceptedFileTypes);
+    }
+</script>
 
 <!-- Display the list of modules for a specific course -->
 <div id="moduleList"></div>
@@ -105,8 +125,10 @@
     document.addEventListener('DOMContentLoaded', async function () {
         await fetchAndDisplayCourses();
         await fetchAndPopulateCourseDropdown();
+        await fetchAndDisplayCoursesWithModules();
     });
 </script>
+
 
 
 </body>
