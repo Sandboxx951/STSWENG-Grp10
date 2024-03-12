@@ -38,99 +38,96 @@
         <div id="courseList"></div>
 
 
-    <!-- Add a button to display the form -->
-    <button onclick="toggleAddCourseForm()">Add Course</button>
+        <!-- Add a button to display the form -->
+        <button onclick="toggleAddCourseForm()">Add Course</button>
 
-    <!-- Add Course Form -->
-    <div id="addCourseFormContainer" style="display: none; color: white;">
-        <h2>Add Course</h2>
-        <form id="addCourseForm" enctype="multipart/form-data">
-            <label for="courseName">Course Name:</label><br>
-            <input type="text" id="courseName" name="courseName" required><br><br>
+        <!-- Add Course Form -->
+        <div id="addCourseFormContainer" style="display: none; color: white;">
+            <h2>Add Course</h2>
+            <form id="addCourseForm" enctype="multipart/form-data">
+                <label for="courseName">Course Name:</label><br>
+                <input type="text" id="courseName" name="courseName" required><br><br>
 
-            <label for="courseType">Course Type:</label><br>
-            <select id="courseType" name="courseType" required>
-                <option value="General Finance">General Finance</option>
-                <option value="Real Estate">Real Estate</option>
-            </select><br><br>
+                <label for="courseType">Course Type:</label><br>
+                <select id="courseType" name="courseType" required>
+                    <option value="General Finance">General Finance</option>
+                    <option value="Real Estate">Real Estate</option>
+                </select><br><br>
 
+                <label for="price">Price:</label><br>
+                <input type="number" id="price" name="price" required><br><br>
 
-            <label for="price">Price:</label><br>
-            <input type="number" id="price" name="price" required><br><br>
+                <!-- File upload input for the image -->
+                <label for="image">Image Upload:</label><br>
+                <input type="file" id="image" name="image"><br><br>
 
-            <!-- File upload input for the image -->
-            <label for="image">Image Upload:</label><br>
-            <input type="file" id="image" name="image"><br><br>
+                <input type="submit" value="Add Course">
+            </form>
+        </div>
+        <!-- Add a button to display the form -->
+        <button onclick="toggleAddModuleForm()">Add Module</button>
 
-            <input type="submit" value="Add Course">
-        </form>
+        <!-- Add Module Form -->
+        <div id="addModuleFormContainer" style="display: none; color: white;">
+            <h2>Add Module</h2>
+            <form id="addModuleForm">
+                <!-- Input fields for module details -->
+                <label for="subModuleName">Module Name:</label><br>
+                <input type="text" id="subModuleName" name="subModuleName" required><br><br>
+
+                <label for="fileType">File Type:</label><br>
+                <select id="fileType" name="fileType" required onchange="updateAcceptedFileTypes()">
+                    <option value="Document">Document</option>
+                    <option value="Video">Video</option>
+                </select><br><br>
+
+                <!-- File Input for uploading content -->
+                <label for="moduleFile">Module File:</label><br>
+                <input type="file" id="moduleFile" name="moduleFile" accept=".pdf, .doc, .docx, .txt, .jpg, .png" required><br><br>
+
+                <!-- Dropdown to dynamically populate courses -->
+                <label for="courseDropdown">Select Course:</label><br>
+                <select id="courseDropdown" name="courseId" required></select>
+                <button type="button" onclick="refreshCourseDropdown()">Refresh Courses</button><br><br>
+
+                <input type="submit" value="Add Module">
+            </form>
+        </div>
+
+        <!-- Display the list of modules for a specific course -->
+        <div id="moduleList"></div>
+
+        <script>
+            function updateAcceptedFileTypes() {
+                const fileTypeSelect = document.getElementById('fileType');
+                const moduleFileInput = document.getElementById('moduleFile');
+
+                // Get the selected file type
+                const selectedFileType = fileTypeSelect.value;
+
+                // Define accepted file types based on the selected file type
+                let acceptedFileTypes = '';
+
+                if (selectedFileType === 'Video') {
+                    acceptedFileTypes = '.mp4, .avi, .mov'; // Add supported video file types
+                } else if (selectedFileType === 'Document') {
+                    acceptedFileTypes = '.pdf, .doc, .docx, .txt, .jpg, .png'; // Add supported document file types
+                }
+
+                // Update the accept attribute of the file input
+                moduleFileInput.setAttribute('accept', acceptedFileTypes);
+            }
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', async function () {
+                await fetchAndDisplayCourses();
+                await fetchAndPopulateCourseDropdown();
+                await fetchAndDisplayCoursesWithModules();
+            });
+        </script>
+
     </div>
-      <!-- Add a button to display the form -->
-<button onclick="toggleAddModuleForm()">Add Module</button>
-
-<!-- Add Module Form -->
-<div id="addModuleFormContainer" style="display: none; color: white;">
-    <h2>Add Module</h2>
-    <form id="addModuleForm">
-        <!-- Input fields for module details -->
-        <label for="subModuleName">Module Name:</label><br>
-        <input type="text" id="subModuleName" name="subModuleName" required><br><br>
-
-        <label for="fileType">File Type:</label><br>
-        <select id="fileType" name="fileType" required onchange="updateAcceptedFileTypes()">
-            <option value="Document">Document</option>
-            <option value="Video">Video</option>
-        </select><br><br>
-
-        <!-- File Input for uploading content -->
-        <label for="moduleFile">Module File:</label><br>
-        <input type="file" id="moduleFile" name="moduleFile" accept=".pdf, .doc, .docx, .txt, .jpg, .png" required><br><br>
-
-        <!-- Dropdown to dynamically populate courses -->
-        <label for="courseDropdown">Select Course:</label><br>
-        <select id="courseDropdown" name="courseId" required></select>
-        <button type="button" onclick="refreshCourseDropdown()">Refresh Courses</button><br><br>
-
-        <input type="submit" value="Add Module">
-    </form>
-</div>
-
-<script>
-    function updateAcceptedFileTypes() {
-        const fileTypeSelect = document.getElementById('fileType');
-        const moduleFileInput = document.getElementById('moduleFile');
-
-        // Get the selected file type
-        const selectedFileType = fileTypeSelect.value;
-
-        // Define accepted file types based on the selected file type
-        let acceptedFileTypes = '';
-
-        if (selectedFileType === 'Video') {
-            acceptedFileTypes = '.mp4, .avi, .mov'; // Add supported video file types
-        } else if (selectedFileType === 'Document') {
-            acceptedFileTypes = '.pdf, .doc, .docx, .txt, .jpg, .png'; // Add supported document file types
-        }
-
-        // Update the accept attribute of the file input
-        moduleFileInput.setAttribute('accept', acceptedFileTypes);
-    }
-</script>
-
-<!-- Display the list of modules for a specific course -->
-<div id="moduleList"></div>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', async function () {
-        await fetchAndDisplayCourses();
-        await fetchAndPopulateCourseDropdown();
-        await fetchAndDisplayCoursesWithModules();
-    });
-</script>
-
-
-
 </body>
 
 </html>

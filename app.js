@@ -105,7 +105,7 @@ User.hasMany(Course);
 Course.belongsTo(User);
 
 Course.hasMany(Modules);
-Modules.belongsTo(Course);
+Modules.belongsTo(Course, { foreignKey: 'courseId' });
 
 User.belongsToMany(Course, { through: UserCourse, foreignKey: 'userId' });
 Course.belongsToMany(User, { through: UserCourse, foreignKey: 'courseId' });
@@ -125,6 +125,24 @@ sequelize.sync().then(async () => {
     }
 }).catch((err) => {
     console.error('Unable to sync the database:', err);
+});
+
+
+// Route for moduel deletetion
+app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
+    const moduleId = req.params.moduleId;
+    const courseId = req.params.courseId;
+
+    console.log(`Received DELETE request for module ${moduleId} in course ${courseId}`);
+
+    try {
+        // Add a condition to ensure the module is associated with the specified course
+        await Modules.destroy({ where: { id: moduleId, CourseId: courseId } });
+        res.json({ message: 'Module deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting module:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 // Your existing route for home page
@@ -312,17 +330,5 @@ app.get('/modules/:filename', async (req, res) => {
 });
 
 
-// Route to delete a module
-app.delete('/delete-module/:moduleId', async (req, res) => {
-    const moduleId = req.params.moduleId;
-
-    try {
-        await Modules.destroy({ where: { id: moduleId } });
-        res.json({ message: 'Module deleted successfully' });
-    } catch (error) {
-        console.error('Error deleting module:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
 
 module.exports = { app, sequelize, User, Course, Modules, UserCourse };

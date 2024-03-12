@@ -344,7 +344,8 @@ async function fetchAndDisplayModules(courseId) {
                     <div class="module-content"></div> <!-- Container for module content -->
                     <button onclick="displayModuleContents('${module.filePath}', this.parentElement)">View Module</button>
                     <button onclick="updateModule(${module.id})">Update Module</button>
-                    <button onclick="deleteModule(${module.id})">Delete Module</button>
+                    <button onclick="deleteModule(${module.id}, ${courseId})">Delete Module</button>
+
                 `;
                 modulesList.appendChild(moduleElement);
             });
@@ -410,11 +411,45 @@ async function updateModule(moduleId) {
     console.log(`Update module with ID ${moduleId}`);
 }
 
-async function deleteModule(moduleId) {
-    // Implement delete module logic here
-    console.log(`Delete module with ID ${moduleId}`);
+
+// Function to handle module deletion
+async function deleteModule(moduleId, courseId) {
+    try {
+        // Send a DELETE request to the server to delete the module
+        const response = await fetch(`/delete-module/${moduleId}/${courseId}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            // Remove the module row from the UI if it exists
+            const moduleRow = document.getElementById(`moduleRow_${moduleId}`);
+            if (moduleRow) {
+                moduleRow.remove();
+            }
+            alert('Module deleted successfully');
+        } else {
+            // Handle error response
+            console.error('Failed to delete module:', response.statusText);
+            alert('Failed to delete module.');
+        }
+    } catch (error) {
+        console.error('Error deleting module:', error);
+        alert('Error deleting module.');
+    } finally {
+        // Fetch and display modules after deletion
+        fetchAndDisplayModules(courseId); // Pass the courseId parameter
+    }
 }
 
+
+
+// // Call this function to delete a module
+// async function deleteModule(moduleId, courseId) {
+//     // Implement delete module logic here
+//     console.log(`Delete module with ID ${moduleId} for course ID ${courseId}`);
+//     // Call the deleteModule function passing moduleId and courseId
+//     await deleteModule(moduleId, courseId);
+// }
 // Call this function to fetch and display courses with their modules when the page loads
 document.addEventListener('DOMContentLoaded', async function() {
     await fetchAndDisplayCoursesWithModules();
