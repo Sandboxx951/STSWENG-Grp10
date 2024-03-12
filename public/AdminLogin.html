@@ -11,7 +11,7 @@
 <body>
     <div class="login-container">
         <div class="login-text">Admin Log in</div>
-        <form id="loginForm" class="login-form">
+        <form id="loginForm" class="login-form" action="/admin-login" method="POST">
             <div class="form-group">
                 <label for="email" class="visually-hidden">Email:</label>
                 <input type="email" id="email" name="email" class="email-input" placeholder="Email" required>
@@ -27,46 +27,53 @@
             <div class="forgot-password">
                 <a href="#" class="forgot-password-link">Forgot password?</a>
             </div>
-          <button class="circle-button" type="submit">
+            <button class="circle-button" type="submit">
                 <i class="fas fa-arrow-right arrow-right"></i>
-          </button>
+            </button>
         </form>
-      <div class="admin-login-button">
-        <button onclick="redirectToUserLogin()">User Login</button>
-    </div>
+        <div class="admin-login-button">
+            <button onclick="redirectToUserLogin()">User Login</button>
+        </div>
     </div>
     <div class="NEW-container">
-      <p class="NEW-text">
-        <a href="Home.html"><img src="logo.png"></a>
-    </p>
-  <script>
-   const adminCredentials = {
-            email: 'admin@email.com',
-            password: 'admin12345'
-        };
-
-        localStorage.setItem(adminCredentials.email, JSON.stringify(adminCredentials));
-
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        <p class="NEW-text">
+            <a href="Home.html"><img src="logo.png"></a>
+        </p>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-
-            const adminUser = JSON.parse(localStorage.getItem('admin@email.com'));
-
-            if (adminUser && adminUser.password === password) {
-                alert('Login successful');
-                localStorage.setItem('loggedIn', 'true'); 
-                window.location.href = 'AdminHome.html';
-            } else {
-                alert('Invalid email or password');
-                this.reset(); 
+    
+            try {
+                const response = await fetch('/admin-login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message); // Display success message
+                    window.location.href = data.redirectTo; // Redirect to AdminHome.html
+                } else {
+                    const errorData = await response.json();
+                    alert(errorData.error); // Display error message
+                    this.reset(); // Reset form
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.'); // Display generic error message
+                this.reset(); // Reset form
             }
         });
-
+    
         function redirectToUserLogin() {
-            window.location.href = 'Login.html'; 
+            window.location.href = 'Login.html';
         }
-  </script>
+    </script>
 </body>
 </html>

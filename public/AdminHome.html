@@ -16,7 +16,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#courses">Courses</a></li>
-            <li><a href="">Admin</a></li>
+            <li><a href="/logout" id="adminLogout">Admin Logout</a></li>
         </ul>
     </div>
 
@@ -35,26 +35,42 @@
     </div>
 
     <div id="courses" class="Courses">
-        <h1>REAL ESTATE COURSES</h1>
-            <a href="AdminGF_Courses.html".html" class="button">Proceed</a>
-
-        <h1>GENERAL FINANCE COURSES</h1>
-            <a href="AdminRE_Courses.html" class="button">Proceed</a>
+        <h1>Edit Courses Here:</h1>
+            <a href="AdminGF_Courses.html" class="button">Proceed</a>
     </div>
 
     <div id="about" class="Testimonals">
         <p>Content in the layer below.</p>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-          const isLoggedIn = localStorage.getItem('loggedIn');
-          const loginLink = document.getElementById('loginLink');
+          const logoutLink = document.getElementById('adminLogout');
       
-          if (isLoggedIn && loginLink) {
-            loginLink.innerHTML = '<a href="Profile.html">You</a>';
+          if (logoutLink) {
+            logoutLink.addEventListener('click', function (event) {
+              event.preventDefault();
+              fetch('/logout')
+                .then(response => response.json())
+                .then(data => {
+                  // Show popup indicating logout
+                  Swal.fire({
+                    title: 'Logged Out',
+                    text: data.message,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      // Redirect to home page after closing the popup
+                      window.location.href = '/home.html';
+                    }
+                  });
+                })
+                .catch(error => console.error('Error logging out:', error));
+            });
           }
         });
-      </script>
+    </script>
+
 </body>
 </html>

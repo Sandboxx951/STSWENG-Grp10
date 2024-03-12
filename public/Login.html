@@ -27,48 +27,53 @@
             <div class="forgot-password">
                 <a href="#" class="forgot-password-link">Forgot password?</a>
             </div>
-           <button class="circle-button" type="submit">
+            <button class="circle-button" type="submit">
                 <i class="fas fa-arrow-right arrow-right"></i>
-          </button>
+            </button>
         </form>
         <div class="signup-text">
-          <p>Need an account? <a href="SignUp.html" class="signup-link">Sign Up</a></p>
-      </div>
-      <div class="admin-login-button">
-        <button onclick="redirectToAdminLogin()">Admin Login</button>
-    </div>
+            <p>Need an account? <a href="SignUp.html" class="signup-link">Sign Up</a></p>
+        </div>
+        <div class="admin-login-button">
+            <a href="AdminLogin.html"><button>Admin Login</button></a>
+        </div>
     </div>
     <div class="NEW-container">
-      <p class="NEW-text">
-        <a href="Home.html"><img src="logo.png"></a>
-    </p>
-  <script>
-     document.getElementById('loginForm').addEventListener('submit', async function(event) { <!-- Corrected form ID to 'loginForm' -->
-        event.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+        <p class="NEW-text">
+            <a href="Home.html"><img src="logo.png"></a>
+        </p>
+    </div>
 
-        try {
-            const response = await fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-            const data = await response.json();
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
 
-            if (response.ok) {
-                alert(data.message);
-                window.location.href = 'Home.html'; // Redirect to Home.html on successful login
-            } else {
-                alert(data.error);
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message); // Display success message
+                    window.location.href = 'userhome.html'; // Redirect to userhome.html
+                } else {
+                    const errorData = await response.json();
+                    alert(errorData.error); // Display error message
+                    this.reset(); // Reset form
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.'); // Display generic error message
+                this.reset(); // Reset form
             }
-        } catch (error) {
-            console.error('Error during login:', error);
-        }
-    });
-  </script>
+        });
+    </script>
 </body>
 </html>

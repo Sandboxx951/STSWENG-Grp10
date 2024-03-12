@@ -23,7 +23,7 @@
         </ul>
     </div>
     <div class="container">
-        <div class="level">General Finance Courses</div>
+        <div class="level">ALL Courses</div>
         <div class="unlock">
             Unlock Your Potential with Gwendolyn Parker: Whether you're aiming for Real<br>
             Estate Success or Financial Fluency, we've got your back.
@@ -34,64 +34,99 @@
         <div class="slider">
         </div>
 
-<div class="dropdown" id="dropdown1">
-    <div class="dropdown-btn-container">
-        <button class="dropdown-btn" onclick="toggleAdminDropdown(this)">
-            &#9660 Courses
-        </button>
-        <div class="admin-buttons">
-            <button class="admin-action-btn" onclick="addCourse(1)">Add</button>
-            <button class="admin-action-btn" onclick="editCourse()">Edit</button>
-            <button class="admin-action-btn" onclick="deleteCourse(1)">Delete</button>
-        </div>
-    </div>
-    <div class="dropdown-content" id="dropdownContent1">
-        <a href="#">Course Overview / Syllabus</a>
-        <a href="#">Course Q&A</a>
-        <a href="#">Class Policies</a>
-        <a href="#">About Your Instructor</a>
-        <a href="#">Netiquette Rules for Online Discussion Board</a>
-        <div class="admin-actions" style="display: none;">
-            <input type="text" id="newCourseInput1" placeholder="Type the new course name">
-            <button onclick="addNewCourse(1)">OK</button>
-        </div>
-    </div>
-</div>
-    
+        <div class="what">List of courses in the system:</div>
+        <div id="courseList"></div>
 
-        <!-- Inside the second dropdown -->
-        <div class="dropdown" id="dropdown2">
-            <div class="dropdown-btn-container">
-                <button class="dropdown-btn" onclick="toggleAdminDropdown(this)">
-                    &#9660 Courses
-                </button>
-                <div class="admin-buttons">
-                    <button class="admin-action-btn" onclick="addCourse(2)">Add</button>
-                    <button class="admin-action-btn" onclick="editCourse()">Edit</button>
-                    <button class="admin-action-btn" onclick="deleteCourse(1)">Delete</button>
-                </div>
-            </div>
-            <div class="dropdown-content" id="dropdownContent2">
-                <a href="#">Course Overview / Syllabus</a>
-                <a href="#">Course Q&A</a>
-                <a href="#">Class Policies</a>
-                <a href="#">About Your Instructor</a>
-                <a href="#">Netiquette Rules for Online Discussion Board</a>
-                <div class="admin-actions" style="display: none;">
-                    <input type="text" id="newCourseInput2" placeholder="Type the new course name">
-                    <button onclick="addNewCourse(2)">OK</button>
-                </div>
-            </div>
+
+        <!-- Add a button to display the form -->
+        <button onclick="toggleAddCourseForm()">Add Course</button>
+
+        <!-- Add Course Form -->
+        <div id="addCourseFormContainer" style="display: none; color: white;">
+            <h2>Add Course</h2>
+            <form id="addCourseForm" enctype="multipart/form-data">
+                <label for="courseName">Course Name:</label><br>
+                <input type="text" id="courseName" name="courseName" required><br><br>
+
+                <label for="courseType">Course Type:</label><br>
+                <select id="courseType" name="courseType" required>
+                    <option value="General Finance">General Finance</option>
+                    <option value="Real Estate">Real Estate</option>
+                </select><br><br>
+
+                <label for="price">Price:</label><br>
+                <input type="number" id="price" name="price" required><br><br>
+
+                <!-- File upload input for the image -->
+                <label for="image">Image Upload:</label><br>
+                <input type="file" id="image" name="image"><br><br>
+
+                <input type="submit" value="Add Course">
+            </form>
+        </div>
+        <!-- Add a button to display the form -->
+        <button onclick="toggleAddModuleForm()">Add Module</button>
+
+        <!-- Add Module Form -->
+        <div id="addModuleFormContainer" style="display: none; color: white;">
+            <h2>Add Module</h2>
+            <form id="addModuleForm">
+                <!-- Input fields for module details -->
+                <label for="subModuleName">Module Name:</label><br>
+                <input type="text" id="subModuleName" name="subModuleName" required><br><br>
+
+                <label for="fileType">File Type:</label><br>
+                <select id="fileType" name="fileType" required onchange="updateAcceptedFileTypes()">
+                    <option value="Document">Document</option>
+                    <option value="Video">Video</option>
+                </select><br><br>
+
+                <!-- File Input for uploading content -->
+                <label for="moduleFile">Module File:</label><br>
+                <input type="file" id="moduleFile" name="moduleFile" accept=".pdf, .doc, .docx, .txt, .jpg, .png" required><br><br>
+
+                <!-- Dropdown to dynamically populate courses -->
+                <label for="courseDropdown">Select Course:</label><br>
+                <select id="courseDropdown" name="courseId" required></select>
+                <button type="button" onclick="refreshCourseDropdown()">Refresh Courses</button><br><br>
+
+                <input type="submit" value="Add Module">
+            </form>
         </div>
 
-    </div>
-    <div id="addCourseModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAddCourseModal(1)">&times;</span>
-            <label for="newCourseInput">Enter Course Name:</label>
-            <input type="text" id="newCourseInput" placeholder="Type the new course name">
-            <button onclick="addNewCourse(1)">OK</button>
-        </div>
+        <!-- Display the list of modules for a specific course -->
+        <div id="moduleList"></div>
+
+        <script>
+            function updateAcceptedFileTypes() {
+                const fileTypeSelect = document.getElementById('fileType');
+                const moduleFileInput = document.getElementById('moduleFile');
+
+                // Get the selected file type
+                const selectedFileType = fileTypeSelect.value;
+
+                // Define accepted file types based on the selected file type
+                let acceptedFileTypes = '';
+
+                if (selectedFileType === 'Video') {
+                    acceptedFileTypes = '.mp4, .avi, .mov'; // Add supported video file types
+                } else if (selectedFileType === 'Document') {
+                    acceptedFileTypes = '.pdf, .doc, .docx, .txt, .jpg, .png'; // Add supported document file types
+                }
+
+                // Update the accept attribute of the file input
+                moduleFileInput.setAttribute('accept', acceptedFileTypes);
+            }
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', async function () {
+                await fetchAndDisplayCourses();
+                await fetchAndPopulateCourseDropdown();
+                await fetchAndDisplayCoursesWithModules();
+            });
+        </script>
+
     </div>
 </body>
 
