@@ -1,4 +1,5 @@
 const express = require('express');
+var hbs = require('express-hbs');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs').promises; // Import fs module with promises
@@ -10,7 +11,19 @@ const upload = multer({ dest: 'uploads/' }); // Destination folder for uploaded 
 const app = express();
 
 app.use(bodyParser.json());
+app.engine('hbs', hbs.express4({
+    partialsDir: path.join(__dirname, 'public', 'views', 'partials'),
+    layoutsDir: path.join(__dirname, 'public', 'views', 'layouts')
+}));
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'public', 'views', 'layouts'));
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.listen(3000, () => {
+    console.log("Server is now listening...");
+});
 
 // Configure session middleware
 app.use(session({
@@ -105,7 +118,7 @@ User.hasMany(Course);
 Course.belongsTo(User);
 
 Course.hasMany(Modules);
-Modules.belongsTo(Course, { foreignKey: 'courseId' });
+//Modules.belongsTo(Course, { foreignKey: 'courseId' });
 
 User.belongsToMany(Course, { through: UserCourse, foreignKey: 'userId' });
 Course.belongsToMany(User, { through: UserCourse, foreignKey: 'courseId' });
@@ -147,7 +160,8 @@ app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
 
 // Your existing route for home page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+    //res.sendFile(path.join(__dirname, 'public', 'home.html'));
+    res.render('home');
 });
 
 
@@ -328,7 +342,6 @@ app.get('/modules/:filename', async (req, res) => {
         res.status(404).json({ error: 'Module file not found' });
     }
 });
-
 
 
 module.exports = { app, sequelize, User, Course, Modules, UserCourse };
