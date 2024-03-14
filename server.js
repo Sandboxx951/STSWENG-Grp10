@@ -50,7 +50,8 @@ app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-      const user = await User.findOne({ where: { email } });
+    // Check for email and if userType is 'user'
+    const user = await User.findOne({ where: { email, userType: 'user' } }); 
 
       if (user && user.password === password) {
           // Store user information in session
