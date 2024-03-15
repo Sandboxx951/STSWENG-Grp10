@@ -443,13 +443,7 @@ async function deleteModule(moduleId, courseId) {
 
 
 
-// // Call this function to delete a module
-// async function deleteModule(moduleId, courseId) {
-//     // Implement delete module logic here
-//     console.log(`Delete module with ID ${moduleId} for course ID ${courseId}`);
-//     // Call the deleteModule function passing moduleId and courseId
-//     await deleteModule(moduleId, courseId);
-// }
+
 // Call this function to fetch and display courses with their modules when the page loads
 document.addEventListener('DOMContentLoaded', async function() {
     await fetchAndDisplayCoursesWithModules();
