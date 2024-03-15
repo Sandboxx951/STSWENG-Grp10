@@ -118,36 +118,57 @@
       <div class="what">List of General Finance Courses:</div>
       <div id="courseList"></div>
   
+     
       <script>
-          async function fetchAndDisplayCourses() {
-      try {
-          console.log('fetchAndDisplayCourses function called');
-          const response = await fetch('/courses/general-finance');
-          if (response.ok) {
-              const courses = await response.json();
-              console.log('Courses:', courses);
-              const courseList = document.getElementById('courseList');
-              courseList.innerHTML = ''; // Clear previous content
-              courses.forEach(course => {
-                  const courseElement = document.createElement('div');
-                  courseElement.className = 'course-row'; // Add class for styling
-                  courseElement.innerHTML = `
-                      <div class="course-info" style="color: white;"> <!-- Added inline style for text color -->
-                          <span>${course.courseName} - ${course.courseType} - $${course.price}</span>
-                      </div>
-                  `;
-                  courseList.appendChild(courseElement);
-              });
-          } else {
-              console.error('Failed to fetch courses:', response.statusText);
-          }
-      } catch (error) {
-          console.error('Error fetching courses:', error);
-      }
-  }
-          document.addEventListener('DOMContentLoaded', async function () {
-              await fetchAndDisplayCourses();
-          });
-      </script>
+        async function fetchAndDisplayCourses() {
+            try {
+                console.log('fetchAndDisplayCourses function called');
+                const response = await fetch('/courses/general-finance');
+                if (response.ok) {
+                    const courses = await response.json();
+                    console.log('Courses:', courses);
+                    const courseList = document.getElementById('courseList');
+                    courseList.innerHTML = ''; // Clear previous content
+                    courses.forEach(async course => {
+                        const courseElement = document.createElement('div');
+                        courseElement.className = 'course-row'; // Add class for styling
+                        courseElement.innerHTML = `
+                            <div class="course-info" style="color: white;"> <!-- Added inline style for text color -->
+                                <span>${course.courseName} - ${course.courseType} - $${course.price}</span>
+                            </div>
+                            <div class="modules-list"></div> <!-- Container for modules -->
+                        `;
+                        courseList.appendChild(courseElement);
+
+                        // Fetch and display modules for this course
+                        const modulesList = courseElement.querySelector('.modules-list');
+                        const modulesResponse = await fetch(`/courses/${course.id}/modules`);
+                        if (modulesResponse.ok) {
+                            const modules = await modulesResponse.json();
+                            modules.forEach(module => {
+                                const moduleElement = document.createElement('div');
+                                moduleElement.innerHTML = `
+                                    <div>${module.subModuleName}</div>
+                                    <div class="module-content">
+                                        <a href="${module.filePath}" target="_blank">View Module</a>
+                                    </div>
+                                `;
+                                modulesList.appendChild(moduleElement);
+                            });
+                        } else {
+                            console.error('Failed to fetch modules:', modulesResponse.statusText);
+                        }
+                    });
+                } else {
+                    console.error('Failed to fetch courses:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', async function () {
+            await fetchAndDisplayCourses();
+        });
+    </script>
   </body>
   </html>
