@@ -12,16 +12,65 @@ const app = express();
 
 app.use(bodyParser.json());
 app.engine('hbs', hbs.express4({
-    partialsDir: path.join(__dirname, 'public', 'views', 'partials'),
+    // partialsDir: path.join(__dirname, 'public', 'views', 'partials'),
     layoutsDir: path.join(__dirname, 'public', 'views', 'layouts')
 }));
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'public', 'views', 'layouts'));
+app.set('views', path.join(__dirname, 'public', 'views', 'layouts')); // Adjusted views path
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+    res.render('home');
+});
 
-app.listen(3000, () => {
+app.get('/plan', (req, res) => {
+    res.render('Plan');
+});
+
+app.get('/userProfile', (req, res) => {
+    res.render('Profile');
+});
+
+app.get('/RE_Course', (req, res) => {
+    res.render('RE_Course');
+});
+
+app.get('/GF_Course', (req, res) => {
+    res.render('GF_Course');
+});
+
+app.get('/billing', (req, res) => {
+    res.render('Billing');
+});
+
+app.get('/adminRE_Courses', (req, res) => {
+    res.render('AdminRE_Courses');
+});
+
+app.get('/adminLogin', (req, res) => {
+    res.render('AdminLogin');
+});
+
+app.get('/adminHome', (req, res) => {
+    res.render('AdminHome');
+});
+
+app.get('/adminGF_Courses', (req, res) => {
+    res.render('AdminGF_Courses');
+});
+
+app.get('/userLogin', (req, res) => {
+    try {
+        res.render('Login');
+    } catch (error) {
+        console.error('Error rendering Login template:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+app.listen(3001, () => {
     console.log("Server is now listening...");
 });
 
@@ -141,7 +190,7 @@ sequelize.sync().then(async () => {
 });
 
 
-// Route for moduel deletetion
+// Route for module deletetion
 app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
     const moduleId = req.params.moduleId;
     const courseId = req.params.courseId;
@@ -156,12 +205,6 @@ app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
         console.error('Error deleting module:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-});
-
-// Your existing route for home page
-app.get('/', (req, res) => {
-    //res.sendFile(path.join(__dirname, 'public', 'home.html'));
-    res.render('home');
 });
 
 
