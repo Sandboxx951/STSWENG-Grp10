@@ -329,6 +329,11 @@ app.get('/modules/:filename', async (req, res) => {
     }
 });
 
+app.get('/results', async (req, res) => {
+    const { filename } = req.params;
+    const filePath = path.join(__dirname, 'uploads', filename);
 
+   
+});
 
 module.exports = { app, sequelize, User, Course, Modules, UserCourse };

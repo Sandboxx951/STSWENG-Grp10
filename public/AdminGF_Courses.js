@@ -130,7 +130,7 @@ function toggleAddCourseForm() {
 async function fetchAndDisplayCourses() {
     try {
         console.log('fetchAndDisplayCourses function called');
-        const response = await fetch('/courses');
+        const response = await fetch('/courses/general-finance');
         if (response.ok) {
             const courses = await response.json();
             console.log('Courses:', courses);
@@ -343,7 +343,7 @@ async function fetchAndDisplayModules(courseId) {
                     <div>${module.subModuleName}</div>
                     <div class="module-content"></div> <!-- Container for module content -->
                     <button onclick="displayModuleContents('${module.filePath}', this.parentElement)">View Module</button>
-                    <button onclick="updateModule(${module.id})">Update Module</button>
+                    <button onclick="openUpdateModuleModal(${module.id})">Update Module</button> <!-- Call openUpdateModuleModal -->
                     <button onclick="deleteModule(${module.id}, ${courseId})">Delete Module</button>
 
                 `;
@@ -406,10 +406,6 @@ async function displayModuleContents(filePath, moduleContainer) {
 }
 
 
-async function updateModule(moduleId) {
-    // Implement update module logic here
-    console.log(`Update module with ID ${moduleId}`);
-}
 
 
 // Function to handle module deletion
@@ -443,13 +439,7 @@ async function deleteModule(moduleId, courseId) {
 
 
 
-// // Call this function to delete a module
-// async function deleteModule(moduleId, courseId) {
-//     // Implement delete module logic here
-//     console.log(`Delete module with ID ${moduleId} for course ID ${courseId}`);
-//     // Call the deleteModule function passing moduleId and courseId
-//     await deleteModule(moduleId, courseId);
-// }
+
 // Call this function to fetch and display courses with their modules when the page loads
 document.addEventListener('DOMContentLoaded', async function() {
     await fetchAndDisplayCoursesWithModules();
