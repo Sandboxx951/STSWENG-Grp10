@@ -166,6 +166,18 @@ app.get('/GFCourses', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'GF_Courses.html'));
 });
 
+app.get('/signup', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'Signup.html'));
+});
+
+app.get('/adminlogin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'AdminLogin.html'));
+});
+
+app.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'Profile.html'));
+})
+
 
 // Route to create a course 
 app.post('/create-course', upload.single('image'), async (req, res) => {

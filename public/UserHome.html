@@ -16,7 +16,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#courses">Courses</a></li>
-            <li><a href="Profile.html">You</a></li>
+            <li><a href="/profile">You</a></li>
         </ul>
     </div>
 
@@ -142,6 +142,8 @@
             loginLink.innerHTML = '<a href="Profile.html">You</a>';
           }
         });
+
+        
         document.getElementById("imgvideo").addEventListener("click", function () {
             const videoDiv = document.getElementById("video");
             videoDiv.innerHTML = '<iframe width="810" height="455" src="https://www.youtube.com/embed/-9w7A39Ggz0?si=EHxwM_LsA0CywheR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';

@@ -40,7 +40,7 @@
             <input type="submit" value="Create Account">
         </div>        
       </form>
-      <p class="signup-text">Already have an account? <a class="signup-link" href="Login.html">Login</a></p>
+      <p class="signup-text">Already have an account? <a class="signup-link" href="/login">Login</a></p>
     </div>
     <div class="BROKERED-container">
     <p class="BROKERED-text">BROKERED BY KELLY WILLIAMS REALTY, LR</p>
@@ -74,7 +74,7 @@
 
         if (response.ok) {
           this.reset();
-          window.location.href = 'Login.html';
+          window.location.href = '/login';
         }
       } catch (error) {
         console.error('Error during signup:', error);
