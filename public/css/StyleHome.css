@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
     overflow-x: hidden; 
     height:4000px;
@@ -49,7 +51,7 @@ html {
 .navbar a {
     text-decoration: none;
     color: white;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat";
     font-size: 18px;
 }
 
@@ -84,23 +86,40 @@ html {
     z-index: 1;
 }
 .overlay h1 {
-    margin-top: 500px;
+    font-family: 'Montserrat';
+    font-size: 50px;
+    max-width: 100%;
+    margin-bottom: -300px;
+    margin-top: 400px;
+    font-weight: 700px;
+    text-align: right;
+    line-height: 50px;
+    margin-left: 300px;
+    
+    /*margin-top: 500px;
     font-size: 90px;
     margin-left: 750px;
     text-align: right;
     font-family: 'Montserrat', sans-serif;
   font-weight: 700px;
   line-height: 90px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
     
 }
 
+
+
 .overlay p {
+    margin-top: 220px;
+    font-family: 'Montserrat';
+    text-align: right;
+    margin-left: 300px;
+    /*
     font-size: 20px;
     margin-top: -300px;
     text-align: right;
     font-family: 'Montserrat', sans-serif;
-    margin-left: 380px; 
+    margin-left: 380px; */
 }
 
 .button-container {
@@ -109,69 +128,267 @@ html {
 }
 .button {
     padding: 10px 20px;
+    font-family: 'Inter';
+    font-weight: 600;
+    margin-left: 410px;
+    letter-spacing: 18%;
     background-color: #C5FF4A; 
     color: rgb(0, 0, 0);
     text-decoration: none;
     border-radius: 50px;
     margin-bottom: 70px;
-    font-size: 18px;
+    font-size: 16px;
 
 }
 
-.Courses {
-    margin-bottom: -1500px;
+.About {
+    margin-bottom: -870px;
     background-color: black; 
     text-align: center;
     bottom: 0;
     position: absolute;
     width: 100%;
-    height: 1500px;
+    height: 870px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-family: 'Montserrat';
+    justify-content: center;
+}
+
+.content-about {
+    margin: auto;
+    display: flex;
+    width: 85%;
+    margin-top: 16%;
+}
+
+.title-about {
+    float: left;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 75px;
+    text-decoration-line: underline;
+    text-decoration-thickness: 4px;
+    text-align: right;
+}
+
+.rightside-about {
+    float: right;
+    margin-left: 15%;
+    margin-top: 10px;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    text-align: justify;
+}
+
+.description-contact {
+    float: left;
+}
+.description-email {
+    float: right;
+}
+
+
+.Courses {
+    margin-bottom: -2230px;
+    background-color: black; 
+    text-align: center;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 1370px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.Courses p {
-    font-size: 18px;
-    color: white;
-}
 
 .Courses h1 {
     margin-top: 120px;
     font-size: 80px;
     color: white;
+    font-family: 'Montserrat';
 }
 
-
-.Courses a.button {
+.Courses a {
+    color:white;
+    font-family: 'Montserrat';
+    text-decoration: none;
     margin-top: 50px;
     display: inline-block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #fff;
     background-color: #67a5ce;
-    border-radius: 5px;
+    border: #2980b9;
+    padding: 10px 20px;
+    border-radius: 20px;
     transition: background-color 0.3s;
     z-index: 1;
-
 }
 
-.Courses a.button:hover {
+.Courses a:hover {
     background-color: #2980b9;
 }
 
+
+.title-Courses {
+    float: left;
+    font-family: 'Montserrat';
+    color: white;
+    font-weight: 700;
+    font-size: 90px;
+    text-decoration-line: underline;
+    text-decoration-thickness: 4px;
+    display: flex;
+    width: 75%;
+    margin-top: 6%;
+    margin-left: 13%;
+}
+
+.content-Courses {
+    margin: auto;
+    display: flex;
+    width: 75%;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.img-Courses {
+    height: 310px;
+    width: auto;
+}
+
+.description-Courses {
+    margin-left: 5%;
+    font-family: 'Montserrat';
+    color: white;
+    text-align: justify;
+    float: right;
+}
+
+.title-description-Courses {
+    font-size: 64px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.text-description-Courses {
+    font-size: 24px;
+    margin-top: 3%;
+}
+
 .Testimonals {
-    margin-bottom: -3004px;
+    margin-bottom: -3850px;
     background-color: #C5FF4A; 
-    text-align: center;
+    align-content: center;
     bottom: 0;
     position: absolute;
     width: 100%;
     height: 1622px;
 }
 
-.Testimonals p {
-    font-size: 18px;
-    color: rgb(0, 0, 0);
+.top-Testimonials {
+    margin: auto;
+    display: flex;
+    width: 75%;
+    margin-top: 10%;
 }
 
+.title-Testimonials {
+    float: left;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 70px;
+    text-decoration-line: underline;
+    text-decoration-thickness: 4px;
+
+}
+
+.rightside-Testimonials {
+    float: right;
+    margin-left: 20%;
+    margin-top: 10px;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    text-align: justify;
+}
+
+.header-description-Testimonials {
+    font-weight: 700;
+}
+
+.text-description-Testimonials {
+    font-weight: 500;
+}
+
+.header-description {
+    margin-top: 20%;
+    margin-left: 35%;
+}
+
+.mid-Testimonials {
+    margin: auto;
+    display: flex;
+    margin-top: 10%;
+    font-family: 'Montserrat';
+    text-align: justify;
+}
+
+.slider {
+    height: 100vh;
+}
+
+.header {
+    float: left;
+    padding-right: 9%;
+}
+
+
+.name {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 60px;
+    margin-left: 50%;
+}
+
+.name-description {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 28px;
+    margin-left: 50%;
+}
+
+
+.mid-text-testimonial {
+    margin-left: 20%;
+    font-size: 18px;
+    text-align: justify;
+    font-weight: 500;
+}
+
+.video {
+    float: right;
+    margin-right: 10%;
+}
+
+.imgvideo {
+    width: 810px;
+    height: 455px;
+}
+
+.slide {
+    margin-top: 5%;
+    margin-left: 2%;
+    border: 5px solid;
+    width: 400px;
+    height: 250px;
+    transition: .5s;
+}
+
+.slide:hover{
+    height: 270px;
+    border-width: 10px;
+    border-color:black;
+    transition: .5s;
+}
+ 

@@ -62,7 +62,7 @@
                 if (response.ok) {
                     const data = await response.json();
                     alert(data.message); // Display success message
-                    window.location.href = 'userhome.html'; // Redirect to userhome.html
+                    window.location.href = '/'; // Redirect to userhome.html
                 } else {
                     const errorData = await response.json();
                     alert(errorData.error); // Display error message

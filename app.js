@@ -105,7 +105,7 @@ User.hasMany(Course);
 Course.belongsTo(User);
 
 Course.hasMany(Modules);
-Modules.belongsTo(Course, { foreignKey: 'courseId' });
+//Modules.belongsTo(Course, { foreignKey: 'courseId' });
 
 User.belongsToMany(Course, { through: UserCourse, foreignKey: 'userId' });
 Course.belongsToMany(User, { through: UserCourse, foreignKey: 'courseId' });
@@ -147,7 +147,23 @@ app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
 
 // Your existing route for home page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+    if(req.session.user){
+        res.sendFile(path.join(__dirname, 'public', 'UserHome.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'public', 'home.html'));
+    }
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.get('/RECourses', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'RE_Courses.html'));
+});
+
+app.get('/GFCourses', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'GF_Courses.html'));
 });
 
 
