@@ -85,6 +85,7 @@ app.post('/admin-login', async (req, res) => {
 });
 const isAuthenticated = (req, res, next) => {
   if (req.session.user) {
+    req.user = req.session.user;
     // User is authenticated, allow access
     next();
   } else {
@@ -92,6 +93,43 @@ const isAuthenticated = (req, res, next) => {
     res.redirect('/login');
   }
 };
+
+// Route to handle course purchases
+app.post('/courses/purchase/:courseId', isAuthenticated, async (req, res) => {
+  try {
+      const { courseId } = req.params;
+      const userId = req.user.id; // Assuming you have a user object stored in req.user after authentication
+
+      // Update the user's data in the database to reflect the purchased course
+      const user = await User.findByPk(userId); // Fetch user from database
+      if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+      }
+
+      // Check if the user has already purchased the course
+      const userCourse = await UserCourse.findOne({
+          where: {
+              userId: userId,
+              courseId: courseId
+          }
+      });
+      if (userCourse) {
+          return res.status(400).json({ error: 'Course already purchased' });
+      }
+
+      // Add the purchased course to the user's courses
+      await UserCourse.create({
+          userId: userId,
+          courseId: courseId
+      });
+
+      res.status(200).json({ message: 'Course purchased successfully' });
+  } catch (error) {
+      console.error('Error purchasing course:', error);
+      res.status(500).json({ error: 'Failed to purchase course' });
+  }
+});
+
 // Route to get a list of courses
 app.get('/courses', isAuthenticated, async (req, res) => {
     try {
@@ -102,6 +140,8 @@ app.get('/courses', isAuthenticated, async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 
 // Route to get modules for a specific course
 app.get('/modules/:courseId', async (req, res) => {

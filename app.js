@@ -84,28 +84,27 @@ const Modules = sequelize.define('Modules', {
 
 const UserCourse = sequelize.define('UserCourse', {
     userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Users',
-        key: 'id',
-      },
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'User',
+            key: 'id',
+        },
     },
     courseId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Courses',
-        key: 'id',
-      },
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Course',
+            key: 'id',
+        },
     },
-  });
-
+});
 User.hasMany(Course);
 Course.belongsTo(User);
 
 Course.hasMany(Modules);
-//Modules.belongsTo(Course, { foreignKey: 'courseId' });
+Modules.belongsTo(Course, { foreignKey: 'courseId' });
 
 User.belongsToMany(Course, { through: UserCourse, foreignKey: 'userId' });
 Course.belongsToMany(User, { through: UserCourse, foreignKey: 'courseId' });
@@ -128,7 +127,8 @@ sequelize.sync().then(async () => {
 });
 
 
-// Route for moduel deletetion
+
+// Route for module deletetion
 app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
     const moduleId = req.params.moduleId;
     const courseId = req.params.courseId;
