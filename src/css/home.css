@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+html::-webkit-scrollbar{
+    display: none;
+}
+html{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0;
+    width: 100dvw;
+    overflow-x: hidden;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.home-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation-bar{
+    height: 10vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-image{
+    object-fit: contain;
+    height: 90%;
+    width: 75%;
+}
+
+.navigations-div{
+    height: 100%;
+    width: 50%;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-right: 2.5%;
+}
+
+.nav-path{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.logo-container{
+    margin: 3.75%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link{
+    height: 100%;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.nav-link:visited, .nav-link:active, .nav-link:link{
+    color: #FFFFFF;
+}
+
+.nav-link:hover{
+    background-color: #C5FF4A;
+    color: #000000;
+}
+
+.hero-portrait-container{
+    height: 150%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.hero-portrait{
+    min-height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+.hero-portrait img{
+    width: 100%;
+    height: 150%;
+    filter: grayscale(100%);
+}
+
+.hero-content{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.left-hero{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-hero-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: brightness(50%) blur(0.3rem) grayscale(50%);
+    background-image: url('../assets/images/hero-banner-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.left-hero-content{
+    text-align: right;
+    color: #FFFFFF;
+    padding-right: 2.5rem;
+    height: 100%;
+}
+
+.owner-name{
+    font-size: 5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.owner-description{
+    margin-top: 1rem;
+}
+
+.owner-desc{
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.owner-info{
+    margin-top: 20rem;
+}
+
+.get-started-button{
+    display: inline-block;
+    margin-top: 10rem;
+    margin-bottom: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    border-radius: 1.5rem;
+    padding: 1rem 2rem;
+    border: none;
+    background-color: #C5FF4A;
+    font-weight: 700;
+    color: #000000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.get-started-button:hover{
+    background-color: #32CD32;
+    color: #000000;
+}
+
+.get-started-button:active {
+    text-decoration: none;
+    background-color: #C5FF4A;
+    color: #000000;
+}
+
+#company-background{
+    margin: 15rem 7.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    justify-content: space-between;
+}
+
+.company-motto{
+    font-family: inherit;
+    font-size: 5rem;
+    color: #FFFFFF;
+    font-weight: 600;
+    text-align: right;
+}
+
+.title-divider-right{
+    width: 75%;
+    margin-left: 25%;
+    margin-top: 5%;
+}
+
+.background{
+    color: #FFFFFF;
+    font-size: 1.25rem;
+}
+
+.contact-info{
+    margin-top: 2rem;
+    font-family: inherit;
+    color: #FFFFFF;
+}
+
+.contact-info section{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5rem;
+}
+
+.contact{
+    margin-right: 2rem;
+}
+
+.contact i {
+    margin-right: 0.5rem;
+}
