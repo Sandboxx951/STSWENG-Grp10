@@ -1,5 +1,5 @@
 # How to use:
-  Because CI pipeline is work in progress, perform the following to run (IN ORDER):
+  Because CI pipeline is work in progress, perform the following to run (IN ORDER):  
     - npm run build  
     - npm run test  
     - npm run prod
