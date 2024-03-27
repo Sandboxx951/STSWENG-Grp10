@@ -85,7 +85,15 @@
       <div class="what">List of General Finance Courses:</div>
       <div id="courseList"></div>
   
-     
+      <style>
+        .course-info span {
+            font-size: 30px; /* Small thing to make it bigger for testing */
+        }
+    
+        .modules-list {
+            font-size: 20px;
+        }
+    </style>
       <script>
         async function fetchAndDisplayCourses() {
     try {
@@ -111,18 +119,42 @@
                 // Fetch and display modules for this course
                 const modulesList = document.getElementById(`modules-${course.id}`);
                 const modulesResponse = await fetch(`/courses/${course.id}/modules`);
+                
                 if (modulesResponse.ok) {
                     const modules = await modulesResponse.json();
-                    modules.forEach(module => {
-                        const moduleElement = document.createElement('div');
-                        moduleElement.innerHTML = `
-                            <div style="color: white;">${module.subModuleName}</div>
-                            <div class="module-content">
-                                <span class="module-status" style="color: white;"></span> <!-- Module status will be displayed here -->
-                            </div>
-                        `;
-                        modulesList.appendChild(moduleElement);
-                    });
+                    
+                    modules.forEach(async module => {
+    const moduleElement = document.createElement('div');
+    moduleElement.innerHTML = `
+        <div style="color: white;">${module.subModuleName}</div>
+        <div class="module-content">
+            <span class="locked-message" style="color: red; display: none;">Module Locked</span> <!-- Message for locked module -->
+            <span class="unlocked-message" style="color: green; display: none;">Module Unlocked</span> <!-- Message for unlocked module -->
+            <a class="module-file-link" href="#" style="color: blue; display: none;">View File</a> <!-- Link to view module file -->
+        </div>
+    `;
+    modulesList.appendChild(moduleElement);
+    
+    // Check if the user has purchased this course
+    const userPurchased = await checkUserPurchased(course.id);
+    if (userPurchased) {
+        const moduleStatusElements = modulesList.querySelectorAll('.module-status');
+        const unlockedMessage = modulesList.querySelector('.unlocked-message');
+        const lockedMessage = modulesList.querySelector('.locked-message');
+        const moduleFileLink = modulesList.querySelector('.module-file-link');
+        moduleStatusElements.forEach(element => {
+            element.textContent = 'Module Unlocked'; // Update module status
+        });
+        unlockedMessage.style.display = 'block'; // Display the unlocked message
+        moduleFileLink.style.display = 'block'; // Display the module file link
+        
+        // Set the href attribute of the module file link to the file path
+        moduleFileLink.href = module.filePath;
+    } else {
+        const lockedMessage = modulesList.querySelector('.locked-message');
+        lockedMessage.style.display = 'block'; // Display the locked message
+    }
+});
                     
                     // Check if the user has purchased this course
                     const userPurchased = await checkUserPurchased(course.id);
@@ -164,9 +196,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     await fetchAndDisplayCourses();
 });
 
-async function purchaseCourse(courseId) {
+async function purchaseCourse(courseId, userId) {
     try {
-        const response = await fetch(`/courses/purchase/${courseId}`, { method: 'POST' });
+        const response = await fetch(`/courses/purchase/${courseId}`, { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userId: userId })
+        });
         if (response.ok) {
             await fetchAndDisplayCourses(); // Refresh course list
         } else {

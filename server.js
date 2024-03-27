@@ -105,7 +105,7 @@ app.post('/courses/purchase/:courseId', isAuthenticated, async (req, res) => {
       if (!user) {
           return res.status(404).json({ error: 'User not found' });
       }
-
+      
       // Check if the user has already purchased the course
       const userCourse = await UserCourse.findOne({
           where: {
@@ -127,6 +127,36 @@ app.post('/courses/purchase/:courseId', isAuthenticated, async (req, res) => {
   } catch (error) {
       console.error('Error purchasing course:', error);
       res.status(500).json({ error: 'Failed to purchase course' });
+  }
+});
+
+// Function to check if the user has purchased a course
+async function checkUserPurchased(courseId, userId) {
+  try {
+      const userCourse = await UserCourse.findOne({
+          where: {
+              userId: userId,
+              courseId: courseId
+          }
+      });
+      return !!userCourse; // Returns true if user has purchased the course, false otherwise
+  } catch (error) {
+      console.error('Error checking if user purchased course:', error);
+      return false;
+  }
+}
+
+// Route to check if the user has purchased a course
+app.get('/courses/:courseId/purchased', isAuthenticated, async (req, res) => {
+  const courseId = req.params.courseId;
+  const userId = req.user.id;
+
+  try {
+      const purchased = await checkUserPurchased(courseId, userId);
+      res.json({ purchased });
+  } catch (error) {
+      console.error('Error checking if user purchased course:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
