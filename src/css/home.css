@@ -189,7 +189,7 @@ body{
 }
 
 #company-background{
-    margin: 15rem 7.5rem;
+    margin: 8.5rem 7.5rem;
     display: flex;
     flex-direction: row;
     align-items:flex-start;
@@ -207,6 +207,12 @@ body{
 .title-divider-right{
     width: 75%;
     margin-left: 25%;
+    margin-top: 5%;
+}
+
+.title-divider-left{
+    width: 125%;
+    margin-right: 50%;
     margin-top: 5%;
 }
 
@@ -233,4 +239,51 @@ body{
 
 .contact i {
     margin-right: 0.5rem;
+}
+
+#courses-section{
+    margin: 8.5rem 7.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title{
+    width: fit-content;
+    font-family: inherit;
+    font-size: 5rem;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.course-item{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5rem;
+}
+
+.course-thumbnail{
+    height: 15.5rem;
+    width: 85rem;
+    background-color: lightgray;
+}
+
+.thumbnail-img{
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+.course-title{
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.course-desc{
+    color: #FFFFFF;
+}
+
+.course-info{
+    margin-left: 4.5rem;
 }
