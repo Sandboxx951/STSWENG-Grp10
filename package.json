@@ -4,9 +4,8 @@
   "description": "",
   "private": "true",
   "scripts": {
+    "test": "jest --verbose",
     "build": "webpack",
-    "dev": "nodemon server.js",
-    "buildWatch": "webpack --watch",
     "prod": "node server.js"
   },
   "keywords": [],
@@ -29,6 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.3",
     "@babel/preset-env": "^7.24.3",
+    "@types/jest": "^29.5.12",
     "autoprefixer": "^10.4.19",
     "babel-jest": "^29.7.0",
     "babel-loader": "^9.1.3",

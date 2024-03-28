@@ -2,7 +2,7 @@
 
 // Validate name, name must not contain any special characters
 export function validateName(name){
-    const nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    const nameRegex = /^([ \u00c0-\u01ffa-zA-Z'\-])+$/;
     
     if(!nameRegex.test(name))
         return false;

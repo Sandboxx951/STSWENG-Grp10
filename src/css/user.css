@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    margin: 0;
+    background-color: #C5FF4A;
+    overflow: hidden;
+}
+
+.navbar-section{
+    height: 5rem;
+    width: 100%;
+    background-color: #000000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.userplan-navbar{
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar-image-container{
+    height: 100%;
+    width: 15%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 2rem;
+}
+
+.navbar-image{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.navbar-links{
+    height: 100%;
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-right: 2rem;
+}
+
+.navbar-redirect{
+    display: inline-block;
+    padding: 2em;
+    position: relative;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #FFFFFF;
+}
+
+.navbar-redirect:hover{
+    background-color: #C5FF4A;
+    color: #000000;
+}
+
+.user-information{
+    margin: 2.5rem 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.user-info-container{
+    background-color: #212121;
+    height: 35rem;
+    width: 90rem;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding: 2rem;
+}
+
+.name{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.email{
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.date-title{
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.date-joined{
+    margin-top: 3.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #FFFFFF;
+}
+
+.profile-picture-container{
+    height: 25rem;
+    width: 25rem;
+    border-style: solid;
+    border-color: #32CD32;
+    margin-right: 2.5rem;
+}

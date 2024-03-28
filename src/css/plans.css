@@ -54,7 +54,7 @@ body{
     padding: 2em;
     position: relative;
     text-decoration: none;
-    font-weight: 550;
+    font-weight: 500;
     font-size: 1rem;
     color: #FFFFFF;
 }
@@ -101,6 +101,9 @@ body{
 
     padding: 2rem;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .plan-header{
@@ -143,12 +146,21 @@ body{
     font-size: 1rem;
     font-weight: 500;
     background-color: #9caf74;
-    height: fit-content;
-    width: fit-content;
+    height: 1.3rem;
+    width: 5.3rem;
     color: #FFFFFF;
     padding: 0.3rem;
     border-radius: 1rem;
     margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.empty{
+    background-color: transparent;
+}
+
+.long{
+    width: 10rem;
 }
 
 .user-plan-divider{
@@ -170,4 +182,26 @@ body{
 .plan-offerings ul li:before{
     content: '✓';
     margin-right: 0.3rem;
+}
+
+.buy-plan-button{
+    margin-top: 1rem;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    background-color: #C5FF4A;
+}
+
+.buy-plan-button:hover{
+    background-color: #32CD32;
+    color: #FFFFFF;
+}
+
+.buy-plan-button:active{
+    background-color: #C5FF4A;
+    color: #000000;
 }

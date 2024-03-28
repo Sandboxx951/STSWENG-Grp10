@@ -4,7 +4,7 @@ node_modules/
 # Ignore .env files
 *.env
 
-# Ignore dist folder
+# Ignore dist directory
 dist/
 
 

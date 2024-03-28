@@ -9,7 +9,8 @@ module.exports = {
     signup: './src/scripts/signup.js',
     login: './src/scripts/login.js',
     home: './src/scripts/home.js',
-    plans: './src/scripts/plans.js'
+    plans: './src/scripts/plans.js',
+    user: './src/scripts/user.js',
   },
   devServer: {
     static: {
@@ -46,6 +47,12 @@ module.exports = {
       title: 'Plans',
       template: './src/pages/plans.html',
       chunks: ['plans'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'user.html',
+      title: 'Profile',
+      template: './src/pages/user.html',
+      chunks: ['user'],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
