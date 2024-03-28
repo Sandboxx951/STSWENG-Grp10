@@ -287,3 +287,116 @@ body{
 .course-info{
     margin-left: 4.5rem;
 }
+
+.testimonials-container{
+    background-color: #C5FF4A;
+    width: 100%;
+    padding-top: 5rem;
+}
+
+.testimonials-section{
+    margin-right: 7.5rem;
+    margin-left: 7.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonials-title{
+    width: fit-content;
+    font-family: inherit;
+    font-size: 5rem;
+    color: #000000;
+    font-weight: 600;
+    margin-right: 7rem;
+}
+
+.testimonials-divider{
+    border-color: #000000;
+    border-style: solid;
+    margin-top: 0;
+    margin-left: 7.75rem;
+}
+
+.testimonials-desc{
+    display: flex;
+    flex-direction: row;
+}
+
+.black{
+    color: #000000;
+}
+
+.testimonial-examples{
+    margin-top: 10rem;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+}   
+
+.testimony{
+    display: flex;
+    flex-direction: row;
+}
+
+.testimony-text{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    width: 50%;
+}
+
+.testimony-name{
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.testimony-title{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.testimony-desc{
+    font-size: 1.25rem;
+    margin-top: 6rem;
+    font-weight: 500;
+}
+
+.testimony-media{
+    height: 18.5rem;
+    width: 30rem;
+    border-style: solid;
+    border-color: black;
+    margin-left: 5rem;
+}
+
+.testimony-media-item{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.view-courses-button{
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    border-radius: 1.5rem;
+    padding: 1rem 2rem;
+    border: none;
+    background-color: #C5FF4A;
+    font-weight: 700;
+    color: #000000;
+    cursor: pointer;
+    text-decoration: none;
+    width: 8.5%;
+}
+
+.view-courses-button:hover{
+    background-color: #32CD32;
+    color: #000000;
+}
+
+.view-courses-button:active {
+    text-decoration: none;
+    background-color: #C5FF4A;
+    color: #000000;
+}
