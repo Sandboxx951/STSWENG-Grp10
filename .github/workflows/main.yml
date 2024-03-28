@@ -35,4 +35,3 @@ jobs:
         with:
           service-id: ${{ srv-co0n9t7jbltc7394edi0 }}
           api-key: ${{ rnd_BrhjFTqXWqG2AG3cscmArVLAqvXP }}
-          wait-for-success: true
