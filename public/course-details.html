@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/StyleCourses.css">
+    <script src="StyleCourses.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script src="card-template.handlebars" type="text/x-handlebars-template"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+
+        <script id="accordion-template" type="text/x-handlebars-template">
+            {{#each modules}}
+            <div class="accordion mb-5" id="accordion-{{@index}}">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <p class="accordion-button" type="" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{@index}}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{@index}}">
+                            Module #{{inc @index}} - {{title}}
+                        </p>
+                    </h2>
+                    <div id="panelsStayOpen-collapse{{@index}}" class="accordion-collapse collapse show">
+                        {{#each subjects}}
+                        <div class="accordion-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-play" style="color: #FFD43B;"></i>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <strong>{{this}}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </script>      
+</head>
+
+<body style="background-color: black;">
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="UserHome.html">Home</a></li>
+            <li><a href="Profile.html">You</a></li>
+        </ul>
+    </div>
+    <a id="back-link" href="#"><i class="fa-solid fa-arrow-left"></i></a>
+
+    <div class="container" style="margin-top: 0;">
+        <div class="level">Real Estate Training Courses</div>
+        <h1 class="course-name" id="courseName">Course Name 1</h1>
+        <div class="container-fluid" id="accordion-container"></div>
+    </div>
+
+    <script>
+        Handlebars.registerHelper('inc', function(value, options) {
+        return parseInt(value) + 1;
+        });
+        
+        const data = {
+            modules: [
+                {
+                    title: "Sample text Here",
+                    subjects: ["Subject #1 - Sample Text Here", "Subject #2 - Sample Text Here"]
+                },
+                {
+                    title: "Sample text Here",
+                    subjects: ["Subject #1 - Sample Text Here", "Subject #2 - Sample Text Here"]
+                }
+            ]
+        };
+
+        const accordionTemplateSource = document.getElementById("accordion-template").innerHTML;
+        const accordionTemplate = Handlebars.compile(accordionTemplateSource);
+        document.getElementById("accordion-container").innerHTML = accordionTemplate(data);
+
+      const urlParams = new URLSearchParams(window.location.search);
+        const courseNameParam = urlParams.get('course');
+        const courseName = courseNameParam.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        document.getElementById('courseName').innerText = courseName;
+
+
+        function getCourseNameFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('course');
+        }
+        function updateCourseNameAndBackLink() {
+            const courseName = getCourseNameFromURL();
+            const courseLevel = document.querySelector('.level');
+            const backLink = document.getElementById('back-link');
+
+            if (courseName.includes('general-finance')) {
+                courseLevel.textContent = 'General Finance Courses';
+                backLink.href = 'general-finance-courses.html';
+            } else if (courseName.includes('real-estate')) {
+                courseLevel.textContent = 'Real Estate Courses';
+                backLink.href = 'real-estate-courses.html';
+            }
+        }
+
+        updateCourseNameAndBackLink();
+    </script>
+</body>
+</html>
