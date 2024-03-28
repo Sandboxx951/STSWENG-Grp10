@@ -12,11 +12,11 @@ const emailAgree = document.getElementById('email-agree');
 const termsAgree = document.getElementById('terms-agree');
 
 // Error elements of form
-cnst nameError = document.getElementById('name-error');
-cost emailError = document.getElementById('email-error');
-cons passwordError = document.getElementById('password-error');
+const nameError = document.getElementById('name-error');
+const emailError = document.getElementById('email-error');
+const passwordError = document.getElementById('password-error');
 const confirmPasswordError = document.getElementById('confirm-password-error');
-cot termsAgreeError = document.getElementById('terms-agree-error');
+const termsAgreeError = document.getElementById('terms-agree-error');
 
 // Input validation
 document.getElementById('signup-form').addEventListener('submit', (e) => {
