@@ -570,10 +570,91 @@ background-color: rgba(0, 0, 0, 0.5);
 }
 
 
+.fa-arrow-left{
+  color: #ffffff; 
+  position: absolute;
+  left: 50px;
+  top: 180px;
+  font-size: 30px;
+
+}
+/* Course Card */
+
+
+.card-img-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.card:hover .card-text,
+.card:hover .card-img-overlay {
+  opacity: 1;
+}
+
+.card {
+  position: relative;
+}
+
+.cart-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.card:hover .cart-icon {
+  opacity: 1;
+}
+
+.card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none; 
+  color: inherit; 
+  font-size: 16px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+/* Course Card */
 
 
 
+/* Course Details */
 
-
+.course-name {
+  color: white;
+  text-align: center;
+  font: 700 60px Montserrat, sans-serif;
+  margin-bottom: -25px;
+  }
 
   
+.accordion-button:not(.collapsed) {
+    background-color: #c5ff4a!important;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+
+.accordion-button:not(.collapsed)::after {
+  display: none!important;
+}
+
+.accordion-item {
+  color: #ffffff!important;
+  background-color: #1f1d1d!important;
+  border: none!important;
+}
+  /* Course Details */
