@@ -8,25 +8,30 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14' 
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Start Server
-      run: node server.js & 
+      - name: Start Server
+        run: node server.js &
 
-    - name: Wait for Server to Start
-      run: sleep 10 
+      - name: Wait for Server to Start
+        run: sleep 10
 
-    - name: Test Server and App Startup
-      run: npm test 
+      - name: Test Server and App Startup
+        run: npm test
+
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.srv-co0n9t7jbltc7394edi0 }}
+          api-key: ${{ secrets.rnd_BrhjFTqXWqG2AG3cscmArVLAqvXP }}
