@@ -159,11 +159,19 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/RECourses', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'RE_Courses.html'));
+    if(req.session.user){
+        res.sendFile(path.join(__dirname, 'public', 'UserRE_Courses.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'public', 'RE_Courses.html'));
+    }
 });
 
 app.get('/GFCourses', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'GF_Courses.html'));
+    if(req.session.user){
+        res.sendFile(path.join(__dirname, 'public', 'UserGF_Courses.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'public', 'GF_Courses.html'));
+    }
 });
 
 app.get('/signup', (req, res) => {
