@@ -1,39 +1,50 @@
-# Real_Estate_Coaching_Site
+# How to use:
+  Because CI pipeline is work in progress, perform the following to run (IN ORDER):  
+    - npm run build  
+    - npm run test  
+    - npm run prod
 
-Some Description
+# Webpack integration
+- For the build step, webpack will compile the html, js, and css files to be used for the website users will see(dist = distribution)
+- Note: Server.js and app.js will NOT be included in webpack because it is not needed by users (it will only run)
 
-## Subheader
+## Uploading web page
+To add a web page, do the following:
+1. Go to webpack.config.js in root directory
+2. Navigate to 'plugins' array, and add a new HtmlWebpackPlugin, here is a template:
+   
+```
+new HtmlWebpackPlugin({
+    filename: 'FILENAME.html', (PAGE TO BE INCLUDED IN DIST)
+    title: 'CONTENTS OF <title></title> TAG',
+    template: './src/pages/FILENAME.html', (THE WEB PAGE YOU CREATED - FOLLOW FILE STRUCTURE INDICATED)
+    chunks: ['ENTRY_FILE'], (IF YOU USED A JS FILE FOR THE WEBSITE INCLUDE IT HERE)
+    })
+```
 
-Some Description!
-test
+## Bundling JavaScript
+In code template above, there is a ENTRY_FILE. To have this file be recognizable by webpack, do the following:
+1. Open webpack.config.js in root directory
+2. Look for 'entry', and give a name to the entry point (MAKE A ENTRY FILE PER WEB PAGE)
+3. Follow this format:
+```
+    CHUNK_NAME: './src/scripts/FILENAME.js'
+```
 
--------------------------------------
-(Leaving old read me from past group for prosperitys sake)
+## ENTRY FILES
+In the entry file of each webpage, declare things such as:
+- Static assets (e.g. css, imgs, etc.) used by the webpage
+- Other scripts to be used
+  - NOTE: Use 'import' for this (e.g. import '../css/home.css';)
+  - NOTE: To use images / videos in webpage, simply import, no need to use in the file, just import it
 
-Start of STSWENG Group 10 Edit
+## SANITY CHECK
+To check if you did everything right, the dist folder should contain:
+- Your HTML web page
+- Your entry point (js file)
+- Your static assets (if used)
 
-What is this?
-- Real Estate Coaching Website, Module based System where people are able to sign up and purchase content. (Hopefully)
+## ADDITIONAL NOTE: Asset scoping
+When working on the webpage itself, things like importing images and all, should be done under the assumption that EVERYTHING IS IN A SINGLE FILE, because that is the case in the 'dist' file
 
-Prereq before running the code
-- Create a .env file for the database connection details
-- It should look like this: (Dont add quotation marks in the file) 
-DB_HOST="localhost"
-DB_USER="root"
-DB_PASSWORD="password"
-DB_NAME="database name"
-
-How do I run the code
-- Ensure you have nodejs and a mysql server running
-- Open project in terminal and do 'npm install' to make sure everything is installed correctly
-- After doing the above do 'node server.js' and the terminal should say that Server is running on port 3000 which you can now access on your browser at http://localhost:3000/
-
-
-Admin stuff
-- The app creates a default user with these credentials assuming that there isnt any on run:
-            id: 1,
-            name: 'Admin',
-            email: 'admin@admin.com',
-            password: '12345',
-            userType: 'admin'
-- This is to access the admin part of the site where you can add and delete courses
+### This is from migui-fail! :D -pls

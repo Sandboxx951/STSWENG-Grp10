@@ -10,7 +10,7 @@ const upload = multer({ dest: 'uploads/' }); // Destination folder for uploaded 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname, 'dist')));
 
 // Configure session middleware
 app.use(session({
@@ -147,7 +147,7 @@ app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
 
 // Your existing route for home page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'signup.html'));
 });
 
 
@@ -329,11 +329,6 @@ app.get('/modules/:filename', async (req, res) => {
     }
 });
 
-app.get('/results', async (req, res) => {
-    const { filename } = req.params;
-    const filePath = path.join(__dirname, 'uploads', filename);
 
-   
-});
 
 module.exports = { app, sequelize, User, Course, Modules, UserCourse };

@@ -53,13 +53,21 @@ app.post('/login', async (req, res) => {
     // Check for email and if userType is 'user'
     const user = await User.findOne({ where: { email, userType: 'user' } }); 
 
-      if (user && user.password === password) {
-          // Store user information in session
-          req.session.user = user;
-          res.json({ message: 'Login successful' });
-      } else {
-          res.status(401).json({ error: 'Invalid email or password' });
-      }
+    if(!user){
+      
+      return res.status(401).json({userError: '*User not found.'});
+    }
+
+    if (user && user.password != password){
+
+      return res.status(401).json({passwordError: '*Invalid password.'})
+    }
+
+    if (user && user.password === password) {
+        // Store user information in session
+        req.session.user = user;
+        res.json({ message: 'Login successful' });
+    }
   } catch (error) {
       console.error('Error finding user:', error);
       res.status(500).json({ error: 'Internal Server Error' });
