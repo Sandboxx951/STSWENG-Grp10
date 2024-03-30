@@ -4,9 +4,9 @@
   "description": "",
   "private": "true",
   "scripts": {
+    "start": "node server.js",
     "test": "jest --verbose",
-    "build": "webpack",
-    "deploy": "node server.js"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
