@@ -1,6 +1,6 @@
 import '../css/signup.css';
 import {validateName, validateEmail, validatePassword, matchPassword, checkboxChecked} from './helpers/signupValidation.js';
-
+import {submitData} from './helpers/signupUser.js';
 import companyLogo from '../assets/images/logo.png';
 
 // Input elements of form
@@ -55,32 +55,3 @@ document.getElementById('signup-form').addEventListener('submit', (e) => {
   if(isValidName && isValidEmail && isValidPassword && passwordsMatch)
     submitData(signupName.value, signupEmail.value, signupPassword.value);
 })
-
-async function submitData(username, useremail, userpassword){
-
-    const name = username;
-    const email = useremail;
-    const password = userpassword;
-
-    try {
-            const response = await fetch('http://localhost:3000/signup', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ name, email, password }),
-            });
-        
-            if (response.status === 400) {
-              const data = await response.json();
-              alert(data.error); // Display the error message from the server
-            } else if (response.ok) {
-              const data = await response.json();
-              alert(data.message);
-              document.getElementById('signup-form').reset();
-              window.location.href = 'Login.html';
-            }
-          } catch (error) {
-            console.error('Error during signup:', error);
-          }
-}
