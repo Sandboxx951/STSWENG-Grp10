@@ -213,7 +213,10 @@ body {
 
 .dropdown {
     position: relative;
+    margin: auto;
+    margin-left: 15%;
     display: inline-block;
+    margin-bottom: 200px;
   }
   
   .dropdown-btn {
@@ -237,7 +240,7 @@ body {
     background-color: #444; 
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     z-index: 1;
-    width: 250px; 
+    width: 250px;
     max-height: 400px; 
     overflow-y: auto; 
     
@@ -581,6 +584,7 @@ background-color: rgba(0, 0, 0, 0.5);
 /* Course Card */
 
 
+
 .card-img-overlay {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
@@ -619,13 +623,22 @@ background-color: rgba(0, 0, 0, 0.5);
 }
 
 .card-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none; 
-  color: inherit; 
-  font-size: 16px;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  display: flex;
+  overflow:hidden;
+  background: none;
+  width: 40%;
+  height: 40%;
+  text-decoration: none;
+  margin: 0 auto;
+  border: none;
+  color: inherit;
+  font-size: 30px;
+  font: "Montserrat", "sans-serif";
+}
+
+.card-img {
+  width: 55vh;
+  height: 25vh;
 }
 /* Course Card */
 

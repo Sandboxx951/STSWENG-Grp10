@@ -1,4 +1,18 @@
-    function toggleDropdown(clickedElement) {
+function toggleDropdown(clickedElement) {
+    console.log(clickedElement);
+    var dropdown = clickedElement.closest('.dropdown');
+    console.log(dropdown);
+
+    var dropdownContent = dropdown.querySelector('.dropdown-content');
+
+    dropdown.classList.toggle('active');
+    dropdownContent.classList.toggle('hover');
+}
+
+
+
+/*
+function toggleDropdown(clickedElement) {
         var dropdown = clickedElement.closest('.dropdown');
 
         if (isOwned(clickedElement)) {
@@ -37,3 +51,4 @@
     function isOwned(clickedElement) {
         return clickedElement.closest('.dropdown').classList.contains('owned');
     }
+*/

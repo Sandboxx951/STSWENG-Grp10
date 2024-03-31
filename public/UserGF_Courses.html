@@ -108,11 +108,29 @@
                 const courseElement = document.createElement('div');
                 courseElement.className = 'course-row'; // Add class for styling
                 courseElement.innerHTML = `
-                    <div class="course-info" style="color: white;"> <!-- Added inline style for text color -->
-                        <span>${course.courseName} - ${course.courseType} - $${course.price}</span>
-                        <button class="purchase-btn" onclick="purchaseCourse(${course.id})">Purchase</button> <!-- Add purchase button -->
+                    <div class="col">
+                        <button onclick="purchaseCourse(${course.id})" class="card-link">
+                            <div class="card text-bg-dark">
+                                <img src="${course.imagePath}" class="card-img" alt="...">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title">${course.courseName} - $${course.price}</h5>
+                                </div>
+                                <span class="icon">
+                                    <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                                </span>
+                            </div>
+                        </a>
                     </div>
-                    <div class="modules-list" id="modules-${course.id}"></div> <!-- Container for modules -->
+                    <div class="dropdown">
+                        <div class="dropdown-btn-container">
+                            <button class="dropdown-btn" onclick="toggleDropdown(this)">
+                                &#9660 MODULES:
+                        </div>
+                        <div class="dropdown-content" id="dropdownContent1">
+                            <div class="modules-list" id="modules-${course.id}">
+                            </div> <!-- Container for modules -->
+                        </div>
+                    </div>    
                 `;
                 courseList.appendChild(courseElement);
 
@@ -125,11 +143,9 @@
                     modules.forEach(async module => {
                         const moduleElement = document.createElement('div');
                         moduleElement.innerHTML = `
-                            <div style="color: white;">${module.subModuleName}</div>
                             <div class="module-content">
-                                <span class="locked-message" style="color: red; display: none;">Module Locked</span>
-                                <span class="unlocked-message" style="color: green; display: none;">Module Unlocked</span>
-                                <a class="module-file-link" href="#" style="color: blue;">View File</a>
+                                <a class="locked-message" href="#" style="color: red; display: none;">${module.subModuleName}</a>
+                                <a class="unlocked-message" href="#" style="color: white; display: none;">${module.subModuleName}</a>
                             </div>
                         `;
                         modulesList.appendChild(moduleElement);
@@ -140,13 +156,21 @@
                             const unlockedMessage = moduleElement.querySelector('.unlocked-message');
                             const lockedMessage = moduleElement.querySelector('.locked-message');
                             const moduleFileLink = moduleElement.querySelector('.module-file-link');
-                            moduleStatusElements.forEach(element => {
+                            /*moduleStatusElements.forEach(element => {
                                 element.textContent = 'Module Unlocked'; // Update module status
-                            });
+                            });*/
                             unlockedMessage.style.display = 'block'; // Display the unlocked message
-                            moduleFileLink.style.display = 'block'; // Display the module file link
                             // Set the href attribute of the module file link to the file path
-                            moduleFileLink.href = module.filePath;
+                            unlockedMessage.href = module.filePath;
+
+                            const cardTitle = courseElement.querySelector('.card-title');
+                            const icon = courseElement.querySelector('.icon');
+
+                            //removes price from course name
+                            cardTitle.innerHTML = `${course.courseName}`;
+
+                            //replaces shopping cart icon with check mark
+                            icon.innerHTML = ``;
                         } else {
                             const lockedMessage = moduleElement.querySelector('.locked-message');
                             lockedMessage.style.display = 'block'; // Display the locked message
@@ -211,3 +235,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     </script>
   </body>
   </html>
+
+
+  <!--
+<div class="course-info" style="color: white;"> 
+    <span>${course.courseName} - ${course.courseType} - $${course.price}</span>
+    <button class="purchase-btn" onclick="purchaseCourse(${course.id})">Purchase</button>
+</div>
+  -->
