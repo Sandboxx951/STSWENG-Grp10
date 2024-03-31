@@ -242,7 +242,7 @@ async function fetchAndPopulateCourseDropdown() {
             courses.forEach(course => {
                 const option = document.createElement('option');
                 option.value = course.id;
-                option.textContent = course.courseName;
+                option.textContent = `${course.courseName} - ${course.courseType}`;
                 courseDropdown.appendChild(option);
             });
         } else {
