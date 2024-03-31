@@ -1,4 +1,4 @@
-const { editCourse, deleteCourse, addNewCourse } = require('../public/AdminGF_Courses.js');
+const { editCourse, deleteCourse, addNewCourse } = require('../helpers/AdminGF.js');
 
 describe('editCourse function', () => {
     global.prompt = jest.fn(() => 'Mocked input');
