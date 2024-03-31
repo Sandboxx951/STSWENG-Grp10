@@ -118,7 +118,7 @@ function deleteCourse(courseId) {
     }
 }
 
-
+module.exports = { addCourse, editCourse, deleteCourse };
 // -------------------------------------------------------------------------------------------------------------------------------------
 
 function toggleAddCourseForm() {
