@@ -125,31 +125,107 @@
 
     <script>
         async function fetchAndDisplayCourses() {
-    try {
-        console.log('fetchAndDisplayCourses function called');
-        const response = await fetch('/courses/real-estate');
-        if (response.ok) {
-            const courses = await response.json();
-            console.log('Courses:', courses);
-            const courseList = document.getElementById('courseList');
-            courseList.innerHTML = ''; // Clear previous content
-            courses.forEach(course => {
-                const courseElement = document.createElement('div');
-                courseElement.className = 'course-row'; // Add class for styling
-                courseElement.innerHTML = `
-                    <div class="course-info" style="color: white;"> <!-- Added inline style for text color -->
-                        <span>${course.courseName} - ${course.courseType} - $${course.price}</span>
-                    </div>
-                `;
-                courseList.appendChild(courseElement);
-            });
-        } else {
-            console.error('Failed to fetch courses:', response.statusText);
+            try {
+                console.log('fetchAndDisplayCourses function called');
+                const response = await fetch('/courses/real-estate');
+                if (response.ok) {
+                    const courses = await response.json();
+                    console.log('Courses:', courses);
+                    const courseList = document.getElementById('courseList');
+                    courseList.innerHTML = ''; // Clear previous content
+                    courses.forEach(async course => {
+                        const courseElement = document.createElement('div');
+                        courseElement.className = 'course-row'; // Add class for styling
+                        courseElement.innerHTML = `
+                            <div class="course-info" style="color: white;"> <!-- Added inline style for text color -->
+                                <span>${course.courseName} - ${course.courseType} - $${course.price}</span>
+                                <button class="purchase-btn" onclick="purchaseCourse(${course.id})">Purchase</button> <!-- Add purchase button -->
+                            </div>
+                            <div class="modules-list" id="modules-${course.id}"></div> <!-- Container for modules -->
+                        `;
+                        courseList.appendChild(courseElement);
+
+                        // Fetch and display modules for this course
+                        const modulesList = document.getElementById(`modules-${course.id}`);
+                        const modulesResponse = await fetch(`/courses/${course.id}/modules`);
+
+                        if (modulesResponse.ok) {
+                            const modules = await modulesResponse.json();
+                            modules.forEach(async module => {
+                                const moduleElement = document.createElement('div');
+                                moduleElement.innerHTML = `
+                                    <div style="color: white;">${module.subModuleName}</div>
+                                    <div class="module-content">
+                                        <span class="locked-message" style="color: red; display: none;">Module Locked</span>
+                                        <span class="unlocked-message" style="color: green; display: none;">Module Unlocked</span>
+                                        <a class="module-file-link" href="#" style="color: blue; display: none;">View File</a>
+                                    </div>
+                                `;
+                                modulesList.appendChild(moduleElement);
+                            });
+
+                            // Check if the user has purchased this course
+                            const userPurchased = await checkUserPurchased(course.id);
+                            if (userPurchased) {
+                                const moduleStatusElements = modulesList.querySelectorAll('.module-content span');
+                                const unlockedMessage = modulesList.querySelector('.unlocked-message');
+                                const moduleFileLink = modulesList.querySelector('.module-file-link');
+                                moduleStatusElements.forEach(element => {
+                                    element.textContent = 'Module Unlocked'; // Update module status
+                                });
+                                unlockedMessage.style.display = 'block'; // Display the unlocked message
+                                moduleFileLink.style.display = 'block'; // Display the module file link
+
+                                // Set the href attribute of the module file link to the file path
+                                moduleFileLink.href = modules[0].filePath; // Assuming the first module is displayed initially
+                            }
+                        } else {
+                            console.error('Failed to fetch modules:', modulesResponse.statusText);
+                        }
+                    });
+                } else {
+                    console.error('Failed to fetch courses:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
         }
-    } catch (error) {
-        console.error('Error fetching courses:', error);
-    }
-}
+
+        async function checkUserPurchased(courseId) {
+            try {
+                const response = await fetch(`/courses/${courseId}/purchased`, { method: 'GET' });
+                if (response.ok) {
+                    const result = await response.json();
+                    return result.purchased; // Returns true if user has purchased the course, false otherwise
+                } else {
+                    console.error('Failed to check if user purchased course:', response.statusText);
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error checking if user purchased course:', error);
+                return false;
+            }
+        }
+
+        async function purchaseCourse(courseId, userId) {
+            try {
+                const response = await fetch(`/courses/purchase/${courseId}`, { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userId: userId })
+                });
+                if (response.ok) {
+                    await fetchAndDisplayCourses(); // Refresh course list
+                } else {
+                    console.error('Failed to purchase course:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error purchasing course:', error);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', async function () {
             await fetchAndDisplayCourses();
         });

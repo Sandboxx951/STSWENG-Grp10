@@ -95,7 +95,7 @@
         }
     </style>
       <script>
-        async function fetchAndDisplayCourses() {
+       async function fetchAndDisplayCourses() {
     try {
         console.log('fetchAndDisplayCourses function called');
         const response = await fetch('/courses/general-finance');
@@ -122,48 +122,36 @@
                 
                 if (modulesResponse.ok) {
                     const modules = await modulesResponse.json();
-                    
                     modules.forEach(async module => {
-    const moduleElement = document.createElement('div');
-    moduleElement.innerHTML = `
-        <div style="color: white;">${module.subModuleName}</div>
-        <div class="module-content">
-            <span class="locked-message" style="color: red; display: none;">Module Locked</span> <!-- Message for locked module -->
-            <span class="unlocked-message" style="color: green; display: none;">Module Unlocked</span> <!-- Message for unlocked module -->
-            <a class="module-file-link" href="#" style="color: blue; display: none;">View File</a> <!-- Link to view module file -->
-        </div>
-    `;
-    modulesList.appendChild(moduleElement);
-    
-    // Check if the user has purchased this course
-    const userPurchased = await checkUserPurchased(course.id);
-    if (userPurchased) {
-        const moduleStatusElements = modulesList.querySelectorAll('.module-status');
-        const unlockedMessage = modulesList.querySelector('.unlocked-message');
-        const lockedMessage = modulesList.querySelector('.locked-message');
-        const moduleFileLink = modulesList.querySelector('.module-file-link');
-        moduleStatusElements.forEach(element => {
-            element.textContent = 'Module Unlocked'; // Update module status
-        });
-        unlockedMessage.style.display = 'block'; // Display the unlocked message
-        moduleFileLink.style.display = 'block'; // Display the module file link
-        
-        // Set the href attribute of the module file link to the file path
-        moduleFileLink.href = module.filePath;
-    } else {
-        const lockedMessage = modulesList.querySelector('.locked-message');
-        lockedMessage.style.display = 'block'; // Display the locked message
-    }
-});
-                    
-                    // Check if the user has purchased this course
-                    const userPurchased = await checkUserPurchased(course.id);
-                    if (userPurchased) {
-                        const moduleStatusElements = modulesList.querySelectorAll('.module-status');
-                        moduleStatusElements.forEach(element => {
-                            element.textContent = 'Module Unlocked'; // Update module status
-                        });
-                    }
+                        const moduleElement = document.createElement('div');
+                        moduleElement.innerHTML = `
+                            <div style="color: white;">${module.subModuleName}</div>
+                            <div class="module-content">
+                                <span class="locked-message" style="color: red; display: none;">Module Locked</span>
+                                <span class="unlocked-message" style="color: green; display: none;">Module Unlocked</span>
+                                <a class="module-file-link" href="#" style="color: blue;">View File</a>
+                            </div>
+                        `;
+                        modulesList.appendChild(moduleElement);
+                        // Check if the user has purchased this course
+                        const userPurchased = await checkUserPurchased(course.id);
+                        if (userPurchased) {
+                            const moduleStatusElements = moduleElement.querySelectorAll('.module-content span');
+                            const unlockedMessage = moduleElement.querySelector('.unlocked-message');
+                            const lockedMessage = moduleElement.querySelector('.locked-message');
+                            const moduleFileLink = moduleElement.querySelector('.module-file-link');
+                            moduleStatusElements.forEach(element => {
+                                element.textContent = 'Module Unlocked'; // Update module status
+                            });
+                            unlockedMessage.style.display = 'block'; // Display the unlocked message
+                            moduleFileLink.style.display = 'block'; // Display the module file link
+                            // Set the href attribute of the module file link to the file path
+                            moduleFileLink.href = module.filePath;
+                        } else {
+                            const lockedMessage = moduleElement.querySelector('.locked-message');
+                            lockedMessage.style.display = 'block'; // Display the locked message
+                        }
+                    });
                 } else {
                     console.error('Failed to fetch modules:', modulesResponse.statusText);
                 }
@@ -206,7 +194,8 @@ async function purchaseCourse(courseId, userId) {
             body: JSON.stringify({ userId: userId })
         });
         if (response.ok) {
-            await fetchAndDisplayCourses(); // Refresh course list
+            // Refresh course list
+            await fetchAndDisplayCourses(); 
         } else {
             console.error('Failed to purchase course:', response.statusText);
         }
@@ -214,6 +203,11 @@ async function purchaseCourse(courseId, userId) {
         console.error('Error purchasing course:', error);
     }
 }
+
+document.addEventListener('DOMContentLoaded', async function () {
+    await fetchAndDisplayCourses();
+});
+
     </script>
   </body>
   </html>
