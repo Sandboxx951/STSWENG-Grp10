@@ -169,15 +169,18 @@
                             if (userPurchased) {
                                 const moduleStatusElements = modulesList.querySelectorAll('.module-content span');
                                 const unlockedMessage = modulesList.querySelector('.unlocked-message');
-                                const moduleFileLink = modulesList.querySelector('.module-file-link');
+                                const moduleFileLinks = modulesList.querySelectorAll('.module-file-link');
+                                
                                 moduleStatusElements.forEach(element => {
                                     element.textContent = 'Module Unlocked'; // Update module status
                                 });
+                                
                                 unlockedMessage.style.display = 'block'; // Display the unlocked message
-                                moduleFileLink.style.display = 'block'; // Display the module file link
-
-                                // Set the href attribute of the module file link to the file path
-                                moduleFileLink.href = modules[0].filePath; // Assuming the first module is displayed initially
+                                
+                                moduleFileLinks.forEach((link, index) => {
+                                    link.style.display = 'block'; // Display the module file link
+                                    link.href = modules[index].filePath; // Set the href attribute of the module file link to the file path
+                                });
                             }
                         } else {
                             console.error('Failed to fetch modules:', modulesResponse.statusText);
