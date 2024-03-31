@@ -3,6 +3,8 @@ body {
     margin: 0;
     height: 1000px;
     padding-bottom: 400px;
+    color: white;
+    font-family: "Montserrat", sans-serif;
 }
 
 .navbar {
@@ -59,11 +61,18 @@ a {
 }
 
 .content-box {
-    margin-top: 340px;
+    margin-top: 140px;
     display: flex;
     flex-direction: column;
     gap: 48px;
     align-items: center;
     color: white;
     font: 18px 'Montserrat', sans-serif;
+}
+
+.owned-courses-box {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
 }

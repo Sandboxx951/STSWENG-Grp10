@@ -658,3 +658,19 @@ background-color: rgba(0, 0, 0, 0.5);
   border: none!important;
 }
   /* Course Details */
+
+.course-info {
+  font-family: 'Montserrat', 'Sans-Serif';
+  text-align: center;
+}
+
+
+.module-title {
+  font-family: 'Montserrat', 'Sans-Serif';
+  text-align: center;
+}
+
+.module-content {
+  font-family: 'Montserrat', 'Sans-Serif';
+  text-align: center;
+}
