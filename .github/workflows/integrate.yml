@@ -3,8 +3,6 @@ name: Continuous Integration Pipeline
 on:
   pull_request:
     branches: [main]
-  push:
-    branches: [main]
 
 jobs:
   test_pull_request:
@@ -20,6 +18,7 @@ jobs:
       - run: npm run build
 
   deploy:
+    needs: [test_pull_request]
     runs-on: ubuntu-latest
     steps:
       - name: npm run build
