@@ -24,7 +24,7 @@ export async function submitData(username, useremail, userpassword) {
               const data = await response.json();
               alert(data.message);
               document.getElementById('signup-form').reset();
-              window.location.href = 'Login.html';
+              window.location.href = 'login.html';
               break; // Exit the loop if successful
           }
       } catch (error) {
