@@ -1,7 +1,5 @@
 function toggleDropdown(clickedElement) {
-    console.log(clickedElement);
     var dropdown = clickedElement.closest('.dropdown');
-    console.log(dropdown);
 
     var dropdownContent = dropdown.querySelector('.dropdown-content');
 

@@ -46,22 +46,22 @@
                 </label>
                 <label class="item" for="t-2">
                     <a href="https://www.youtube.com/watch?v=WEDIj9JBTC8">
-                        <img src="./test_files_idk/test picture 2.png" alt="Image 2">
+                        <img src="./test_files_idk/test picture 3.png" alt="Image 2">
                     </a>
                 </label>
                 <label class="item" for="t-3">
                     <a href="https://www.youtube.com/watch?v=WEDIj9JBTC8">
-                        <img src="./test_files_idk/test picture 2.png" alt="Image 3">
+                        <img src="./test_files_idk/test picture 4.png" alt="Image 3">
                     </a>
                 </label>
                 <label class="item" for="t-4">
                     <a href="https://www.youtube.com/watch?v=WEDIj9JBTC8">
-                        <img src="./test_files_idk/test picture 2.png" alt="Image 4">
+                        <img src="./test_files_idk/test picture 5.png" alt="Image 4">
                     </a>
                 </label>
                 <label class="item" for="t-5">
                     <a href="https://www.youtube.com/watch?v=WEDIj9JBTC8">
-                        <img src="./test_files_idk/test picture 2.png" alt="Image 5">
+                        <img src="./test_files_idk/test pic1.png" alt="Image 5">
                     </a>
                 </label>
             </div>
@@ -151,6 +151,7 @@
                         modulesList.appendChild(moduleElement);
                         // Check if the user has purchased this course
                         const userPurchased = await checkUserPurchased(course.id);
+                        console.log(userPurchased)
                         if (userPurchased) {
                             const moduleStatusElements = moduleElement.querySelectorAll('.module-content span');
                             const unlockedMessage = moduleElement.querySelector('.unlocked-message');
