@@ -6,7 +6,7 @@ export async function submitData(username, useremail, userpassword){
     let success = false;
 
     try {
-            const response = await fetch('http://localhost:3000/signup', {
+            const response = await fetch('https://stsweng-grp10-1.onrender.com/signup', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
