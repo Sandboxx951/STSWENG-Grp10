@@ -84,23 +84,22 @@ const Modules = sequelize.define('Modules', {
 
 const UserCourse = sequelize.define('UserCourse', {
     userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Users',
-        key: 'id',
-      },
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'User',
+            key: 'id',
+        },
     },
     courseId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Courses',
-        key: 'id',
-      },
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Course',
+            key: 'id',
+        },
     },
-  });
-
+});
 User.hasMany(Course);
 Course.belongsTo(User);
 
@@ -128,7 +127,8 @@ sequelize.sync().then(async () => {
 });
 
 
-// Route for moduel deletetion
+
+// Route for module deletetion
 app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
     const moduleId = req.params.moduleId;
     const courseId = req.params.courseId;
@@ -147,8 +147,44 @@ app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
 
 // Your existing route for home page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'signup.html'));
+    if(req.session.user){
+        res.sendFile(path.join(__dirname, 'public', 'UserHome.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'public', 'home.html'));
+    }
 });
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.get('/RECourses', (req, res) => {
+    if(req.session.user){
+        res.sendFile(path.join(__dirname, 'public', 'UserRE_Courses.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'public', 'RE_Courses.html'));
+    }
+});
+
+app.get('/GFCourses', (req, res) => {
+    if(req.session.user){
+        res.sendFile(path.join(__dirname, 'public', 'UserGF_Courses.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'public', 'GF_Courses.html'));
+    }
+});
+
+app.get('/signup', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'Signup.html'));
+});
+
+app.get('/adminlogin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'AdminLogin.html'));
+});
+
+app.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'Profile.html'));
+})
 
 
 // Route to create a course 
