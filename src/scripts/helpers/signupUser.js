@@ -4,9 +4,11 @@ export async function submitData(username, useremail, userpassword){
     const email = useremail;
     const password = userpassword;
     let success = false;
+    const urls = ['http://localhost:3000/signup', 'https://stsweng-grp10-1.onrender.com/signup'];
 
+    for (const url of urls) {
     try {
-            const response = await fetch('https://stsweng-grp10-1.onrender.com/signup', {
+            const response = await fetch(url, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -22,11 +24,12 @@ export async function submitData(username, useremail, userpassword){
               const data = await response.json();
               alert(data.message);
               document.getElementById('signup-form').reset();
-              window.location.href = 'Login.html';
+              window.location.href = 'login.html';
             }
           } catch (error) {
             console.error('Error during signup:', error);
           }
 
           return success;
+    }
 }
