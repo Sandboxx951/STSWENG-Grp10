@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest --verbose",
-    "build": "webpack"
+    "testEnvironment": "jsdom",
+    "build": "webpack",
   },
   "keywords": [],
   "author": "",
@@ -37,6 +38,7 @@
     "cssnano": "^6.1.1",
     "html-webpack-plugin": "^5.6.0",
     "jest": "^29.7.0",
+    "jsdom": "^24.0.0",
     "mini-css-extract-plugin": "^2.8.1",
     "nodemon": "^3.1.0",
     "postcss-loader": "^8.1.1",

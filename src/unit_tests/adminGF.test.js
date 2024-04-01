@@ -1,14 +1,23 @@
-const { editCourse, deleteCourse, addNewCourse } = require('../public/AdminGF_Courses.js');
+const { JSDOM } = require('jsdom');
+
+// Set up a simulated DOM environment
+const dom = new JSDOM('<!doctype html><html><body></body></html>');
+global.document = dom.window.document;
+global.window = dom.window;
+
+// Import the functions to test
+const { editCourse, deleteCourse, addNewCourse } = require('../scripts/helpers/adminGF.js');
 
 describe('editCourse function', () => {
+    // Mock global functions and fetch
     global.prompt = jest.fn(() => 'Mocked input');
     global.fetch = jest.fn(() => Promise.resolve({ ok: true }));
-    const mockAlert = jest.spyOn(window, 'alert');
+    global.alert = jest.fn();
 
     beforeEach(() => {
         prompt.mockClear();
         fetch.mockClear();
-        mockAlert.mockClear();
+        alert.mockClear();
     });
 
     test('should display an error message for invalid input', async () => {
@@ -18,7 +27,7 @@ describe('editCourse function', () => {
         await editCourse(123);
 
         expect(prompt).toHaveBeenCalledTimes(2);
-        expect(mockAlert).toHaveBeenCalledWith('Invalid input. Please enter a valid course name and price.');
+        expect(alert).toHaveBeenCalledWith('Invalid input. Please enter a valid course name and price.');
         expect(fetch).not.toHaveBeenCalled();
     });
 
@@ -41,10 +50,9 @@ describe('editCourse function', () => {
                 price: 100
             })
         });
-        expect(mockAlert).toHaveBeenCalledWith('Course updated successfully');
+        expect(alert).toHaveBeenCalledWith('Course updated successfully');
     });
 });
-
 
 describe('deleteCourse function', () => {
     test('should send a DELETE request and remove course row from UI upon successful deletion', async () => {
@@ -133,3 +141,4 @@ describe('addNewCourse function', () => {
         expect(global.alert).toHaveBeenCalledWith('Please enter a course name.');
     });
 });
+
