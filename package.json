@@ -4,15 +4,16 @@
   "description": "",
   "private": "true",
   "scripts": {
+    "start": "node server.js",
     "test": "jest --verbose",
     "testEnvironment": "jsdom",
     "build": "webpack",
-    "deploy": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "all": "^0.0.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

@@ -1,17 +1,28 @@
 name: Continuous Integration Pipeline
 
 on:
-    pull_request:
-        branches: [migui-main-based]
+  pull_request:
+    branches: [main]
 
 jobs:
-    test_pull_request:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
-              with:
-                node-version: 20
-            - run: npm ci
-            - run: npm test
-            - run: npm run build
+  test_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run start
+      - run: npm run test
+      - run: npm run build
+
+  deploy:
+    needs: [test_pull_request]
+    runs-on: ubuntu-latest
+    steps:
+      - name: npm run build
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.MY_RENDER_API_KEY }}
