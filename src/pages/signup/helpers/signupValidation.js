@@ -1,17 +1,21 @@
 // Validation functions for signing up a user
 
 // Validate name, name must not contain any special characters
-export function validateName(name){
-    const nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
-    
-    if(!nameRegex.test(name))
-        return false;
+function validateName(name){
+    const nameRegex = /^[a-zA-Z]*([-.]?)[a-zA-Z]*$/;
+    const nameSplit = name.split(" ");
+
+    for(let i = 0; i < nameSplit.length; i++){
+        console.log(nameSplit[i]);
+        if(!nameRegex.test(nameSplit[i]))
+            return false;
+    }
 
     return true;
 }
 
 // Validate email, email must be of a valid format
-export function validateEmail(email){
+function validateEmail(email){
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if(!emailRegex.test(email))
@@ -21,7 +25,7 @@ export function validateEmail(email){
 }
 
 // Validate password, password must be at least 8 characters long
-export function validatePassword(password){
+function validatePassword(password){
 
     if(password.length >= 8)
         return true;
@@ -30,7 +34,7 @@ export function validatePassword(password){
 }
 
 // Validate confirm password, must be the same as confirm passwrd
-export function matchPassword(password, signupConfirmPassword){
+function matchPassword(password, signupConfirmPassword){
 
     if(password == signupConfirmPassword)  
         return true;
@@ -39,10 +43,12 @@ export function matchPassword(password, signupConfirmPassword){
 }
 
 // Validate if a checkbox is checked
-export function checkboxChecked(checkbox){
+function checkboxChecked(checkbox){
     if(checkbox.checked == false)
         return false;
 
     return true;
 }
+
+module.exports = {validateEmail, validateName, validatePassword, checkboxChecked, matchPassword}
 
