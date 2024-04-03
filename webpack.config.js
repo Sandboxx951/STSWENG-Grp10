@@ -11,6 +11,8 @@ module.exports = {
         home: './src/pages/home/home.js',
         userReCourses: './src/pages/userRe-courses/StyleCourses.js',
         adminLogin: './src/pages/adminlogin/adminLogin.js',
+        userPlans: './src/pages/user-plan/plans.js',
+        profile: './src/pages/profile/profile.js',
     },
     output: {
         filename: '[name].[contenthash].js',
@@ -54,6 +56,24 @@ module.exports = {
             filename: 'AdminLogin.html',
             template: './src/pages/adminlogin/AdminLogin.html',
             chunks: ['adminLogin'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'User Plan',
+            filename: 'UserPlan.html',
+            template: './src/pages/user-plan/plans.html',
+            chunks: ['userPlans'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Profile',
+            filename: 'Profile.html',
+            template: './src/pages/profile/Profile.html',
+            chunks: ['profile'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'User GF Course',
+            filename: 'userGF_Courses.html',
+            template: './src/pages/user-gf-courses/userGF_Courses.html',
+            chunks: ['userReCourses'],
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
