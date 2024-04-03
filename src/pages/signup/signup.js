@@ -1,7 +1,8 @@
-import 'signup.css';
+import './signup.css';
 import {validateName, validateEmail, validatePassword, matchPassword, checkboxChecked} from './helpers/signupValidation.js';
 
-import companyLogo from '../assets/images/logo.png';
+import companyLogo from '../../assets/images/logo.png';
+const logo = companyLogo;
 
 // Input elements of form
 const signupName = document.getElementById('signup-name');
@@ -78,7 +79,7 @@ async function submitData(username, useremail, userpassword){
               const data = await response.json();
               alert(data.message);
               document.getElementById('signup-form').reset();
-              window.location.href = 'Login.html';
+              window.location.href = 'login.html';
             }
           } catch (error) {
             console.error('Error during signup:', error);

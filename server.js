@@ -3,7 +3,10 @@
 const { app, sequelize, User, Course, Modules,  UserCourse } = require('./app');
 const PORT = process.env.PORT || 3000;
 const multer = require('multer'); 
+const cors = require('cors');
 
+// Enable CORS for all origins
+app.use(cors());
 
 // Multer setup for handling file uploads
 const storage = multer.diskStorage({
