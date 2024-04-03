@@ -100,14 +100,14 @@ const UserCourse = sequelize.define('UserCourse', {
         },
     },
 });
-User.hasMany(Course);
+User.hasMany(Course, {foreignKey: 'CourseId'});
 Course.belongsTo(User);
 
 Course.hasMany(Modules);
-Modules.belongsTo(Course, { foreignKey: 'courseId' });
+Modules.belongsTo(Course, { foreignKey: 'CourseId' });
 
-User.belongsToMany(Course, { through: UserCourse, foreignKey: 'userId' });
-Course.belongsToMany(User, { through: UserCourse, foreignKey: 'courseId' });
+User.belongsToMany(Course, { through: UserCourse, foreignKey: 'UserId' });
+Course.belongsToMany(User, { through: UserCourse, foreignKey: 'CourseId' });
 
 sequelize.sync().then(async () => {
     console.log('Database synchronized');
