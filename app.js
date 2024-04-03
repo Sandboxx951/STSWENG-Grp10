@@ -10,7 +10,7 @@ const upload = multer({ dest: 'uploads/' }); // Destination folder for uploaded 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Configure session middleware
 app.use(session({
@@ -148,42 +148,42 @@ app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
 // Your existing route for home page
 app.get('/', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'public', 'UserHome.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'UserHome.html'));
     } else {
-        res.sendFile(path.join(__dirname, 'public', 'home.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'home.html'));
     }
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'login.html'));
 });
 
 app.get('/RECourses', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'public', 'UserRE_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'UserRE_Courses.html'));
     } else {
-        res.sendFile(path.join(__dirname, 'public', 'RE_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'RE_Courses.html'));
     }
 });
 
 app.get('/GFCourses', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'public', 'UserGF_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'UserGF_Courses.html'));
     } else {
-        res.sendFile(path.join(__dirname, 'public', 'GF_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'GF_Courses.html'));
     }
 });
 
 app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'Signup.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'Signup.html'));
 });
 
 app.get('/adminlogin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'AdminLogin.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'AdminLogin.html'));
 });
 
 app.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'Profile.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'Profile.html'));
 })
 
 

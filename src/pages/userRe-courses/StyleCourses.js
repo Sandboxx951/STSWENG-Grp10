@@ -1,3 +1,5 @@
+import './StyleCourses.css';
+
 function toggleDropdown(clickedElement) {
     var dropdown = clickedElement.closest('.dropdown');
 

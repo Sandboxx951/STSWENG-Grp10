@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title><%=htmlWebpackPlugin.options.title%</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="css/StyleLogin.css">
 </head>
 <body>
     <div class="login-container">
-        <div class="login-text">Log in</div>
-        <form id="loginForm" class="login-form">
+        <div class="login-text">Admin Log in</div>
+        <form id="loginForm" class="login-form" action="/admin-login" method="POST">
             <div class="form-group">
                 <label for="email" class="visually-hidden">Email:</label>
                 <input type="email" id="email" name="email" class="email-input" placeholder="Email" required>
@@ -31,11 +30,8 @@
                 <i class="fas fa-arrow-right arrow-right"></i>
             </button>
         </form>
-        <div class="signup-text">
-            <p>Need an account? <a href="/signup" class="signup-link">Sign Up</a></p>
-        </div>
         <div class="admin-login-button">
-            <a href="AdminLogin.html"><button>Admin Login</button></a>
+            <button onclick="redirectToUserLogin()">User Login</button>
         </div>
     </div>
     <div class="NEW-container">
@@ -43,26 +39,25 @@
             <a href="Home.html"><img src="logo.png"></a>
         </p>
     </div>
-
     <script>
         document.getElementById('loginForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-
+    
             try {
-                const response = await fetch('/login', {
+                const response = await fetch('/admin-login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ email, password })
                 });
-
+    
                 if (response.ok) {
                     const data = await response.json();
                     alert(data.message); // Display success message
-                    window.location.href = '/'; // Redirect to userhome.html
+                    window.location.href = data.redirectTo; // Redirect to AdminHome.html
                 } else {
                     const errorData = await response.json();
                     alert(errorData.error); // Display error message
@@ -74,6 +69,10 @@
                 this.reset(); // Reset form
             }
         });
+    
+        function redirectToUserLogin() {
+            window.location.href = '/login';
+        }
     </script>
 </body>
 </html>

@@ -6,7 +6,6 @@ function validateName(name){
     const nameSplit = name.split(" ");
 
     for(let i = 0; i < nameSplit.length; i++){
-        console.log(nameSplit[i]);
         if(!nameRegex.test(nameSplit[i]))
             return false;
     }
@@ -21,6 +20,10 @@ function validateEmail(email){
     if(!emailRegex.test(email))
         return false
     
+    // Maximum length of email address is 320 characters according to email standards
+    if(email.length > 320)
+        return false;
+
     return true;
 }
 
