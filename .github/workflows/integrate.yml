@@ -17,16 +17,16 @@ jobs:
       - run: npm run build
 
   cypress:
-    runs-on: ubuntu-22.04
-    name: E2E on Chrome
+    runs-on: ubuntu-latest
     steps:
-      - run: npm ci
-      - run: npm run start
-      - run: npm run build
-      - uses: actions/checkout@v4
-      - uses: cypress-io/github-action@v6
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
           browser: chrome
+          build: npm run build
+          start: npm run start
 
   deploy:
     needs: [test_pull_request]
