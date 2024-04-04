@@ -20,6 +20,7 @@ jobs:
     runs-on: ubuntu-22.04
     name: E2E on Chrome
     steps:
+      - run: npm ci
       - run: npm run start
       - run: npm run build
       - uses: actions/checkout@v4
