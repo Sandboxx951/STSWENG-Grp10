@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-22.04
     name: E2E on Chrome
     steps:
+      - run: npm run start
+      - run: npm run build
       - uses: actions/checkout@v4
       - uses: cypress-io/github-action@v6
         with:
