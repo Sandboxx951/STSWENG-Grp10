@@ -234,6 +234,29 @@ app.get('/courses/real-estate', async (req, res) => {
     }
 });
 
+// Route to delete user by email
+app.delete('/user', async(req, res) => {
+    const email = req.body;
+
+    try{
+        const user = await User.findOne({
+            where: {
+                email: email,
+            }
+        })
+        if(!user){
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // delete user
+        await user.destroy();
+        res.json({message: 'User deleted successfully.'});
+    } catch(error){
+        console.error('Error deleting user: ', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
 // Route to delete a course by ID
 app.delete('/courses/:courseId', async (req, res) => {
     const courseId = req.params.courseId;
@@ -252,6 +275,7 @@ app.delete('/courses/:courseId', async (req, res) => {
     }
 
 });
+
 // Route to update course information
 app.put('/courses/:courseId', async (req, res) => {
     const courseId = req.params.courseId;
