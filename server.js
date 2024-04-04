@@ -3,7 +3,10 @@
 const { app, sequelize, User, Course, Modules,  UserCourse } = require('./app');
 const PORT = process.env.PORT || 3000;
 const multer = require('multer'); 
+const cors = require('cors');
 
+// Enable CORS for all origins
+app.use(cors());
 
 // Multer setup for handling file uploads
 const storage = multer.diskStorage({
@@ -41,6 +44,8 @@ app.post('/signup', async (req, res) => {
     // Create a new user with userType set to 'user'
     const user = await User.create({ name, email, password, userType: 'user' });
     res.json({ message: 'Account created successfully' });
+    res.sendStatus(200);
+    
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ error: 'Internal Server Error' });

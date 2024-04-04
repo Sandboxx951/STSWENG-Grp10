@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gwendolyn's guidance</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a id="home-navigation" href="#">Home</a></li>
+            <li><a id="about-navigation" href="#about">About</a></li>
+            <li><a id="course-navigation" href="#courses">Courses</a></li>
+            <li><a id="profile-navigation" href="/profile">You</a></li>
+        </ul>
+    </div>
+
+    <div class="image-background">
+        <img src="pic1.JPG" alt="Background Image">
+    </div>
+
+    <div class="overlay">
+        <h1>Gwendolyn<br>
+        Parker</h1>
+        <p>
+            Executive Broker And Team Leader <br>
+            License #:EB00058129-AR
+        </p>
+        <a href="SignUp.html" class="button">Let's Get Started</a>
+    </div>
+    <div id="about" class="About">
+        <div class="content-about">
+            <div class="title-about">Dream.Learn. Conquer.Thrive.</div>
+            <div class="rightside-about">
+                <div class="description-about">
+                    Gwendolyn Parker is a multi-award winning Licensed Real Estate professional with over 25 years of experience 
+                    helping families achieve economic and financial success. A public servant and proud mother of two, to Jasmine and 
+                    Julian, as well as a beloved family member and mentor to many. Gwendolyn holds a Bachelor of Science Degree in Sociology and 
+                    Human Services from Henderson State University and also began pre-licensure studies in Family Therapy. She obtained her 
+                    Real Estate License from the Broadway School of Real Estate in 20xx and is currently licensed in the States of Arkansas and Georgia.
+                </div>
+                <div class="description-contact"><br>501.612.8445</div>
+                <div class="description-email"><br>Gwendolynparker@Kw.Com</div>
+            </div>
+        </div>
+    </div>
+    <div id="courses" class="Courses">
+        <!--<h1><a href="RE_Courses.html">REAL ESTATE COURSES</a></h1>
+        <h1><a href="GF_Courses.html">GENERAL FINANCE COURSES</a></h1>-->
+        <div class="title-Courses">
+            Courses
+        </div>
+        <div class="content-Courses">
+            <img class="img-Courses" src="./test_pic1.png">
+            <div class="description-Courses">
+                <div class="title-description-Courses">
+                    Real Estate Courses
+                </div>
+                <div class="text-description-Courses">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu orci nec odio posuere tempus sed sed quam. 
+                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi eget metus eget dolor 
+                    auctor pretium et a velit. Morbi sed maximus purus. 
+                </div>
+                <a href="/RECourses">PROCEED</a>
+            </div>
+        </div>
+        <div class="content-Courses">
+            <img class="img-Courses" src="./test_pic1.png">
+            <div class="description-Courses">
+                <div class="title-description-Courses">
+                    General Finance Courses
+                </div>
+                <div class="text-description-Courses">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu orci nec odio posuere tempus sed sed quam. 
+                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi eget metus eget dolor 
+                    auctor pretium et a velit. Morbi sed maximus purus. 
+                </div>
+                <a href="/GFCourses">PROCEED</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="testimonial" class="Testimonals">
+        <div class="top-Testimonials">
+            <div class="title-Testimonials">Testimonials</div>
+            <div class="description-Testimonials">
+                <span class="rightside-Testimonials">
+                    <span class="header-description-Testimonials">
+                        What Our Clients Say
+                    </span>
+                    <span class="text-description-Testimonials">
+                        <p>
+                            Discover what satisfied clients have to say about their coaching experience with Gwendolyn. 
+                            Their stories and testimonials speak to the transformative power of her  coaching services. 
+                            We take pride in guiding individuals towards achieving their personal and professional goals. 
+                            Don't just take our word for it; hear from those who have experienced the positive impact of her coaching firsthand.
+                        </p>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="mid-Testimonials" id="testimonials">
+            <div class = "header">
+                <div class = "name">
+                    Carter Doe
+                </div>
+                <div class = "name-description">
+                    Real Estate Agent
+                </div>
+               <div class = "mid-text-testimonial">
+                <p>
+                    "Thanks to Gwendolyn Parker, I've turned property 
+                    aspirations into thriving deals! The personalized 
+                    guidance and strategic insights propelled my success.
+                    Highly recommend for anyone serious about 
+                    dominating the real estate game!" 
+                </p>
+               </div>
+            </div>
+            <div class = "video" id="video">
+                <img class="imgvideo" id="imgvideo" src="./test_pic1.png">
+            </div>
+        </div>
+        <img class="slide" id="firstSlide" src="./test_pic1.png">
+        <img class="slide" id="secondSlide" src="./test_picture2.png">
+        <img class="slide" id="thirdSlide" src="./test_picture3.png">
+        <img class="slide" id="fourthSlide" src="./test_picture4.png">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const isLoggedIn = localStorage.getItem('loggedIn');
+          const loginLink = document.getElementById('loginLink');
+      
+          if (isLoggedIn && loginLink) {
+            // Update the login link when the user is logged in
+            loginLink.innerHTML = '<a href="Profile.html">You</a>';
+          }
+        });
+
+        
+        document.getElementById("imgvideo").addEventListener("click", function () {
+            const videoDiv = document.getElementById("video");
+            videoDiv.innerHTML = '<iframe width="810" height="455" src="https://www.youtube.com/embed/-9w7A39Ggz0?si=EHxwM_LsA0CywheR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+          });
+        document.getElementById('firstSlide').addEventListener("click", function (){
+            document.getElementById('testimonials').innerHTML = `
+            <div class = "header">
+                <div class = "name">
+                    Carter Doe
+                </div>
+                <div class = "name-description">
+                    Real Estate Agent
+                </div>
+               <div class = "mid-text-testimonial">
+                <p>
+                    "Thanks to Gwendolyn Parker, I've turned property 
+                    aspirations into thriving deals! The personalized 
+                    guidance and strategic insights propelled my success.
+                    Highly recommend for anyone serious about 
+                    dominating the real estate game!" 
+                </p>
+               </div>
+            </div>
+            <div class = "video" id="video">
+                <img class="imgvideo" id="imgvideo" src="./test_pic1.png">
+            </div>`;
+            document.getElementById("imgvideo").addEventListener("click", function () {
+            const videoDiv = document.getElementById("video");
+            videoDiv.innerHTML = '<iframe width="810" height="455" src="https://www.youtube.com/embed/-9w7A39Ggz0?si=EHxwM_LsA0CywheR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+          });
+        });
+        document.getElementById('secondSlide').addEventListener("click", function (){
+            document.getElementById('testimonials').innerHTML = `
+            <div class = "header">
+                <div class = "name">
+                    John Adams
+                </div>
+                <div class = "name-description">
+                    Real Estate Agent
+                </div>
+               <div class = "mid-text-testimonial">
+                <p>
+                    "Thanks to Gwendolyn Parker, I've turned property 
+                    aspirations into thriving deals! The personalized 
+                    guidance and strategic insights propelled my success.
+                    Highly recommend for anyone serious about 
+                    dominating the real estate game!" 
+                </p>
+               </div>
+            </div>
+            <div class = "video" id="video">
+                <img class="imgvideo" id="imgvideo" src="./test_picture2.png">
+            </div>`;
+            document.getElementById("imgvideo").addEventListener("click", function () {
+            const videoDiv = document.getElementById("video");
+            videoDiv.innerHTML = '<iframe width="810" height="455" src="https://www.youtube.com/embed/-9w7A39Ggz0?si=EHxwM_LsA0CywheR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+          });
+        });
+        document.getElementById('thirdSlide').addEventListener("click", function (){
+            document.getElementById('testimonials').innerHTML = `
+            <div class = "header">
+                <div class = "name">
+                    Steve Smith
+                </div>
+                <div class = "name-description">
+                    Real Estate Agent
+                </div>
+               <div class = "mid-text-testimonial">
+                <p>
+                    "Thanks to Gwendolyn Parker, I've turned property 
+                    aspirations into thriving deals! The personalized 
+                    guidance and strategic insights propelled my success.
+                    Highly recommend for anyone serious about 
+                    dominating the real estate game!" 
+                </p>
+               </div>
+            </div>
+            <div class = "video" id="video">
+                <img class="imgvideo" id="imgvideo" src="./test_picture3.png">
+            </div>`;
+            document.getElementById("imgvideo").addEventListener("click", function () {
+            const videoDiv = document.getElementById("video");
+            videoDiv.innerHTML = '<iframe width="810" height="455" src="https://www.youtube.com/embed/-9w7A39Ggz0?si=EHxwM_LsA0CywheR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+          });
+        });
+        document.getElementById('fourthSlide').addEventListener("click", function (){
+            document.getElementById('testimonials').innerHTML = `
+            <div class = "header">
+                <div class = "name">
+                    Will Williams
+                </div>
+                <div class = "name-description">
+                    Real Estate Agent
+                </div>
+               <div class = "mid-text-testimonial">
+                <p>
+                    "Thanks to Gwendolyn Parker, I've turned property 
+                    aspirations into thriving deals! The personalized 
+                    guidance and strategic insights propelled my success.
+                    Highly recommend for anyone serious about 
+                    dominating the real estate game!" 
+                </p>
+               </div>
+            </div>
+            <div class = "video" id="video">
+                <img class="imgvideo" id="imgvideo" src="./test_picture4.png">
+            </div>`;
+            document.getElementById("imgvideo").addEventListener("click", function () {
+            const videoDiv = document.getElementById("video");
+            videoDiv.innerHTML = '<iframe width="810" height="455" src="https://www.youtube.com/embed/-9w7A39Ggz0?si=EHxwM_LsA0CywheR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+          });
+        });
+      </script>
+</body>
+</html>
+
+<!--<iframe width="810" height="455" src="https://www.youtube.com/embed/-9w7A39Ggz0?si=EHxwM_LsA0CywheR" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->

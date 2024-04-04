@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Real Estate Courses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="Adminhome.html">Home</a></li>
+            <li><a href="">Admin</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="level">Real Estate Courses</div>
+        <div class="unlock">
+            Unlock Your Potential with Gwendolyn Parker: Whether you're aiming for Real<br>
+            Estate Success or Financial Fluency, we've got your back.
+        </div>
+
+        <div class="what">What are you looking for?</div>
+
+        <div class="slider">
+        </div>
+
+        <div class="what">List of Real Estate courses in the system:</div>
+        <div id="courseList"></div>
+
+        <!-- Add a button to display the form -->
+        <button onclick="toggleAddCourseForm()">Add Course</button>
+
+        <!-- Add Course Form -->
+        <div id="addCourseFormContainer" style="display: none; color: white;">
+            <h2>Add Real Estate Course</h2>
+            <form id="addCourseForm" enctype="multipart/form-data">
+                <label for="courseName">Course Name:</label><br>
+                <input type="text" id="courseName" name="courseName" required><br><br>
+
+                <label for="price">Price:</label><br>
+                <input type="number" id="price" name="price" required><br><br>
+
+                <!-- File upload input for the image -->
+                <label for="image">Image Upload:</label><br>
+                <input type="file" id="image" name="image"><br><br>
+
+                <input type="submit" value="Add Real Estate Course">
+            </form>
+        </div>
+
+        <!-- Add a button to display the form -->
+        <button onclick="toggleAddModuleForm()">Add Module</button>
+
+        <!-- Add Module Form -->
+        <div id="addModuleFormContainer" style="display: none; color: white;">
+            <h2>Add Module</h2>
+            <form id="addModuleForm">
+                <!-- Input fields for module details -->
+                <label for="subModuleName">Module Name:</label><br>
+                <input type="text" id="subModuleName" name="subModuleName" required><br><br>
+
+                <label for="fileType">File Type:</label><br>
+                <select id="fileType" name="fileType" required onchange="updateAcceptedFileTypes()">
+                    <option value="Document">Document</option>
+                    <option value="Video">Video</option>
+                </select><br><br>
+
+                <!-- File Input for uploading content -->
+                <label for="moduleFile">Module File:</label><br>
+                <input type="file" id="moduleFile" name="moduleFile" accept=".pdf, .doc, .docx, .txt, .jpg, .png" required><br><br>
+
+                <!-- Dropdown to dynamically populate courses -->
+                <label for="courseDropdown">Select Real Estate Course:</label><br>
+                <select id="courseDropdown" name="courseId" required></select>
+                <button type="button" onclick="refreshCourseDropdown()">Refresh Real Estate Courses</button><br><br>
+
+                <input type="submit" value="Add Module">
+            </form>
+        </div>
+
+        <!-- Display the list of modules for a specific course -->
+        <div id="moduleList"></div>
+
+        <script>
+            function updateAcceptedFileTypes() {
+                const fileTypeSelect = document.getElementById('fileType');
+                const moduleFileInput = document.getElementById('moduleFile');
+
+                // Get the selected file type
+                const selectedFileType = fileTypeSelect.value;
+
+                // Define accepted file types based on the selected file type
+                let acceptedFileTypes = '';
+
+                if (selectedFileType === 'Video') {
+                    acceptedFileTypes = '.mp4, .avi, .mov'; // Add supported video file types
+                } else if (selectedFileType === 'Document') {
+                    acceptedFileTypes = '.pdf, .doc, .docx, .txt, .jpg, .png'; // Add supported document file types
+                }
+
+                // Update the accept attribute of the file input
+                moduleFileInput.setAttribute('accept', acceptedFileTypes);
+            }
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', async function () {
+                await fetchAndDisplayCourses();
+                await fetchAndPopulateCourseDropdown();
+                await fetchAndDisplayCoursesWithModules();
+            });
+        </script>
+
+    </div>
+</body>
+
+</html>

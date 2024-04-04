@@ -1,0 +1,1 @@
+import './StyleProfile.css';

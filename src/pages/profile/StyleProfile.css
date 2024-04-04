@@ -1,0 +1,373 @@
+body {
+    background-color: black;
+    margin: 0;
+    height: 1000px;
+    padding-bottom: 400px;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0e0e0e;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.navbar .logo img {
+    margin-right: 10px;
+    width:200px; 
+    height: auto; 
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar li {
+    margin-right: 50px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+}
+
+.navbar button {
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 0;
+    background: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+}
+
+a {
+    color: white;
+    font: 18px 'Montserrat', sans-serif;
+    text-decoration: none;
+}
+
+.content-box {
+    margin-top: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+    color: white;
+    font: 18px 'Montserrat', sans-serif;
+}
+
+.owned-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+}
+
+/* Course Card */
+
+
+
+.card-img-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+  }
+  
+  .card:hover .card-text,
+  .card:hover .card-img-overlay {
+    opacity: 1;
+  }
+  
+  .card {
+    position: relative;
+  }
+  
+  .cart-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  .card:hover .cart-icon {
+    opacity: 1;
+  }
+  
+  .card-link {
+    display: flex;
+    overflow:hidden;
+    background: none;
+    width: 40%;
+    height: 40%;
+    text-decoration: none;
+    margin: 0 auto;
+    border: none;
+    color: inherit;
+    font-size: 30px;
+    font: "Montserrat", "sans-serif";
+  }
+  
+  .card-img {
+    width: 55vh;
+    height: 25vh;
+  }
+  /* Course Card */
+  
+  
+  
+  /* Course Details */
+  
+  .course-name {
+    color: white;
+    text-align: center;
+    font: 700 60px Montserrat, sans-serif;
+    margin-bottom: -25px;
+    }
+  
+    
+  .accordion-button:not(.collapsed) {
+      background-color: #c5ff4a!important;
+      font-weight: 700;
+      font-size: 24px;
+  }
+  
+  
+  .accordion-button:not(.collapsed)::after {
+    display: none!important;
+  }
+  
+  .accordion-item {
+    color: #ffffff!important;
+    background-color: #1f1d1d!important;
+    border: none!important;
+  }
+    /* Course Details */
+  
+  .course-info {
+    font-family: 'Montserrat', 'Sans-Serif';
+    text-align: center;
+  }
+  
+  
+  .module-title {
+    font-family: 'Montserrat', 'Sans-Serif';
+    text-align: center;
+  }
+  
+  .module-content {
+    font-family: 'Montserrat', 'Sans-Serif';
+    text-align: center;
+  }
+
+
+
+  .dropdown {
+    position: relative;
+    margin: auto;
+    margin-left: 15%;
+    display: inline-block;
+    margin-bottom: 200px;
+  }
+  
+  .dropdown-btn {
+    padding: 15px; 
+    font-size: 18px; 
+    border: none;
+    background-color: #c5ff4a; 
+    color: black; 
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1000px; 
+    border-radius: 0;
+  }
+  
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #444; 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 250px;
+    max-height: 400px; 
+    overflow-y: auto; 
+    
+  }
+  
+  
+  .dropdown-content a {
+    color: #fff; 
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+  }
+  
+  
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
+  .dropdown-btn-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .buy-now-btn {
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 175px;
+    height: 57px;
+    margin-right: 20px;
+  }
+  
+  
+  .buy-now-btn img {
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  
+  .buy-now {
+    margin-left: 10px; 
+  }
+  .hover-scale-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  
+  .hover-scale-btn:hover {
+    transform: scale(1.1); 
+  }
+  
+  
+  .buy-now-btn {
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  
+  .buy-now-btn:hover {
+    transform: scale(1.1); 
+  }
+
+  .buy-now-btn img {
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+  }
+  .dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s ease, text-decoration 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #4CAF50; 
+    color: white; 
+    text-decoration: underline; 
+    box-shadow: 0 0 10px rgba(0, 128, 0, 0.5); 
+  }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #444; 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 1000px; 
+    text-align: center; 
+    max-height: 400px; 
+    overflow-y: auto; 
+  }
+  
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
+
+.move-down {
+    margin-top: 200px; 
+  }
+    
+
+
+.lock-logo-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.lock-logo-container img {
+    width: 50px; 
+    height: 50px;
+}
+
+.dropdown-content .lock-logo-container {
+    display: none;
+}
+
+.dropdown.active .dropdown-content .lock-logo-container {
+    display: block;
+}
+.lock-icon.hidden {
+    display: none;
+}
+.fa-lock, .fa-unlock {
+    font-size: 1.5rem;
+    margin-left: 5px;
+    color: #555;
+}
+.price-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #3498db; 
+    color: #fff;
+    border-radius: 3px;
+    width: 67px;
+    font-size: 1.5em; 
+    margin-left: 5px; 
+
+}

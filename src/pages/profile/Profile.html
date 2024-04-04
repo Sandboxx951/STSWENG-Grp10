@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/StyleProfile.css">
+    <title>Profile</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><!-- Change the form ID to "logoutForm" -->
+                <form id="logoutForm" method="GET">
+                    <button type="submit">Logout</button>
+                </form></li>
+        </ul>
+    </div>
+    <div class="content-box">
+        <h2>About Me</h2>
+        <p>This is the About Me page content. You can add information about yourself here.</p>
+    </div>
+    <h2 class="owned-courses">Courses owned:</h2>
+    <div class="courseList">
+        <!--DISPLAY MODULES OWNED-->
+    </div>
+
+    <script>
+        async function fetchAndDisplayOwnedCourses() {
+            try{
+                console.log('fetching owned courses');
+                const response = await fetch('/courses');
+                if(response.ok){
+                    const courses = await response.json();
+                    console.log('courses: ', courses);
+                    const courseList = document.querySelector('.courseList');
+                    courseList.innerHTML = '';
+                    courses.forEach(async course => {
+                        // Check if the user has purchased this course
+                        const userPurchased = await checkUserPurchased(course.id);
+                        if(userPurchased){
+                            const courseElement = document.createElement('div');
+                            courseElement.className = 'course-row'; // Add class for styling
+                            courseElement.innerHTML = `
+                                <div class="col">
+                                    <button class="card-link">
+                                        <div class="card text-bg-dark">
+                                            <img src="${course.imagePath}" class="card-img" alt="...">
+                                            <div class="card-img-overlay">
+                                                <h5 class="card-title">${course.courseName} - $${course.price}</h5>
+                                            </div>
+                                            <span class="icon">
+                                                <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown">
+                                    <div class="dropdown-btn-container">
+                                        <button class="dropdown-btn" onclick="toggleDropdown(this)">
+                                            &#9660 MODULES:
+                                    </div>
+                                    <div class="dropdown-content" id="dropdownContent1">
+                                        <div class="modules-list" id="modules-${course.id}">
+                                        </div> <!-- Container for modules -->
+                                    </div>
+                                </div>    
+                            `;
+                            courseList.appendChild(courseElement);
+
+                            // Fetch and display modules for this course
+                            const modulesList = document.getElementById(`modules-${course.id}`);
+                            const modulesResponse = await fetch(`/courses/${course.id}/modules`);
+                            
+                            if (modulesResponse.ok) {
+                                const modules = await modulesResponse.json();
+                                modules.forEach(async module => {
+                                    const moduleElement = document.createElement('div');
+                                    moduleElement.innerHTML = `
+                                        <div class="module-content">
+                                            <a class="locked-message" href="#" style="color: red; display: none;">${module.subModuleName}</a>
+                                            <a class="unlocked-message" href="#" style="color: white; display: none;">${module.subModuleName}</a>
+                                        </div>
+                                    `;
+                                    modulesList.appendChild(moduleElement);
+                                    // Check if the user has purchased this course
+                                    const userPurchased = await checkUserPurchased(course.id);
+                                    console.log(userPurchased)
+                                    if (userPurchased) {
+                                        const moduleStatusElements = moduleElement.querySelectorAll('.module-content span');
+                                        const unlockedMessage = moduleElement.querySelector('.unlocked-message');
+                                        const lockedMessage = moduleElement.querySelector('.locked-message');
+                                        const moduleFileLink = moduleElement.querySelector('.module-file-link');
+                                        /*moduleStatusElements.forEach(element => {
+                                            element.textContent = 'Module Unlocked'; // Update module status
+                                        });*/
+                                        unlockedMessage.style.display = 'block'; // Display the unlocked message
+                                        // Set the href attribute of the module file link to the file path
+                                        unlockedMessage.href = module.filePath;
+
+                                        const cardTitle = courseElement.querySelector('.card-title');
+                                        const icon = courseElement.querySelector('.icon');
+
+                                        //removes price from course name
+                                        cardTitle.innerHTML = `${course.courseName}`;
+
+                                        //replaces shopping cart icon with check mark
+                                        icon.innerHTML = ``;
+                                    } else {
+                                        const lockedMessage = moduleElement.querySelector('.locked-message');
+                                        lockedMessage.style.display = 'block'; // Display the locked message
+                                    }
+                                });
+                            } else {
+                                console.error('Failed to fetch modules:', modulesResponse.statusText);
+                            }
+                        }
+                    });
+                } else {
+                    console.error('Failed to fetch courses:', response.statusText);
+                }
+            } catch (error) {
+                console.log('Error fetching courses', error);
+            }
+        }
+
+        async function checkUserPurchased(courseId) {
+            try {
+                const response = await fetch(`/courses/${courseId}/purchased`, { method: 'GET' });
+                if (response.ok) {
+                    const result = await response.json();
+                    return result.purchased; // Returns true if user has purchased the course, false otherwise
+                } else {
+                    console.error('Failed to check if user purchased course:', response.statusText);
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error checking if user purchased course:', error);
+                return false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const logoutForm = document.getElementById('logoutForm');
+            if (logoutForm) {
+                logoutForm.addEventListener('submit', function (event) {
+                    event.preventDefault(); // Prevent the default form submission
+
+                    fetch('/logout')
+                        .then(response => response.json())
+                        .then(data => {
+                            // Show popup indicating logout
+                            Swal.fire({
+                                title: 'Logged Out',
+                                text: data.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Redirect to home page after closing the popup
+                                    window.location.href = '/';
+                                }
+                            });
+                        })
+                        .catch(error => console.error('Error logging out:', error));
+                });
+            }
+
+        });
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            await fetchAndDisplayOwnedCourses();
+        });
+
+        function toggleDropdown(clickedElement) {
+            var dropdown = clickedElement.closest('.dropdown');
+
+            var dropdownContent = dropdown.querySelector('.dropdown-content');
+
+            dropdown.classList.toggle('active');
+            dropdownContent.classList.toggle('hover');
+        }
+    </script>
+</body>
+</html>

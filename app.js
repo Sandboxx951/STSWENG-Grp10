@@ -10,7 +10,7 @@ const upload = multer({ dest: 'uploads/' }); // Destination folder for uploaded 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(path.resolve(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Configure session middleware
 app.use(session({
@@ -100,14 +100,14 @@ const UserCourse = sequelize.define('UserCourse', {
         },
     },
 });
-User.hasMany(Course);
+User.hasMany(Course, {foreignKey: 'CourseId'});
 Course.belongsTo(User);
 
 Course.hasMany(Modules);
-Modules.belongsTo(Course, { foreignKey: 'courseId' });
+Modules.belongsTo(Course, { foreignKey: 'CourseId' });
 
-User.belongsToMany(Course, { through: UserCourse, foreignKey: 'userId' });
-Course.belongsToMany(User, { through: UserCourse, foreignKey: 'courseId' });
+User.belongsToMany(Course, { through: UserCourse, foreignKey: 'UserId' });
+Course.belongsToMany(User, { through: UserCourse, foreignKey: 'CourseId' });
 
 sequelize.sync().then(async () => {
     console.log('Database synchronized');
@@ -148,42 +148,42 @@ app.delete('/delete-module/:moduleId/:courseId', async (req, res) => {
 // Your existing route for home page
 app.get('/', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'public', 'UserHome.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'UserHome.html'));
     } else {
-        res.sendFile(path.join(__dirname, 'public', 'home.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'home.html'));
     }
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'login.html'));
 });
 
 app.get('/RECourses', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'public', 'UserRE_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'UserRE_Courses.html'));
     } else {
-        res.sendFile(path.join(__dirname, 'public', 'RE_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'RE_Courses.html'));
     }
 });
 
 app.get('/GFCourses', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'public', 'UserGF_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'userGF_Courses.html'));
     } else {
-        res.sendFile(path.join(__dirname, 'public', 'GF_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'GF_Courses.html'));
     }
 });
 
 app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'Signup.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'signup.html'));
 });
 
 app.get('/adminlogin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'AdminLogin.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'AdminLogin.html'));
 });
 
 app.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'Profile.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'Profile.html'));
 })
 
 
@@ -234,6 +234,29 @@ app.get('/courses/real-estate', async (req, res) => {
     }
 });
 
+// Route to delete user by email
+app.delete('/user', async(req, res) => {
+    const email = req.body;
+
+    try{
+        const user = await User.findOne({
+            where: {
+                email: email,
+            }
+        })
+        if(!user){
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // delete user
+        await user.destroy();
+        res.json({message: 'User deleted successfully.'});
+    } catch(error){
+        console.error('Error deleting user: ', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
 // Route to delete a course by ID
 app.delete('/courses/:courseId', async (req, res) => {
     const courseId = req.params.courseId;
@@ -252,6 +275,7 @@ app.delete('/courses/:courseId', async (req, res) => {
     }
 
 });
+
 // Route to update course information
 app.put('/courses/:courseId', async (req, res) => {
     const courseId = req.params.courseId;
