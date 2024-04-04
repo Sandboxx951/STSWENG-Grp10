@@ -1,3 +1,5 @@
+import './StyleCourses.css';
+
 // Toggle the admin dropdown visibility
 function toggleAdminDropdown(clickedElement) {
     var adminDropdown = clickedElement.closest('.dropdown');

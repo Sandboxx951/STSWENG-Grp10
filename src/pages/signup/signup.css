@@ -34,6 +34,7 @@ body {
 }
 
 .signup-header{
+  margin-top: 1rem;
   color: #FFFFFF;
   font-family: inherit;
   font-weight: 500;
@@ -160,6 +161,7 @@ input{
 .login-prompt{
   margin-top: 2rem;
   font: inherit;
+  font-size: 1rem;
   color: #32CD32;
   font-weight: 500;
   cursor: default;
@@ -186,7 +188,11 @@ input{
 }
 
 .login-modality{
+  margin-top: 2rem;
+  font: inherit;
+  font-size: 1rem;
+  color: #32CD32;
   font-weight: 500;
-  margin-top: 2rem; 
+  cursor: default;
 }
 

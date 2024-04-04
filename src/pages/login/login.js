@@ -59,7 +59,7 @@ async function loginUser(userEmail, userPassword){
         if(response.ok){
             const data = await response.json();
             alert(data.message);
-            window.location.href = 'home.html';
+            window.location.href = 'UserHome.html';
         }
         else{
             const errorData = await response.json();

@@ -168,14 +168,14 @@ app.get('/RECourses', (req, res) => {
 
 app.get('/GFCourses', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'dist', 'UserGF_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'userGF_Courses.html'));
     } else {
         res.sendFile(path.join(__dirname, 'dist', 'GF_Courses.html'));
     }
 });
 
 app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'Signup.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'signup.html'));
 });
 
 app.get('/adminlogin', (req, res) => {

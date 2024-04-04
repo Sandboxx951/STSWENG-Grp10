@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     devtool: 'inline-source-map',
     entry: {
         signup: './src/pages/signup/signup.js',
@@ -14,6 +14,8 @@ module.exports = {
         userPlans: './src/pages/user-plan/plans.js',
         profile: './src/pages/profile/profile.js',
         adminReCourses: './src/pages/admin-re-courses/AdminRE_Courses.js',
+        adminHome: './src/pages/admin-home/adminHome.js',
+        adminGfCourses: './src/pages/admin-gf-courses/AdminGF_Courses.js',
     },
     output: {
         filename: '[name].[contenthash].js',
@@ -71,7 +73,7 @@ module.exports = {
             chunks: ['profile'],
         }),
         new HtmlWebpackPlugin({
-            title: 'User GF Course',
+            title: 'User GF Courses',
             filename: 'userGF_Courses.html',
             template: './src/pages/user-gf-courses/userGF_Courses.html',
             chunks: ['userReCourses'],
@@ -112,6 +114,18 @@ module.exports = {
             template: './src/pages/admin-re-courses/AdminRE_Courses.html',
             chunks: ['adminReCourses'],
         }),
+        new HtmlWebpackPlugin({
+            title: 'Admin Home',
+            filename: 'AdminHome.html',
+            template: './src/pages/admin-home/AdminHome.html',
+            chunks: ['adminHome'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Admin GF Courses',
+            filename: 'AdminGF_Courses.html',
+            template: './src/pages/admin-gf-courses/AdminGF_Courses.html',
+            chunks: ['adminGfCourses'],
+        }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
         }),
@@ -138,5 +152,6 @@ module.exports = {
         splitChunks: {
             chunks: 'all',
         },
+        usedExports: false,
     },
 }
