@@ -1,3 +1,7 @@
+import './StyleCourses.css';
+
+console.log('INSIDE FILE MIGUI');
+
 // Toggle the admin dropdown visibility
 function toggleAdminDropdown(clickedElement) {
     var adminDropdown = clickedElement.closest('.dropdown');
@@ -120,10 +124,10 @@ function deleteCourse(courseId) {
 }
 
 // Toggle the module form visibility
-function toggleAddModuleForm() {
+/*function toggleAddModuleForm() {
     var addModuleFormContainer = document.getElementById('addModuleFormContainer');
     addModuleFormContainer.style.display = addModuleFormContainer.style.display === 'none' ? 'block' : 'none';
-}
+}*/
 
 // Call this function to fetch and display courses when the page loads
 document.addEventListener('DOMContentLoaded', async function() {

@@ -13,6 +13,7 @@ module.exports = {
         adminLogin: './src/pages/adminlogin/adminLogin.js',
         userPlans: './src/pages/user-plan/plans.js',
         profile: './src/pages/profile/profile.js',
+        adminReCourses: './src/pages/admin-re-courses/AdminRE_Courses.js',
     },
     output: {
         filename: '[name].[contenthash].js',
@@ -74,6 +75,42 @@ module.exports = {
             filename: 'userGF_Courses.html',
             template: './src/pages/user-gf-courses/userGF_Courses.html',
             chunks: ['userReCourses'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Real Estate Courses',
+            filename: 'real-estate-courses.html',
+            template: './src/pages/real-estate-courses/real-estate-courses.html',
+            chunks: ['userReCourses'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Real Estate Courses',
+            filename: 'RE_Courses.html',
+            template: './src/pages/re-courses/Re_Courses.html',
+            chunks: ['userReCourses'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'General Finance Courses',
+            filename: 'GF_Courses.html',
+            template: './src/pages/gf-courses/GF_Courses.html',
+            chunks: ['userReCourses'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'General Finance Courses',
+            filename: 'general-finance-courses.html',
+            template: './src/pages/general-finance-courses/general-finance-courses.html',
+            chunks: ['userReCourses'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Course Details',
+            filename: 'course-details.html',
+            template: './src/pages/course-details/course-details.html',
+            chunks: ['userReCourses'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Admin RE Courses',
+            filename: 'AdminRE_Courses.html',
+            template: './src/pages/admin-re-courses/AdminRE_Courses.html',
+            chunks: ['adminReCourses'],
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
