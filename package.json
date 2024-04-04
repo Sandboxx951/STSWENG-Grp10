@@ -7,7 +7,7 @@
     "start": "node server.js",
     "test": "jest --verbose",
     "testEnvironment": "jsdom",
-    "build": "webpack",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
