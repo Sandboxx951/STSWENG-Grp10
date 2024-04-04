@@ -1,3 +1,7 @@
+import { slowCypressDown } from 'cypress-slow-down';
+
+slowCypressDown(400);
+
 import Chance from 'chance';
 const chance = new Chance();
 
