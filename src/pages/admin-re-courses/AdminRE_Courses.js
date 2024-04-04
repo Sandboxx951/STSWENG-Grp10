@@ -55,7 +55,7 @@ function addNewCourse(dropdownNumber) {
 // Function to handle course editing
 async function editCourse(courseId) {
     // Get the updated course name and price from the user
-    cont newCourseName = prompt('Enter the new course name:');
+    const newCourseName = prompt('Enter the new course name:');
     const newPrice = parseFloat(prompt('Enter the new price:'));
 
     if (!newCourseName || isNaN(newPrice)) {

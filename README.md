@@ -47,7 +47,7 @@ To check if you did everything right, the dist folder should contain:
 ## ADDITIONAL NOTE: Asset scoping
 When working on the webpage itself, things like importing images and all, should be done under the assumption that EVERYTHING IS IN A SINGLE FILE, because that is the case in the 'dist' file
 
-### This is from pull-test
+### This is from pull-test :D
 
 ### Deployed to render
 - https://stsweng-grp10-1.onrender.com
