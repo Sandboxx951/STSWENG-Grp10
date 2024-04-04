@@ -4,6 +4,7 @@
   "description": "Some Description",
   "main": "AdminGF_Courses.js",
   "scripts": {
+    "start": "node server.js",
     "build": "webpack",
     "test": "jest"
   },
