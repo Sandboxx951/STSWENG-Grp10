@@ -51,7 +51,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Courses',
             filename: 'UserRe_Courses.html',
-            template: './src/pages/userRe-courses/UserRe_Courses.html',
+            template: './src/pages/userRe-courses/UserRE_Courses.html',
             chunks: ['userReCourses'],
         }),
         new HtmlWebpackPlugin({
@@ -75,7 +75,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'User GF Courses',
             filename: 'userGF_Courses.html',
-            template: './src/pages/user-gf-courses/userGF_Courses.html',
+            template: './src/pages/user-gf-courses/UserGF_Courses.html',
             chunks: ['userReCourses'],
         }),
         new HtmlWebpackPlugin({
@@ -87,7 +87,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Real Estate Courses',
             filename: 'RE_Courses.html',
-            template: './src/pages/re-courses/Re_Courses.html',
+            template: './src/pages/re-courses/RE_Courses.html',
             chunks: ['userReCourses'],
         }),
         new HtmlWebpackPlugin({
