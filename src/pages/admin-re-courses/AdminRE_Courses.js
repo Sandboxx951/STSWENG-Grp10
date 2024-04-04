@@ -52,6 +52,8 @@ function addNewCourse(dropdownNumber) {
     }
 }
 
+console.log('Commit Bookmark');
+
 // Function to handle course editing
 async function editCourse(courseId) {
     // Get the updated course name and price from the user
