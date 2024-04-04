@@ -46,7 +46,7 @@ function addNewCourse(dropdownNumber) {
 
         // Append the new course link to the dropdown content
         dropdownContent.appendChild(newCourseLink);
-    } els\e {
+    } elsadwe {
         // Handle the case where no course name is entered (you can show an error message, for example)
         alert('Please enter a course name.');
     }
