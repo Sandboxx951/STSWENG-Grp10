@@ -159,4 +159,5 @@ module.exports = {
         },
         usedExports: false,
     },
+    stats: { children: true },
 }
