@@ -19,7 +19,7 @@ describe('Signup Functionality', () => {
         cy.url().should('include', 'login')
 
         // Click on 'sign up'
-        cy.get('a[href=\'signup.html\']').click()
+        cy.get('a[href=\'/signup\']').click()
 
         cy.url().should('include', 'signup')
 
@@ -46,7 +46,7 @@ describe('Signup Functionality', () => {
         cy.url().should('include', 'login')
 
         // Click on 'sign up'
-        cy.get('a[href=\'signup.html\']').click()
+        cy.get('a[href=\'/signup\']').click()
 
         cy.url().should('include', 'signup')
 
