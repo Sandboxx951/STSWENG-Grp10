@@ -20,7 +20,7 @@ describe('User login functionality', () => {
         cy.url().should('include', 'login')
 
         // Click on 'sign up'
-        cy.get('a[href=\'signup.html\']').click()
+        cy.get('a[href=\'/signup\']').click()
 
         cy.url().should('include', 'signup')
 
@@ -42,7 +42,7 @@ describe('User login functionality', () => {
         cy.get('input[placeholder=\'Password\']').type(password)
         cy.get('#submit-signup').click()
 
-        cy.url().should('include', 'UserHome')
+        cy.url().should('include', '/')
     })
 
     it('User tries to log in but does not have an account', () => {
