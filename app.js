@@ -160,17 +160,17 @@ app.get('/login', (req, res) => {
 
 app.get('/RECourses', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'dist', 'UserRE_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'UserRECourses.html'));
     } else {
-        res.sendFile(path.join(__dirname, 'dist', 'RE_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'RECourses.html'));
     }
 });
 
 app.get('/GFCourses', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'dist', 'userGF_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'userGFCourses.html'));
     } else {
-        res.sendFile(path.join(__dirname, 'dist', 'GF_Courses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'GFCourses.html'));
     }
 });
 
