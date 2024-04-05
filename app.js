@@ -160,7 +160,7 @@ app.get('/login', (req, res) => {
 
 app.get('/RECourses', (req, res) => {
     if(req.session.user){
-        res.sendFile(path.join(__dirname, 'dist', 'UserRECourses.html'));
+        res.sendFile(path.join(__dirname, 'dist', 'UserReCourses.html'));
     } else {
         res.sendFile(path.join(__dirname, 'dist', 'RECourses.html'));
     }
