@@ -50,8 +50,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title: 'Courses',
-            filename: 'UserRe_Courses.html',
-            template: './src/pages/userRe-courses/UserRE_Courses.html',
+            filename: 'UserReCourses.html',
+            template: './src/pages/userRe-courses/UserRECourses.html',
             chunks: ['userReCourses'],
         }),
         new HtmlWebpackPlugin({
@@ -74,8 +74,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title: 'User GF Courses',
-            filename: 'userGF_Courses.html',
-            template: './src/pages/user-gf-courses/UserGF_Courses.html',
+            filename: 'userGFCourses.html',
+            template: './src/pages/user-gf-courses/UserGFCourses.html',
             chunks: ['userReCourses'],
         }),
         new HtmlWebpackPlugin({
@@ -86,14 +86,14 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title: 'Real Estate Courses',
-            filename: 'RE_Courses.html',
-            template: './src/pages/re-courses/RE_Courses.html',
+            filename: 'RECourses.html',
+            template: './src/pages/re-courses/RECourses.html',
             chunks: ['userReCourses'],
         }),
         new HtmlWebpackPlugin({
             title: 'General Finance Courses',
-            filename: 'GF_Courses.html',
-            template: './src/pages/gf-courses/GF_Courses.html',
+            filename: 'GFCourses.html',
+            template: './src/pages/gf-courses/GFCourses.html',
             chunks: ['userReCourses'],
         }),
         new HtmlWebpackPlugin({
@@ -110,8 +110,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title: 'Admin RE Courses',
-            filename: 'AdminRE_Courses.html',
-            template: './src/pages/admin-re-courses/AdminRE_Courses.html',
+            filename: 'AdminRECourses.html',
+            template: './src/pages/admin-re-courses/AdminRECourses.html',
             chunks: ['adminReCourses'],
         }),
         new HtmlWebpackPlugin({
@@ -122,8 +122,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title: 'Admin GF Courses',
-            filename: 'AdminGF_Courses.html',
-            template: './src/pages/admin-gf-courses/AdminGF_Courses.html',
+            filename: 'AdminGFCourses.html',
+            template: './src/pages/admin-gf-courses/AdminGFCourses.html',
             chunks: ['adminGfCourses'],
         }),
         new MiniCssExtractPlugin({
