@@ -21,7 +21,7 @@ describe('Integration test, full End to End', () => {
         cy.url().should('include', 'login')
 
         // Click on 'sign up'
-        cy.get('a[href=\'signup.html\']').click()
+        cy.get('a[href=\'/signup\']').click()
 
         cy.url().should('include', 'signup')
 
@@ -59,7 +59,7 @@ describe('Integration test, full End to End', () => {
         cy.get('a[href=\'/RECourses\']').click()
 
         // View profile
-        cy.get('a[href=\'Profile.html\']').click()
+        cy.get('a[href=\'/profile\']').click()
 
         // Log out
         cy.get('button[type=\'submit\']').should('contain', 'Logout').click()
