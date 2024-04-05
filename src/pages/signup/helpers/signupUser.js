@@ -20,7 +20,7 @@ async function submitData(username, useremail, userpassword){
               const data = await response.json();
               alert(data.message);
               document.getElementById('signup-form').reset();
-              window.location.href = 'login.html';
+              window.location.href = '/login';
             }
           } catch (error) {
             console.error('Error during signup:', error);
